@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: empresa-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empresa-mongo
+  template:
+    metadata:
+      labels:
+        app: empresa-mongo
+    spec:
+      containers:
+        - name: empresa-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: empresa-mongo-srv
+spec:
+  selector:
+    app: empresa-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

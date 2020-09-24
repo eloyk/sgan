@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: permiso-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: permiso-mongo
+  template:
+    metadata:
+      labels:
+        app: permiso-mongo
+    spec:
+      containers:
+        - name: permiso-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: permiso-mongo-srv
+spec:
+  selector:
+    app: permiso-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

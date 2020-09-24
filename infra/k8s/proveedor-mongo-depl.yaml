@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proveedor-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proveedor-mongo
+  template:
+    metadata:
+      labels:
+        app: proveedor-mongo
+    spec:
+      containers:
+        - name: proveedor-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proveedor-mongo-srv
+spec:
+  selector:
+    app: proveedor-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

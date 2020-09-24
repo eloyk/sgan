@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: categoria-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: categoria-mongo
+  template:
+    metadata:
+      labels:
+        app: categoria-mongo
+    spec:
+      containers:
+        - name: categoria-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: categoria-mongo-srv
+spec:
+  selector:
+    app: categoria-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manejador-precio-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manejador-precio
+  template:
+    metadata:
+      labels:
+        app: manejador-precio
+    spec:
+      containers:
+        - name: manejador-precio
+          image: eloyk/manejador-precio
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: "mongodb://manejador-precio-mongo-srv:27017/manejador-precio"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manejador-precio-srv
+spec:
+  selector:
+    app: manejador-precio
+  ports:
+    - name: manejador-precio
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

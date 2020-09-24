@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producto-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producto
+  template:
+    metadata:
+      labels:
+        app: producto
+    spec:
+      containers:
+        - name: producto
+          image: eloyk/producto
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: "mongodb://producto-mongo-srv:27017/producto"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: producto-srv
+spec:
+  selector:
+    app: producto
+  ports:
+    - name: producto
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: categoria-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: categoria
+  template:
+    metadata:
+      labels:
+        app: categoria
+    spec:
+      containers:
+        - name: categoria
+          image: eloyk/categoria
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: "mongodb://categoria-mongo-srv:27017/categoria"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: categoria-srv
+spec:
+  selector:
+    app: categoria
+  ports:
+    - name: categoria
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

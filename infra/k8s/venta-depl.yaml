@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: venta-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: venta
+  template:
+    metadata:
+      labels:
+        app: venta
+    spec:
+      containers:
+        - name: venta
+          image: eloyk/venta
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: "mongodb://venta-mongo-srv:27017/venta"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: venta-srv
+spec:
+  selector:
+    app: venta
+  ports:
+    - name: venta
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

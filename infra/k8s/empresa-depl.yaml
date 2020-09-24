@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: empresa-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empresa
+  template:
+    metadata:
+      labels:
+        app: empresa
+    spec:
+      containers:
+        - name: empresa
+          image: eloyk/empresa
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: 'mongodb://empresa-mongo-srv:27017/empresa'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: empresa-srv
+spec:
+  selector:
+    app: empresa
+  ports:
+    - name: empresa
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

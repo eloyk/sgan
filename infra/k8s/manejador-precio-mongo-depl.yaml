@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manejador-precio-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manejador-precio-mongo
+  template:
+    metadata:
+      labels:
+        app: manejador-precio-mongo
+    spec:
+      containers:
+        - name: manejador-precio-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manejador-precio-mongo-srv
+spec:
+  selector:
+    app: manejador-precio-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+

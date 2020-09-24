@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unidad-medida-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unidad-medida
+  template:
+    metadata:
+      labels:
+        app: unidad-medida
+    spec:
+      containers:
+        - name: unidad-medida
+          image: eloyk/unidad-medida
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: "mongodb://unidad-medida-mongo-srv:27017/unidad-medida"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: unidad-medida-srv
+spec:
+  selector:
+    app: unidad-medida
+  ports:
+    - name: unidad-medida
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
