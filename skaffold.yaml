@@ -15,7 +15,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/producto
       context: producto
@@ -23,7 +23,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/empresa
       context: empresa
@@ -31,7 +31,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/unidad-medida
       context: unidad-medida
@@ -39,7 +39,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/manejador-precio
       context: manejador-precio
@@ -47,7 +47,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/categoria
       context: categoria
@@ -55,7 +55,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/proveedor
       context: proveedor
@@ -63,7 +63,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/cliente
       context: cliente
@@ -71,7 +71,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/compra
       context: compra
@@ -79,7 +79,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/expiracion
       context: expiracion
@@ -87,7 +87,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/factura
       context: factura
@@ -95,7 +95,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/venta
       context: venta
@@ -103,7 +103,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/permiso
       context: permiso
@@ -111,7 +111,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: eloyk/front
       context: front
@@ -119,5 +119,5 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: '**/*.js'
+          - src: "**/*.js"
             dest: .

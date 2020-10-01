@@ -9,8 +9,6 @@ interface AtribUsuario {
   nombreEmpresa?: string;
   empresaId?: string;
   establecimientoId?: string;
-  perfilDescripcion?: string;
-  perfilId?: string;
   superUsuario?: boolean;
   estadoUsuario?: boolean;
 }
@@ -29,8 +27,6 @@ interface DocumentoUsuario extends mongoose.Document {
   nombreEmpresa?: string;
   empresaId?: string;
   establecimientoId?: string;
-  perfilDescripcion?: string;
-  perfilId?: string;
   superUsuario?: boolean;
   estadoUsuario?: boolean;
 }
@@ -52,12 +48,6 @@ const SchemaUsuario = new mongoose.Schema(
       type: String,
     },
     establecimientoId: {
-      type: String,
-    },
-    perfilDescripcion: {
-      type: String,
-    },
-    perfilId: {
       type: String,
     },
     superUsuario: {
