@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
-import { Password } from '../services/password';
 
-// An interface that describes the properties
-// that are requried to create a new User
 interface AtribUsuario {
+  id: string;
   email: string;
   password: string;
   nombreEmpresa?: string;
@@ -14,9 +12,7 @@ interface AtribUsuario {
   estadoUsuario?: boolean;
 }
 
-// An interface that describes the properties
-// that a User Document has
-interface DocumentoUsuario extends mongoose.Document {
+export interface DocumentoUsuario extends mongoose.Document {
   email: string;
   password: string;
   nombreEmpresa?: string;
@@ -27,10 +23,12 @@ interface DocumentoUsuario extends mongoose.Document {
   version: number;
 }
 
-// An interface that describes the properties
-// that a User Model has
 interface ModeloUsuario extends mongoose.Model<DocumentoUsuario> {
   build(atrib: AtribUsuario): DocumentoUsuario;
+  findByEvent(event: {
+    id: string;
+    version: number;
+  }): Promise<DocumentoUsuario | null>;
 }
 
 const SchemaUsuario = new mongoose.Schema(
@@ -75,16 +73,27 @@ const SchemaUsuario = new mongoose.Schema(
 SchemaUsuario.set('versionKey', 'version');
 SchemaUsuario.plugin(updateIfCurrentPlugin);
 
-SchemaUsuario.pre('save', async function (done) {
-  if (this.isModified('password')) {
-    const hashed = await Password.toHash(this.get('password'));
-    this.set('password', hashed);
-  }
-  done();
-});
+SchemaUsuario.statics.findByEvent = (evento: {
+  id: string;
+  version: number;
+}) => {
+  return Usuario.findOne({
+    _id: evento.id,
+    version: evento.version - 1,
+  });
+};
 
 SchemaUsuario.statics.build = (atrib: AtribUsuario) => {
-  return new Usuario(atrib);
+  return new Usuario({
+    _id: atrib.id,
+    email: atrib.email,
+    password: atrib.password,
+    nombreEmpresa: atrib.nombreEmpresa,
+    empresaId: atrib.empresaId,
+    establecimientoId: atrib.establecimientoId,
+    superUsuario: atrib.superUsuario,
+    estadoUsuario: atrib.estadoUsuario,
+  });
 };
 
 const Usuario = mongoose.model<DocumentoUsuario, ModeloUsuario>(

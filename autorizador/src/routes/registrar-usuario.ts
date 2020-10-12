@@ -3,6 +3,8 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import { validarSolicitud, SolicitudIncorrecta } from '@eloyk/comun';
 import { Usuario } from '../models/usuario';
+import { PublicadorUsuarioCreado } from '../eventos/publicadores/publicador-usuario-creado';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -46,6 +48,18 @@ router.post(
     req.session = {
       jwt: usuarioJwt,
     };
+
+    new PublicadorUsuarioCreado(natsWrapper.client).publish({
+      id: usuario.id,
+      email: usuario.email,
+      password: usuario.password,
+      nombreEmpresa: usuario.nombreEmpresa,
+      empresaId: usuario.empresaId,
+      establecimientoId: usuario.establecimientoId,
+      superUsuario: usuario.superUsuario,
+      estadoUsuario: usuario.estadoUsuario,
+      version: usuario.version,
+    });
 
     res.status(201).send(usuario);
   }

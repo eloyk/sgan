@@ -9,6 +9,12 @@ import {
 } from '@eloyk/comun';
 
 import { crearPermisoRouter } from './routes/crear-permiso';
+import { crearPantallaCampoRouter } from './routes/crear-pantalla-campo';
+import { crearCampoRouter } from './routes/crear-campo';
+import { crearPantallaRouter } from './routes/crear-pantalla';
+import { crearPerfilRouter } from './routes/crear-perfil';
+import { asignarPermisoRouter } from './routes/asignar-permiso';
+import { asignarUsuarioPermisoRouter } from './routes/asignar-usuario-perfil';
 import { actualizarPermisoRouter } from './routes/actualizar-permiso';
 import { indexPermisoRouter } from './routes/index';
 import { verPermisoRouter } from './routes/ver-permiso';
@@ -27,6 +33,12 @@ app.use(
 app.use(usuarioActual);
 
 app.use(crearPermisoRouter);
+app.use(crearCampoRouter);
+app.use(crearPantallaRouter);
+app.use(crearPerfilRouter);
+app.use(asignarPermisoRouter);
+app.use(asignarUsuarioPermisoRouter);
+app.use(crearPantallaCampoRouter);
 app.use(actualizarPermisoRouter);
 app.use(indexPermisoRouter);
 app.use(verPermisoRouter);
