@@ -33,6 +33,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: eloyk/establecimiento
+      context: establecimiento
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: eloyk/unidad-medida
       context: unidad-medida
       docker:

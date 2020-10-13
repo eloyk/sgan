@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import { natsWrapper } from './nats-wrapper';
 import { app } from './app';
-import { EscuchadorProductoCreado } from './eventos/escuchadores/escuchador-producto-creado';
-import { EscuchadorProductoActulizado } from './eventos/escuchadores/escuchador-producto-actualizado';
 
 const iniciar = async () => {
   console.log('Iniciando servicio de categoria');
@@ -35,9 +33,6 @@ const iniciar = async () => {
     });
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
-
-    new EscuchadorProductoActulizado(natsWrapper.client).listen();
-    new EscuchadorProductoCreado(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,

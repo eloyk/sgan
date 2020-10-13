@@ -4,27 +4,30 @@ import {
   requireAuth,
   ErrorAutorizacion,
   Producto,
+  Venta,
 } from '@eloyk/comun';
 
 const router = express.Router();
 
 router.get(
-  '/api/producto/:id',
+  '/api/venta/:id',
   requireAuth,
   async (req: Request, res: Response) => {
-    const producto = await Producto.findById(req.params.id).populate(
-      'unidadMedida'
-    );
+    const venta = await Venta.findById(req.params.id)    
+    .populate('producto')
+    .populate('empresa')
+    .populate('establecimiento')
+    .populate('cliente');
 
-    if (!producto) {
+    if (!venta) {
       throw new ErrorNoEncontrado();
     }
 
-    if (producto.usuarioIdAlta !== req.usuarioActual!.id) {
+    if (venta.usuarioIdAlta !== req.usuarioActual!.id) {
       throw new ErrorAutorizacion();
     }
 
-    res.send(producto);
+    res.send(venta);
   }
 );
 

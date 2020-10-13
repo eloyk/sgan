@@ -7,11 +7,10 @@ import {
   controladorError,
   usuarioActual,
 } from '@eloyk/comun';
-
 import { crearPreCompraRouter } from './routes/crear-pre-compra';
 import { crearCompraRouter } from './routes/crear-compra';
 import { indexCompraRouter } from './routes/index';
-import { verCompraRouter } from './routes/ver-productos-empresa';
+import { verCompraRouter } from './routes/ver-compra';
 
 const app = express();
 app.set('trust proxy', true);

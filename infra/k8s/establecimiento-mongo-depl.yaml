@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: establecimiento-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: establecimiento-mongo
+  template:
+    metadata:
+      labels:
+        app: establecimiento-mongo
+    spec:
+      containers:
+        - name: establecimiento-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: establecimiento-mongo-srv
+spec:
+  selector:
+    app: establecimiento-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

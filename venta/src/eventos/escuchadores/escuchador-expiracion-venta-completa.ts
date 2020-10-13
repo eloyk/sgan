@@ -4,7 +4,6 @@ import {
   EventoExpiracionVentaCompleta,
   EstadoCompra,
   Venta,
-  Producto,
   ProductoCompra,
 } from '@eloyk/comun';
 import { Message } from 'node-nats-streaming';
@@ -26,12 +25,14 @@ export class EscuchadorExpiracionVentaCompleta extends Escuchador<
       const ventaTMP = await VentaTMP.findById(data.ventaId)
         .populate('productoCompraTMP')
         .populate('empresa')
+        .populate('establecimiento')
         .populate('proveedor');
 
       venta = Venta.build({
         id: ventaTMP!.id,
         empresa: ventaTMP!.empresa,
         cliente: ventaTMP!.cliente,
+        establecimiento: ventaTMP!.establecimiento,
         estadoCompra: EstadoCompra.Cancelada,
         producto: ventaTMP!.productoCompraTMP,
         cantidadProducto: ventaTMP!.contadorProducto,
@@ -84,6 +85,7 @@ export class EscuchadorExpiracionVentaCompleta extends Escuchador<
       id: venta.id,
       producto: venta.producto,
       empresa: venta.empresa,
+      establecimiento: venta.establecimiento,
       cliente: venta.cliente,
       estadoCompra: venta.estadoCompra,
       totalVenta: venta.totalVenta,

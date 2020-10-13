@@ -5,6 +5,7 @@ import {
   validarSolicitud,
   SolicitudIncorrecta,
   Empresa,
+  Establecimiento,
   Producto,
   UnidadMedida,
   Proveedor,
@@ -24,10 +25,6 @@ router.post(
   '/api/compra/precompra',
   requireAuth,
   [
-    body('empresaId')
-      .not()
-      .isEmpty()
-      .withMessage('El id de la empresa es requerido'),
     body('proveedorId')
       .not()
       .isEmpty()
@@ -48,7 +45,6 @@ router.post(
   validarSolicitud,
   async (req: Request, res: Response) => {
     const {
-      empresaId,
       proveedorId,
       productoId,
       unidadMedidaId,
@@ -57,10 +53,17 @@ router.post(
     } = req.body;
     const EXPIRACION_VENTANA_SEGUNDOS = 1 * 60;
 
-    const empresa = await Empresa.findById(empresaId);
+    const empresa = await Empresa.findById(req.usuarioActual!.empresaId);
+    const establecimiento = await Establecimiento.findOne({empresaId:req.usuarioActual!.empresaId});
     if (!empresa) {
       throw new SolicitudIncorrecta(
         'Esta empresa no existe favor intentar nuevamente o ponerse en contacto con servicio al cliente'
+      );
+    }
+
+    if (!establecimiento) {
+      throw new SolicitudIncorrecta(
+        'Este establecimiento no existe favor intentar nuevamente o ponerse en contacto con servicio al cliente'
       );
     }
 
@@ -135,7 +138,9 @@ router.post(
         emailUsuarioAlta: productoCompraTMP.emailUsuarioAlta,
         version: productoCompraTMP.version,
       });
+
       await productoCompraTMP.save();
+
     } else {
       const cantidad = productoCompraTMP.cantidadProducto + cantidadProducto;
       const sumatoria = productoCompraTMP.precioProducto * cantidad;
@@ -143,7 +148,9 @@ router.post(
         cantidadProducto: cantidad,
         sumatoriaPrecioProducto: sumatoria,
       });
+
       await productoCompraTMP.save();
+
       await new PublicadoProductoCompraActualizado(natsWrapper.client).publish({
         id: productoCompraTMP.id,
         productoId: productoCompraTMP.productoId,
@@ -171,8 +178,9 @@ router.post(
     );
 
     let compraTMP = await CompraTMP.findOne({
-      empresa: empresa,
-      proveedor: proveedor,
+      empresa,
+      establecimiento,
+      proveedor,
       usuarioIdAlta: req.usuarioActual!.id,
     }).populate('productoCompraTMP');
 
@@ -180,8 +188,9 @@ router.post(
     if (!compraTMP) {
       total = productoCompraTMP.sumatoriaPrecioProducto!;
       compraTMP = CompraTMP.build({
-        empresa: empresa,
-        proveedor: proveedor,
+        empresa,
+        establecimiento,
+        proveedor,
         productoCompraTMP: [productoCompraTMP],
         contadorProducto: 1,
         totalCompra: total,
@@ -218,6 +227,7 @@ router.post(
     const compraTemporal = await CompraTMP.findById(compraTMP.id)
       .populate('productoCompraTMP')
       .populate('empresa')
+      .populate('establecimiento')
       .populate('proveedor');
 
     if (
@@ -229,6 +239,7 @@ router.post(
         id: compraTemporal!.id,
         producto: compraTemporal!.productoCompraTMP,
         empresa: compraTemporal!.empresa,
+        establecimiento: compraTemporal!.establecimiento,
         proveedor: compraTemporal!.proveedor,
         estadoCompra: compraTemporal!.estadoCompra,
         cantidadProducto: compraTemporal!.contadorProducto,

@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
-import { EstadoCompra, DocEmpresa, DocCliente } from '@eloyk/comun';
+import { EstadoCompra, DocEmpresa, DocCliente, DocEstablecimiento } from '@eloyk/comun';
 import { DocProductoCompra } from './producto-compraTMP';
 
 interface AtribVentaTMP {
   empresa: DocEmpresa;
+  establecimiento: DocEstablecimiento;
   cliente: DocCliente;
   estadoCompra?: EstadoCompra;
   productoCompraTMP: [DocProductoCompra];
@@ -18,6 +19,7 @@ interface AtribVentaTMP {
 
 interface DocVentaTMP extends mongoose.Document {
   empresa: DocEmpresa;
+  establecimiento: DocEstablecimiento;
   cliente: DocCliente;
   estadoCompra?: EstadoCompra;
   productoCompraTMP: [DocProductoCompra];
@@ -43,6 +45,10 @@ const schemaVentaTMP = new mongoose.Schema(
     empresa: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Empresa',
+    },
+    establecimiento: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Establecimiento',
     },
     cliente: {
       type: mongoose.Schema.Types.ObjectId,
@@ -109,6 +115,7 @@ schemaVentaTMP.statics.findByEvent = (evento: {
 schemaVentaTMP.statics.build = (atrib: AtribVentaTMP) => {
   return new VentaTMP({
     empresa: atrib.empresa,
+    establecimiento: atrib.establecimiento,
     cliente: atrib.cliente,
     estadoCompra: atrib.estadoCompra,
     productoCompraTMP: atrib.productoCompraTMP,

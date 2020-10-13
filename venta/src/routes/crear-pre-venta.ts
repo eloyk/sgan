@@ -10,6 +10,7 @@ import {
   ManejadorPrecio,
   EstadoCompra,
   Cliente,
+  Establecimiento,
 } from '@eloyk/comun';
 import { VentaTMP } from '../models/ventaTMP';
 import { ProductoCompraTMP } from '../models/producto-compraTMP';
@@ -58,9 +59,16 @@ router.post(
     const EXPIRACION_VENTANA_SEGUNDOS = 1 * 60;
 
     const empresa = await Empresa.findById(empresaId);
+    const establecimiento = await Establecimiento.findOne({empresaId:req.usuarioActual!.empresaId});
     if (!empresa) {
       throw new SolicitudIncorrecta(
         'Esta empresa no existe favor intentar nuevamente o ponerse en contacto con servicio al cliente'
+      );
+    }
+
+    if (!establecimiento) {
+      throw new SolicitudIncorrecta(
+        'Este establecimiento no existe favor intentar nuevamente o ponerse en contacto con servicio al cliente'
       );
     }
 
@@ -136,6 +144,7 @@ router.post(
         version: productoCompraTMP.version,
       });
       await productoCompraTMP.save();
+
     } else {
       const cantidad = productoCompraTMP.cantidadProducto + cantidadProducto;
       const sumatoria = productoCompraTMP.precioProducto * cantidad;
@@ -171,8 +180,9 @@ router.post(
     );
 
     let ventaTMP = await VentaTMP.findOne({
-      empresa: empresa,
-      cliente: cliente,
+      empresa,
+      establecimiento,
+      cliente,
       usuarioIdAlta: req.usuarioActual!.id,
     }).populate('productoCompraTMP');
 
@@ -180,8 +190,9 @@ router.post(
     if (!ventaTMP) {
       total = productoCompraTMP.sumatoriaPrecioProducto!;
       ventaTMP = VentaTMP.build({
-        empresa: empresa,
-        cliente: cliente,
+        empresa,
+        establecimiento,
+        cliente,
         productoCompraTMP: [productoCompraTMP],
         contadorProducto: 1,
         totalVenta: total,
@@ -218,6 +229,7 @@ router.post(
     const ventaTemporal = await VentaTMP.findById(ventaTMP.id)
       .populate('productoCompraTMP')
       .populate('empresa')
+      .populate('establecimiento')
       .populate('proveedor');
 
     if (
@@ -229,6 +241,7 @@ router.post(
         id: ventaTemporal!.id,
         producto: ventaTemporal!.productoCompraTMP,
         empresa: ventaTemporal!.empresa,
+        establecimiento: ventaTemporal!.establecimiento,
         cliente: ventaTemporal!.cliente,
         estadoCompra: ventaTemporal!.estadoCompra,
         cantidadProducto: ventaTemporal!.contadorProducto,

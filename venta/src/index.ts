@@ -14,6 +14,8 @@ import { EscuchadorClienteCreado } from './eventos/escuchadores/escuchador-clien
 import { EscuchadorClienteActualizado } from './eventos/escuchadores/escuchador-cliente-actualizado';
 import { EscuchadorExpiracionVentaCompleta } from './eventos/escuchadores/escuchador-expiracion-venta-completa';
 import { EscuchadorFacturaVentaCreada } from './eventos/escuchadores/escuchador-factura-venta-creada';
+import { EscuchadorEstablecimientoCreado } from './eventos/escuchadores/escuchador-establecimiento-creado';
+import { EscuchadorEstablecimientoActualizado } from './eventos/escuchadores/escuchador-establecimiento-actualizado';
 
 const iniciar = async () => {
   console.log('Iniciando servicio de venta');
@@ -49,6 +51,8 @@ const iniciar = async () => {
 
     new EscuchadorEmpresaCreada(natsWrapper.client).listen();
     new EscuchadorEmpresaActualizada(natsWrapper.client).listen();
+    new EscuchadorEstablecimientoCreado(natsWrapper.client).listen();
+    new EscuchadorEstablecimientoActualizado(natsWrapper.client).listen();
     new EscuchadorUnidadMedidaCreada(natsWrapper.client).listen();
     new EscuchadorUnidadMedidaActualizada(natsWrapper.client).listen();
     new EscuchadorManejadorPrecioCreado(natsWrapper.client).listen();

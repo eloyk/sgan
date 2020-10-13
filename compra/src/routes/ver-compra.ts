@@ -1,20 +1,23 @@
 import express, { Request, Response } from 'express';
-import { requireAuth, Venta } from '@eloyk/comun';
+import {
+  requireAuth,
+  Compra,
+} from '@eloyk/comun';
 
 const router = express.Router();
 
 router.get(
-  '/api/venta',
+  '/api/compra/:id',
   requireAuth,
   async (req: Request, res: Response) => {
-    const venta = await Venta.findById(req.params.id)    
+    const compra = await Compra.findById(req.params.id)
     .populate('producto')
     .populate('empresa')
     .populate('establecimiento')
-    .populate('cliente');
+    .populate('proveedor');
 
-    res.send(venta);
-  }
+  res.send(compra);  
+}
 );
 
-export { router as indexProdutoRouter };
+export { router as verCompraRouter };

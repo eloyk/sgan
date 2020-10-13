@@ -3,6 +3,8 @@ import { natsWrapper } from './nats-wrapper';
 import { app } from './app';
 import { EscuchadorEmpresaCreada } from './eventos/escuchadores/escuchador-empresa-creada';
 import { EscuchadorEmpresaActualizada } from './eventos/escuchadores/escuchador-empresa-actualizada';
+import { EscuchadorEstablecimientoCreado } from './eventos/escuchadores/escuchador-establecimiento-creado';
+import { EscuchadorEstablecimientoActualizado } from './eventos/escuchadores/escuchador-establecimiento-actualizado';
 import { EscuchadorUnidadMedidaCreada } from './eventos/escuchadores/escuchador-unidad-medida-creada';
 import { EscuchadorUnidadMedidaActualizada } from './eventos/escuchadores/escuchador-unidad-medida-actualizada';
 import { EscuchadorManejadorPrecioCreado } from './eventos/escuchadores/escuchador-manejador-precio-creado';
@@ -49,6 +51,8 @@ const iniciar = async () => {
 
     new EscuchadorEmpresaCreada(natsWrapper.client).listen();
     new EscuchadorEmpresaActualizada(natsWrapper.client).listen();
+    new EscuchadorEstablecimientoCreado(natsWrapper.client).listen();
+    new EscuchadorEstablecimientoActualizado(natsWrapper.client).listen();
     new EscuchadorUnidadMedidaCreada(natsWrapper.client).listen();
     new EscuchadorUnidadMedidaActualizada(natsWrapper.client).listen();
     new EscuchadorManejadorPrecioCreado(natsWrapper.client).listen();

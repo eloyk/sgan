@@ -39,6 +39,7 @@ router.post(
     const venta = Venta.build({
       id: ventaTMP.id,
       empresa: ventaTMP.empresa,
+      establecimiento: ventaTMP.establecimiento,
       cliente: ventaTMP.cliente,
       estadoCompra: EstadoCompra.EsperandoConfimacion,
       producto: ventaTMP.productoCompraTMP,
@@ -82,6 +83,7 @@ router.post(
       id: venta.id,
       producto: venta.producto,
       empresa: venta.empresa,
+      establecimiento: venta.establecimiento,
       cliente: venta.cliente,
       estadoCompra: venta.estadoCompra,
       totalVenta: venta.totalVenta,
@@ -91,7 +93,10 @@ router.post(
     });
 
     res.send(
-      venta.populate('producto').populate('empresa').populate('cliente')
+      venta.populate('producto')
+           .populate('empresa')
+           .populate('establecimiento')
+           .populate('cliente')
     );
   }
 );
