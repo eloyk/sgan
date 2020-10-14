@@ -8,10 +8,9 @@ import {
   usuarioActual,
 } from '@eloyk/comun';
 
-import { crearCategoriaRouter } from './routes/crear-caregoria';
-import { actualizarCategoriaRouter } from './routes/actualizar-categoria';
-import { indexCategoriaRouter } from './routes/index';
-import { verCategoriaRouter } from './routes/ver-categoria';
+import { actualizarAlmacenRouter } from './routes/actualizar-almacen';
+import { indexAlmacenRouter } from './routes/index';
+import { verAlmacenRouter } from './routes/ver-almacen';
 
 const app = express();
 app.set('trust proxy', true);
@@ -26,10 +25,9 @@ app.use(
 
 app.use(usuarioActual);
 
-app.use(crearCategoriaRouter);
-app.use(actualizarCategoriaRouter);
-app.use(verCategoriaRouter);
-app.use(indexCategoriaRouter);
+app.use(actualizarAlmacenRouter);
+app.use(indexAlmacenRouter);
+app.use(verAlmacenRouter);
 
 app.all('*', async (req, res) => {
   throw new ErrorNoEncontrado();

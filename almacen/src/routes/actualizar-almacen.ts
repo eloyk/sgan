@@ -2,30 +2,29 @@ import express, { Request, Response } from 'express';
 import {
   ErrorNoEncontrado,
   requireAuth,
-  ErrorAutorizacion,
 } from '@eloyk/comun';
-import { Categoria } from '../models/categoria';
+import { Almacen } from '../models/almacen';
 
 const router = express.Router();
 
 router.put(
-  '/api/categoria/producto/:id',
+  '/api/almacen/:id',
   requireAuth,
   async (req: Request, res: Response) => {
-    const categoria = await Categoria.findById(req.params.id);
+    const almacen = await Almacen.findById(req.params.id);
 
-    if (!categoria) {
+    if (!almacen) {
       throw new ErrorNoEncontrado();
     }
 
-    categoria.set({
+    almacen.set({
       descripcion: req.body.descripcion,
     });
 
-    await categoria.save();
+    await almacen.save();
 
-    res.send(categoria);
+    res.send(almacen);
   }
 );
 
-export { router as actualizarCategoriaRouter };
+export { router as actualizarAlmacenRouter };

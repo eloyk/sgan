@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: almacen-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: almacen
+  template:
+    metadata:
+      labels:
+        app: almacen
+    spec:
+      containers:
+        - name: almacen
+          image: eloyk/almacen
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: sgan
+            - name: MONGO_URI
+              value: "mongodb://almacen-mongo-srv:27017/almacen"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: almacen-srv
+spec:
+  selector:
+    app: almacen
+  ports:
+    - name: almacen
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

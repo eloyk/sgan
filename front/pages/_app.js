@@ -3,12 +3,18 @@ import buildClient from '../api/build-client';
 import Header from '../components/header';
 const AppComponent = ({ Component, pageProps, usuarioActual }) => {
   return (
-    <div>
-      <Header usuarioActual={usuarioActual} />
-      <div className="container">
-        <Component usuarioActual={usuarioActual} {...pageProps} />
+<div class="container">
+      <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <Header usuarioActual={usuarioActual} class="col-sm"/>
+        </div>
       </div>
-    </div>
+      <div class="row justify-content-md-center">
+      <div class="col-sm">
+          <Component usuarioActual={usuarioActual} {...pageProps} />
+          </div>
+      </div>
+  </div>
   );
 };
 

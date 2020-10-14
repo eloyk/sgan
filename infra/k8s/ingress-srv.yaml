@@ -22,6 +22,10 @@ spec:
             backend:
               serviceName: establecimiento-srv
               servicePort: 3000
+          - path: /api/almacen/?(.*)
+            backend:
+              serviceName: almacen-srv
+              servicePort: 3000
           - path: /api/producto/?(.*)
             backend:
               serviceName: producto-srv

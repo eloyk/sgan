@@ -1,17 +1,17 @@
 import express, { Request, Response } from 'express';
 import { requireAuth } from '@eloyk/comun';
-import { Categoria } from '../models/categoria';
+import { Almacen } from '../models/almacen';
 
 const router = express.Router();
 
 router.get(
-  '/api/categoria/producto',
+  '/api/almacen',
   requireAuth,
   async (req: Request, res: Response) => {
-    const categoria = await Categoria.find().populate('producto');
+    const almacen = await Almacen.find();
 
-    res.send(categoria);
+    res.send(almacen);
   }
 );
 
-export { router as indexCategoriaRouter };
+export { router as indexAlmacenRouter };

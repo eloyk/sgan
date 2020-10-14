@@ -41,6 +41,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: eloyk/almacen
+      context: almacen
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: eloyk/unidad-medida
       context: unidad-medida
       docker:

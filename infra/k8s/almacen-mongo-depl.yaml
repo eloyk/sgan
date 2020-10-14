@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: almacen-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: almacen-mongo
+  template:
+    metadata:
+      labels:
+        app: almacen-mongo
+    spec:
+      containers:
+        - name: almacen-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: almacen-mongo-srv
+spec:
+  selector:
+    app: almacen-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
