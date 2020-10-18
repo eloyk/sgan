@@ -4,7 +4,6 @@ import {
   Escuchador,
   EventoCompraCreada,
   Compra,
-  ProductoCompra,
 } from '@eloyk/comun';
 import { nombreGrupoCola } from './nombre-grupo-cola';
 import { FacturaCompra } from '../../models/factura-compra';
@@ -18,6 +17,7 @@ export class EscuchadorCompraCreada extends Escuchador<EventoCompraCreada> {
     const {
       id,
       empresa,
+      establecimiento,
       proveedor,
       estadoCompra,
       producto,
@@ -33,6 +33,7 @@ export class EscuchadorCompraCreada extends Escuchador<EventoCompraCreada> {
     const compra = Compra.build({
       id,
       empresa,
+      establecimiento,
       proveedor,
       estadoCompra,
       producto,

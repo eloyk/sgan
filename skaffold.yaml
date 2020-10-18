@@ -113,6 +113,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: eloyk/stock
+      context: stock
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: eloyk/venta
       context: venta
       docker:

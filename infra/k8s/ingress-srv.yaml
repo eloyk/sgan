@@ -58,6 +58,10 @@ spec:
             backend:
               serviceName: compra-srv
               servicePort: 3000
+          - path: /api/stock/?(.*)
+            backend:
+              serviceName: stock-srv
+              servicePort: 3000
           - path: /api/venta/?(.*)
             backend:
               serviceName: venta-srv

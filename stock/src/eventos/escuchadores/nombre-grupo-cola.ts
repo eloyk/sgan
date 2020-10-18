@@ -1,1 +1,1 @@
-export const nombreGrupoCola = 'servicio-categoria';
+export const nombreGrupoCola = 'servicio-stock';

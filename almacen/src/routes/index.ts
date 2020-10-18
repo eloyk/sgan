@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
-import { requireAuth } from '@eloyk/comun';
-import { Almacen } from '../models/almacen';
+import { requireAuth, Almacen } from '@eloyk/comun';
 
 const router = express.Router();
 

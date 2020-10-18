@@ -5,6 +5,7 @@ import {
   EventoCrearEmpresa,
   Empresa,
   UnidadMedida,
+  SolicitudIncorrecta,
 } from '@eloyk/comun';
 import { nombreGrupoCola } from './nombre-grupo-cola';
 import { PublicadorUnidadMedidaCreada } from '../publicadores/publicador-unidad-medida-creado';
@@ -47,6 +48,10 @@ export class EscuchadorEmpresaCreada extends Escuchador<EventoCrearEmpresa> {
       empresaId: empresa.id,
     });
     await unidadmedida.save();
+    
+    if (!unidadmedida) {
+      throw new SolicitudIncorrecta("La unidad de medida no puso ser insertada por favor verifique que los parametros de la empresa sean correctos")
+      }
 
     new PublicadorUnidadMedidaCreada(this.cliente).publish({
       id: unidadmedida.id,

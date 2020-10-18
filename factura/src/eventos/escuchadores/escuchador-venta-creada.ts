@@ -12,6 +12,7 @@ export class EscuchadorVentaCreada extends Escuchador<EventoVentaCreada> {
     const {
       id,
       empresa,
+      establecimiento,
       cliente,
       estadoCompra,
       producto,
@@ -27,6 +28,7 @@ export class EscuchadorVentaCreada extends Escuchador<EventoVentaCreada> {
     const venta = Venta.build({
       id,
       empresa,
+      establecimiento,
       cliente,
       estadoCompra,
       producto,

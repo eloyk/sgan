@@ -3,7 +3,7 @@ import { natsWrapper } from './nats-wrapper';
 import { app } from './app';
 
 const iniciar = async () => {
-  console.log('Iniciando servicio de categoria');
+  console.log('Iniciando servicio de establecimiento');
 
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY no esta definida');

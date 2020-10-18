@@ -2,8 +2,8 @@ import express, { Request, Response } from 'express';
 import {
   ErrorNoEncontrado,
   requireAuth,
+  Almacen
 } from '@eloyk/comun';
-import { Almacen } from '../models/almacen';
 
 const router = express.Router();
 

@@ -8,10 +8,10 @@ import {
   usuarioActual,
 } from '@eloyk/comun';
 
-import { crearCategoriaRouter } from './routes/crear-caregoria';
-import { actualizarCategoriaRouter } from './routes/actualizar-categoria';
-import { indexCategoriaRouter } from './routes/index';
-import { verCategoriaRouter } from './routes/ver-categoria';
+import { crearStockRouter } from './routes/crear-stock';
+import { actualizarStockRouter } from './routes/actualizar-stock';
+import { indexStockRouter } from './routes/index';
+import { verStockRouter } from './routes/ver-stock';
 
 const app = express();
 app.set('trust proxy', true);
@@ -26,10 +26,10 @@ app.use(
 
 app.use(usuarioActual);
 
-app.use(crearCategoriaRouter);
-app.use(actualizarCategoriaRouter);
-app.use(verCategoriaRouter);
-app.use(indexCategoriaRouter);
+app.use(crearStockRouter);
+app.use(actualizarStockRouter);
+app.use(indexStockRouter);
+app.use(verStockRouter);
 
 app.all('*', async (req, res) => {
   throw new ErrorNoEncontrado();

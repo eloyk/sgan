@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { natsWrapper } from './nats-wrapper';
 import { app } from './app';
 import { EscuchadorAlmacenCompraCreado } from './eventos/escuchadores/escuchador-almacen-compra-creado';
+import { EscuchadorAlmacenActulizado } from './eventos/escuchadores/escuchador-almacen-actualizado';
+import { EscuchadorAlmacenStockActulizado } from './eventos/escuchadores/escuchador-almacen-stock-actualizado';
 
 const iniciar = async () => {
   console.log('Iniciando servicio de almacen');
@@ -36,6 +38,8 @@ const iniciar = async () => {
     process.on('SIGTERM', () => natsWrapper.client.close());
 
     new EscuchadorAlmacenCompraCreado(natsWrapper.client).listen();
+    new EscuchadorAlmacenActulizado(natsWrapper.client).listen();
+    new EscuchadorAlmacenStockActulizado(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,

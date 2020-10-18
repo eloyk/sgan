@@ -1,51 +1,43 @@
 import mongoose from 'mongoose';
 
-export interface AtribAlmacen {
-  descripcion: string;
+export interface AtribStock {
   empresaId: string;
   establecimientoId: string;
   productoId: string;
-  nombreProducto: string;
+  producto: string;
   cantidad: number;
-  tipoProducto: string;
   tipoPrecio: string;
   managerPrecioId: string;
   descripcionPrecio: string;
-  literalUnidadMedida: string;
+  literalUnidad: string;
   precioProducto: number;
-  sumatoriaPrecioProducto: number;
-  fechaUltimaCompra: Date;
+  sumatoria: number;
+  fechaUltimaCompra?: Date;
   usuarioUltimaCompra: string;
 }
 
-export interface DocAlmacen extends mongoose.Document {
-  descripcion: string;
+export interface DocStock extends mongoose.Document {
   empresaId: string;
   establecimientoId: string;
   productoId: string;
-  nombreProducto: string;
+  producto: string;
   cantidad: number;
-  tipoProducto: string;
   tipoPrecio: string;
   managerPrecioId: string;
   descripcionPrecio: string;
-  literalUnidadMedida: string;
+  literalUnidad: string;
   precioProducto: number;
-  sumatoriaPrecioProducto: number;
-  fechaUltimaCompra: Date;
+  sumatoria: number;
+  fechaUltimaCompra?: Date;
   usuarioUltimaCompra: string;
 }
 
-interface ModelAlmacen extends mongoose.Model<DocAlmacen> {
-  build(atrib: AtribAlmacen): DocAlmacen;
+interface ModelStock extends mongoose.Model<DocStock> {
+  build(atrib: AtribStock): DocStock;
 }
 
-const schemaAlmacen = new mongoose.Schema(
+const schemaStock = new mongoose.Schema(
   {
-    descripcion: {
-      type: String,
-      required: true,
-    },
     empresaId: {
       type: String,
       required: true,
@@ -58,16 +50,12 @@ const schemaAlmacen = new mongoose.Schema(
       type: String,
       required: true,
     },
-    nombreProducto: {
+    producto: {
       type: String,
       required: true,
     },
     cantidad: {
       type: Number,
-      required: true,
-    },
-    tipoProducto: {
-      type: String,
       required: true,
     },
     tipoPrecio: {
@@ -82,7 +70,7 @@ const schemaAlmacen = new mongoose.Schema(
       type: String,
       required: true,
     },
-    literalUnidadMedida: {
+    literalUnidad: {
       type: String,
       required: true,
     },
@@ -90,13 +78,13 @@ const schemaAlmacen = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    sumatoriaPrecioProducto: {
+    sumatoria: {
       type: Number,
       required: true,
     },
     fechaUltimaCompra: {
-      type: Date,
-      required: true,
+      type: mongoose.Schema.Types.Date,
+      default: Date.now,
     },
     usuarioUltimaCompra: {
       type: String,
@@ -114,13 +102,26 @@ const schemaAlmacen = new mongoose.Schema(
   }
 );
 
-schemaAlmacen.statics.build = (atrib: AtribAlmacen) => {
-  return new Almacen(atrib);
+schemaStock.statics.build = (atrib: AtribStock) => {
+  return new Stock({
+    empresaId: atrib.empresaId,
+    establecimientoId: atrib.establecimientoId,
+    productoId: atrib.productoId,
+    producto: atrib.producto,
+    cantidad: atrib.cantidad,
+    tipoPrecio: atrib.tipoPrecio,
+    managerPrecioId: atrib.managerPrecioId,
+    descripcionPrecio: atrib.descripcionPrecio,
+    literalUnidad: atrib.literalUnidad,
+    precioProducto: atrib.precioProducto,
+    sumatoria: atrib.sumatoria,
+    usuarioUltimaCompra: atrib.usuarioUltimaCompra,
+    });
 };
 
-const Almacen = mongoose.model<DocAlmacen, ModelAlmacen>(
-  'Almacen',
-  schemaAlmacen
+const Stock = mongoose.model<DocStock, ModelStock>(
+  'Stock',
+  schemaStock
 );
 
-export { Almacen };
+export { Stock };

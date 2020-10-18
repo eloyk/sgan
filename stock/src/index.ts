@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 import { natsWrapper } from './nats-wrapper';
 import { app } from './app';
-import { EscuchadorProductoCreado } from './eventos/escuchadores/escuchador-producto-creado';
-import { EscuchadorProductoActulizado } from './eventos/escuchadores/escuchador-producto-actualizado';
+import { EscuchadorAlmacenCreado } from './eventos/escuchadores/escuchador-almacen-creado';
+import { EscuchadorAlmacenActulizado } from './eventos/escuchadores/escuchador-almacen-actualizado';
 
 const iniciar = async () => {
-  console.log('Iniciando servicio de categoria');
+  console.log('Iniciando servicio de stock');
 
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY no esta definida');
@@ -36,8 +36,8 @@ const iniciar = async () => {
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
 
-    new EscuchadorProductoActulizado(natsWrapper.client).listen();
-    new EscuchadorProductoCreado(natsWrapper.client).listen();
+    new EscuchadorAlmacenActulizado(natsWrapper.client).listen();
+    new EscuchadorAlmacenCreado(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
