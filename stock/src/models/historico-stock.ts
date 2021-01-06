@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
-export interface AtribStock {
+export interface AtribHistoricoStock {
+  id: string;
   empresaId: string;
   establecimientoId: string;
   productoId: string;
@@ -16,7 +17,7 @@ export interface AtribStock {
   usuarioUltimaCompra: string;
 }
 
-export interface DocStock extends mongoose.Document {
+export interface DocHistoricoStock extends mongoose.Document {
   empresaId: string;
   establecimientoId: string;
   productoId: string;
@@ -32,11 +33,11 @@ export interface DocStock extends mongoose.Document {
   usuarioUltimaCompra: string;
 }
 
-interface ModelStock extends mongoose.Model<DocStock> {
-  build(atrib: AtribStock): DocStock;
+interface ModelHistoricoStock extends mongoose.Model<DocHistoricoStock> {
+  build(atrib: AtribHistoricoStock): DocHistoricoStock;
 }
 
-const schemaStock = new mongoose.Schema(
+const schemaHistoricoStock = new mongoose.Schema(
   {
     empresaId: {
       type: String,
@@ -102,8 +103,9 @@ const schemaStock = new mongoose.Schema(
   }
 );
 
-schemaStock.statics.build = (atrib: AtribStock) => {
-  return new Stock({
+schemaHistoricoStock.statics.build = (atrib: AtribHistoricoStock) => {
+  return new HistoricoStock({
+    _id: atrib.id,
     empresaId: atrib.empresaId,
     establecimientoId: atrib.establecimientoId,
     productoId: atrib.productoId,
@@ -120,9 +122,9 @@ schemaStock.statics.build = (atrib: AtribStock) => {
     });
 };
 
-const Stock = mongoose.model<DocStock, ModelStock>(
-  'Stock',
-  schemaStock
+const HistoricoStock = mongoose.model<DocHistoricoStock, ModelHistoricoStock>(
+  'HistoricoStock',
+  schemaHistoricoStock
 );
 
-export { Stock };
+export { HistoricoStock };
