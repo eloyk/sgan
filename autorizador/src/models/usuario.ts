@@ -75,7 +75,7 @@ const SchemaUsuario = new mongoose.Schema(
 SchemaUsuario.set('versionKey', 'version');
 SchemaUsuario.plugin(updateIfCurrentPlugin);
 
-SchemaUsuario.pre('save', async function (done) {
+SchemaUsuario.pre('save', async function(this: any, done: any) {
   if (this.isModified('password')) {
     const hashed = await Password.toHash(this.get('password'));
     this.set('password', hashed);

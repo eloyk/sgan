@@ -40,13 +40,17 @@ afterAll(async () => {
 
 global.signin = async () => {
   const email = 'test@test.com';
-  const password = 'password';
+  const password = '123456';
+  const nombreEmpresa = '';
+  const empresaId = '';
 
   const response = await request(app)
-    .post('/api/users/signup')
+    .post('/api/usuario/registrousuario')
     .send({
       email,
-      password
+      password,
+      nombreEmpresa,
+      empresaId,
     })
     .expect(201);
 
