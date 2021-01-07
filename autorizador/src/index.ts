@@ -5,7 +5,7 @@ import { natsWrapper } from './nats-wrapper';
 import { EscuchadorEmpresaCreada } from './eventos/escuchadores/escuchador-empresa-creada';
 
 const iniciar = async () => {
-  console.log('Iniciando servicio autorizador de SGAN');
+  console.log('Iniciando servicio autorizador');
 
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY no esta definida');
