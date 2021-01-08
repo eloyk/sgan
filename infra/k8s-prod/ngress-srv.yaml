@@ -1,0 +1,72 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: sgerd.com
+      http:
+        paths:
+          - path: /api/usuario/?(.*)
+            backend:
+              serviceName: autorizador-srv
+              servicePort: 3000
+          - path: /api/empresa/?(.*)
+            backend:
+              serviceName: empresa-srv
+              servicePort: 3000
+          - path: /api/establecimiento/?(.*)
+            backend:
+              serviceName: establecimiento-srv
+              servicePort: 3000
+          - path: /api/almacen/?(.*)
+            backend:
+              serviceName: almacen-srv
+              servicePort: 3000
+          - path: /api/producto/?(.*)
+            backend:
+              serviceName: producto-srv
+              servicePort: 3000
+          - path: /api/permiso/?(.*)
+            backend:
+              serviceName: permiso-srv
+              servicePort: 3000
+          - path: /api/unidadmedida/?(.*)
+            backend:
+              serviceName: unidad-medida-srv
+              servicePort: 3000
+          - path: /api/producto/manejadorprecio/?(.*)
+            backend:
+              serviceName: manejador-precio-srv
+              servicePort: 3000
+          - path: /api/categoria/producto/?(.*)
+            backend:
+              serviceName: categoria-srv
+              servicePort: 3000
+          - path: /api/empresa/proveedor/?(.*)
+            backend:
+              serviceName: proveedor-srv
+              servicePort: 3000
+          - path: /api/empresa/cliente/?(.*)
+            backend:
+              serviceName: cliente-srv
+              servicePort: 3000
+          - path: /api/compra/?(.*)
+            backend:
+              serviceName: compra-srv
+              servicePort: 3000
+          - path: /api/stock/?(.*)
+            backend:
+              serviceName: stock-srv
+              servicePort: 3000
+          - path: /api/venta/?(.*)
+            backend:
+              serviceName: venta-srv
+              servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: front-srv
+              servicePort: 3000

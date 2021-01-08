@@ -18,14 +18,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eloyk/comun": "^1.0.102",
+    "@eloyk/comun": "^1.0.119",
     "@types/bull": "^3.14.0",
-    "@types/jest": "^25.2.3",
     "bull": "^3.14.0",
-    "jest": "^26.0.1",
     "node-nats-streaming": "^0.3.2",
-    "ts-jest": "^26.1.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.9.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0"
   }
 }
