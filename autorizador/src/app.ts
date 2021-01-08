@@ -4,6 +4,7 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
 import { ErrorNoEncontrado, controladorError } from '@eloyk/comun';
+import { indexUsuario } from './routes/index';
 import { usuarioActualRouter } from './routes/usuario-actual';
 import { iniciarSesionRouter } from './routes/iniciar-sesion';
 import { cerrarsesionRouter } from './routes/cerrar-sesion';
@@ -20,6 +21,7 @@ app.use(
   })
 );
 
+app.use(indexUsuario);
 app.use(usuarioActualRouter);
 app.use(iniciarSesionRouter);
 app.use(cerrarsesionRouter);
