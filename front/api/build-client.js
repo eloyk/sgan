@@ -12,7 +12,7 @@ export default ({ req }) => {
   } else {
     // Peticion al navegador
     return axios.create({
-      baseUrl: '/',
+      baseUrl: 'http://www.sgerd.com',
     });
   }
 };
