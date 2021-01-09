@@ -12,7 +12,7 @@ export default ({ req }) => {
     });
   } else {
     // Peticion al navegador
-    console.log('ejecutando del lado del servidor');
+    console.log('ejecutando del lado del cliente');
 
     return axios.create({
       baseUrl: '/',
