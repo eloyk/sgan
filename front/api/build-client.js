@@ -7,8 +7,7 @@ export default ({ req }) => {
 
     return axios.create({
       baseURL:
-        '/',
-      headers: req.headers,
+        'http://www.sgerd.com',
     });
   } else {
     // Peticion al navegador
