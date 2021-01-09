@@ -20,7 +20,7 @@ const AppComponent = ({ Component, pageProps, usuarioActual }) => {
 
 AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
-  const { data } = await client.get('http://www.sgerd.com/api/usuario/usuarioactual');
+  const { data } = await client.get('/api/usuario/usuarioactual');
 
   let pageProps = {};
   if (appContext.Component.getInitialProps) {
