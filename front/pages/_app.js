@@ -22,8 +22,8 @@ AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
   //const { data } = await client.get('/api/usuario/usuarioactual');
   const data = {usuarioActual:{
-    email: '',
-    password: ''
+    id: '',
+    email: ''
   }};
 
   let pageProps = {};
