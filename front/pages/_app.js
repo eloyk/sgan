@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import buildClient from '../api/build-client';
 import Header from '../components/header';
+import axios from 'axios';
+
 const AppComponent = ({ Component, pageProps, usuarioActual }) => {
   return (
 <div class="container">
@@ -19,8 +21,8 @@ const AppComponent = ({ Component, pageProps, usuarioActual }) => {
 };
 
 AppComponent.getInitialProps = async (appContext) => {
-  const client = buildClient(appContext.ctx);
-  const { data } = await client.get('/api/usuario/usuarioactual');
+  //const client = buildClient(appContext.ctx);
+  const { data } = await axios.get('http://www.sgerd.com/api/usuario/usuarioactual');
   //console.log(appContext.ctx);
   //const data = {usuarioActual:{
   //  id: '',
@@ -31,7 +33,7 @@ AppComponent.getInitialProps = async (appContext) => {
   if (appContext.Component.getInitialProps) {
     pageProps = await appContext.Component.getInitialProps(
       appContext.ctx,
-      client,
+      //client,
       data.usuarioActual
     );
   }
