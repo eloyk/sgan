@@ -5,7 +5,7 @@ export default ({ req }) => {
     // Peticion al servidor
     return axios.create({
       baseURL:
-        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+        'http://localhost:3000',
       headers: req.headers,
     });
   } else {
