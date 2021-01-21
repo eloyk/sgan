@@ -39,13 +39,13 @@ router.post(
       'unidadMedida'
     );
     let unidadMedidaId = '';
-    producto!.unidadMedida.forEach((unidadM) => {
+    producto!.unidadMedida.forEach((unidadM: any) => {
       if (unidadM.literal === literalUnidadMedida) {
         unidadMedidaId = unidadM.id;
       }
     });
 
-    const manejadorPrecio = await ManejadorPrecio.build({
+    const manejadorPrecio = ManejadorPrecio.build({
       unidadMedidaId,
       descripcion,
       tipoPrecio,
