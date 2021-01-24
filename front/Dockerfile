@@ -5,4 +5,4 @@ COPY package.json .
 RUN npm install --only=prod
 COPY . .
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
