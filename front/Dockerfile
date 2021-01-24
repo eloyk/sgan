@@ -1,15 +1,16 @@
-FROM node:12.16.3-alpine3.11 as base
+FROM node:12.16.3-alpine3.11
 
-WORKDIR /app
-COPY package.json .
-RUN npm install --only=prod \
-  && npm cache clean --force
-CMD ["npm", "run", "build"]
+# create & set working directory
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
 
-FROM base as prod
+# copy source files
+COPY . /usr/src
 
-WORKDIR /app
+# install dependencies
+RUN npm install --only=prod
 
-COPY . .
+# start app
+RUN npm run build
 
-CMD ["npm", "run", "start"]
+CMD npm run start
