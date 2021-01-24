@@ -4,8 +4,12 @@ WORKDIR /app
 COPY package.json .
 RUN npm install --only=prod \
   && npm cache clean --force
-CMD ["npm", "run", "build"]    
+CMD ["npm", "run", "build"]
 
 FROM base as prod
+
+WORKDIR /app
+
 COPY . .
+
 CMD ["npm", "run", "start"]
