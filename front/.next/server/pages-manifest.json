@@ -1,1 +1,7 @@
-{"/_app":"static/tl4eAbPeuu_g51HI88Sje/pages/_app.js","/_document":"static/tl4eAbPeuu_g51HI88Sje/pages/_document.js","/_error":"static/tl4eAbPeuu_g51HI88Sje/pages/_error.js","/autorizador/signin":"static/tl4eAbPeuu_g51HI88Sje/pages/autorizador/signin.js","/autorizador/signout":"static/tl4eAbPeuu_g51HI88Sje/pages/autorizador/signout.js","/autorizador/signup":"static/tl4eAbPeuu_g51HI88Sje/pages/autorizador/signup.js","/cliente":"static/tl4eAbPeuu_g51HI88Sje/pages/cliente.js","/cliente/[clienteId]":"static/tl4eAbPeuu_g51HI88Sje/pages/cliente/[clienteId].js","/cliente/crear":"static/tl4eAbPeuu_g51HI88Sje/pages/cliente/crear.js","/empresa":"static/tl4eAbPeuu_g51HI88Sje/pages/empresa.js","/empresa/[empresaId]":"static/tl4eAbPeuu_g51HI88Sje/pages/empresa/[empresaId].js","/empresa/crear":"static/tl4eAbPeuu_g51HI88Sje/pages/empresa/crear.js","/index":"static/tl4eAbPeuu_g51HI88Sje/pages/index.js","/proveedor":"static/tl4eAbPeuu_g51HI88Sje/pages/proveedor.js","/proveedor/[proveedorId]":"static/tl4eAbPeuu_g51HI88Sje/pages/proveedor/[proveedorId].js","/proveedor/crear":"static/tl4eAbPeuu_g51HI88Sje/pages/proveedor/crear.js","/unidadmedida":"static/tl4eAbPeuu_g51HI88Sje/pages/unidadmedida.js","/unidadmedida/crear":"static/tl4eAbPeuu_g51HI88Sje/pages/unidadmedida/crear.js","/":"static/tl4eAbPeuu_g51HI88Sje/pages/index.js"}
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/": "pages/index.js",
+  "/login": "pages/login.js"
+}
