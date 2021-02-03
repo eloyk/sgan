@@ -398,4 +398,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withLayout(NavPage)))
+export default connect(null, mapDispathToProps)(withLayout(NavPage))
