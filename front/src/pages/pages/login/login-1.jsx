@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import * as yup from "yup"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Link from "next/link"
 import Head from "next/head"
 
@@ -154,4 +154,4 @@ function Login1Form() {
   )
 }
 
-export default withAuth(withLayout(Login1Page, "blank"))
+export default withLayout(Login1Page, "blank")

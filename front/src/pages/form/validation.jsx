@@ -20,7 +20,7 @@ import { connect } from "react-redux"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import * as yup from "yup"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Head from "next/head"
 
 class FormValidationPage extends React.Component {
@@ -481,4 +481,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withAuth(withLayout(FormValidationPage)))
+export default connect(null, mapDispathToProps)(withLayout(FormValidationPage))

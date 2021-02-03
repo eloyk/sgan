@@ -3,7 +3,7 @@ import { pageChangeHeaderTitle, breadcrumbChange } from "store/actions"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Chart from "@panely/apexcharts"
 import Head from "next/head"
 
@@ -1109,4 +1109,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(withAuth(withLayout(ApexChartPage)))
+export default connect(mapStateToProps, mapDispathToProps)(withLayout(ApexChartPage))

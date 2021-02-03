@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Widget1 from "components/widgets/Widget1"
 import Widget2 from "components/widgets/Widget2"
 import Widget3 from "components/widgets/Widget3"
@@ -117,4 +117,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withAuth(withLayout(WidgetsGeneralPage)))
+export default connect(null, mapDispathToProps)(withLayout(WidgetsGeneralPage))

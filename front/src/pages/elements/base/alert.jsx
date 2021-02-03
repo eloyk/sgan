@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Head from "next/head"
 
 class AlertPage extends React.Component {
@@ -295,4 +295,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withAuth(withLayout(AlertPage)))
+export default connect(null, mapDispathToProps)(withLayout(AlertPage))

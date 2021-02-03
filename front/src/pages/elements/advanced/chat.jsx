@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import * as RegularIcon from "@fortawesome/free-regular-svg-icons"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Link from "next/link"
 import Head from "next/head"
 
@@ -286,4 +286,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withAuth(withLayout(ChatPage)))
+export default connect(null, mapDispathToProps)(withLayout(ChatPage))

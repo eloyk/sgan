@@ -3,7 +3,7 @@ import { pageChangeHeaderTitle, breadcrumbChange } from "store/actions"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Widget22 from "components/widgets/Widget22"
 import Widget23 from "components/widgets/Widget23"
 import Widget24 from "components/widgets/Widget24"
@@ -89,4 +89,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withAuth(withLayout(WidgetsChartPage)))
+export default connect(null, mapDispathToProps)(withLayout(WidgetsChartPage))

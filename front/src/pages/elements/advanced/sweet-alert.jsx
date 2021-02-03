@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import swalContent from "sweetalert2-react-content"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Head from "next/head"
 import Swal from "@panely/sweetalert2"
 
@@ -455,4 +455,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withAuth(withLayout(SweetAlertPage)))
+export default connect(null, mapDispathToProps)(withLayout(SweetAlertPage))

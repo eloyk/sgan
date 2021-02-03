@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers"
 import * as BrandsIcon from "@fortawesome/free-brands-svg-icons"
 import * as yup from "yup"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Link from "next/link"
 import Head from "next/head"
 
@@ -257,4 +257,4 @@ function Register2Form() {
   )
 }
 
-export default withAuth(withLayout(Register2Page, "blank"))
+export default withLayout(Register2Page, "blank")
