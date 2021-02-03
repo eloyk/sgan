@@ -1,11 +1,16 @@
 FROM node:12.16.3-alpine3.11
 
-WORKDIR /app
+# create & set working directory
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
+
+# copy source files
+COPY . /usr/src
 
 # install dependencies
 RUN npm install --only=prod
 
-# copy source files
-COPY . .
+# start app
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+CMD npm run start
