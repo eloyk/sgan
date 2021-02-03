@@ -14,8 +14,8 @@ import { pageChangeHeaderTitle, breadcrumbChange } from "store/actions"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
-//import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/firebaseWithAuth"
+import withLayout from "components/layout/withLayout"
+//import withAuth from "components/firebase/firebaseWithAuth"
 import Head from "next/head"
 
 class DropdownPage extends React.Component {
