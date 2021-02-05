@@ -7,15 +7,15 @@ import withLayout from "components/layout/withLayout"
 //import withAuth from "components/firebase/firebaseWithAuth"
 import Head from "next/head"
 
-class FeatherPage extends React.Component {
+class ProductoIndexPage extends React.Component {
   componentDidMount() {
     // Set header title
-    this.props.pageChangeHeaderTitle("Feather")
+    this.props.pageChangeHeaderTitle("Lista de Productos")
     // Set breadcrumb data
     this.props.breadcrumbChange([
       { text: "Dashboard", link: "/" },
       { text: "Productos" },
-      { text: "Productos Index", link: "/productos/index" }
+      { text: "Lista de Productos", link: "/productos/index" }
     ])
   }
 
@@ -23,7 +23,7 @@ class FeatherPage extends React.Component {
     return (
       <React.Fragment>
         <Head>
-          <title>Productos Index | Panely</title>
+          <title>Lista de Productos | Panely</title>
         </Head>
         <Container fluid>
           <Row>
@@ -178,4 +178,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange }, dispatch)
 }
 
-export default connect(null, mapDispathToProps)(withLayout(FeatherPage))
+export default connect(null, mapDispathToProps)(withLayout(ProductoIndexPage))

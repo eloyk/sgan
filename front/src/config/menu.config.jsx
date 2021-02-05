@@ -183,6 +183,17 @@ const MENU = [
     ]
   },
   {
+    title: "Productos",
+    icon: () => <FontAwesomeIcon icon={SolidIcon.faIcons} />,
+    child: [
+      {
+        title: "Lista de Productos",
+        bullet: true,
+        link: "/productos/index"
+      }
+    ]
+  },
+  {
     title: "Portlet",
     icon: () => <FontAwesomeIcon icon={SolidIcon.faWindowRestore} />,
     child: [
