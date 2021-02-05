@@ -184,12 +184,12 @@ const MENU = [
   },
   {
     title: "Productos",
-    icon: () => <FontAwesomeIcon icon={SolidIcon.faIcons} />,
+    icon: () => <FontAwesomeIcon icon={SolidIcon.faBox} />,
     child: [
       {
         title: "Lista de Productos",
         bullet: true,
-        link: "/productos/index"
+        link: "/productos/lista-productos"
       }
     ]
   },
