@@ -1,0 +1,1 @@
+{"ast":null,"code":"import TYPES from \"store/types\";\nexport var setMessage = function setMessage(message) {\n  return {\n    type: type.SET_MESSAGE,\n    payload: message\n  };\n};\nexport var clearMessage = function clearMessage() {\n  return {\n    type: type.CLEAR_MESSAGE\n  };\n};","map":null,"metadata":{},"sourceType":"module"}
