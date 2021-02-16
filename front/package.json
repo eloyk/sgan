@@ -51,7 +51,6 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
     "@types/sortablejs": "^1.10.6"
   }
 }
