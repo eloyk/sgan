@@ -3,6 +3,8 @@ import { sidemenuToggle, sidemenuChange } from "./sidemenuAction"
 import { asideToggle, asideChange } from "./asideAction"
 import { breadcrumbChange } from "./breadcrumbAction"
 import { firebaseChange } from "./firebaseAction"
+import { register, login, logout } from "./auth"
+import { setMessage, clearMessage } from "./message"
 
 // Export all actions
 export {
@@ -13,5 +15,10 @@ export {
   asideToggle,
   asideChange,
   firebaseChange,
-  breadcrumbChange
+  breadcrumbChange,
+  register, 
+  login, 
+  logout,
+  setMessage, 
+  clearMessage
 }

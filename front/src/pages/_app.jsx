@@ -10,7 +10,7 @@ import "styles/sortablejs/sortablejs.scss"
 import "styles/sweetalert2/index.scss"
 import "styles/slick-carousel/index.scss"
 
-//import { AuthProvider } from "components/firebase/firebaseAuth"
+import { AuthProvider } from "components/firebase/firebaseAuth"
 import { bindActionCreators } from "redux"
 import { pageChangeTheme } from "store/actions"
 import { wrapper } from "store"
@@ -59,12 +59,12 @@ class MyApp extends App {
     }
 
     return (
-//      <AuthProvider>
+      <AuthProvider>
         <Layout>
           <ProgressBar />
           <Component {...pageProps} />
         </Layout>
-//      </AuthProvider>
+      </AuthProvider>
     )
   }
 }

@@ -28,16 +28,6 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
-    ],
-    "/icons/fontawesome": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/icons/fontawesome.js"
-    ],
-    "/productos/lista-productos": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/productos/lista-productos.js"
     ]
   },
   "ampFirstPages": []
