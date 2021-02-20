@@ -48,8 +48,5 @@
     "sweetalert2": "^9.10.3",
     "sweetalert2-react-content": "^3.2.0",
     "yup": "^0.29.3"
-  },
-  "devDependencies": {
-    "@types/sortablejs": "^1.10.6"
   }
 }
