@@ -1,7 +1,7 @@
 import axios from "axios";
 import cors from "cors"
 
-const API_URL = "http://www.sgerd.com/api/usuario/";
+const API_URL = "https://www.sgerd.com/api/usuario/";
 
 const register = async (email, password) => {
   const response = await axios.post(API_URL + "registrousuario", {
