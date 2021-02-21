@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { takeEvery } from \"redux-saga/effects\";\nimport themeSaga from \"./themeSaga\";\nimport TYPES from \"store/types\";\n\nfunction* rootSaga() {\n  yield takeEvery(TYPES.PAGE_CHANGE_THEME, themeSaga);\n}\n\nexport default rootSaga;","map":null,"metadata":{},"sourceType":"module"}

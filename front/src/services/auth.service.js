@@ -1,5 +1,4 @@
 import axios from "axios";
-import cors from "cors"
 
 const API_URL = "https://www.sgerd.com/api/usuario/";
 
