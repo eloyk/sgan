@@ -1,14 +1,25 @@
 import buildClient from "./build-client";
 
 async function verifyCurrentUserPrueba(ctx, email, password) {
-
   const client = buildClient(ctx);
-  const { data } = await client
-    .post('/api/usuario/iniciarsesion',{
-      email,
-      password,
-    });
-  return data && data.usuarioActual
+  return await client.post('/api/usuario/iniciarsesion',{
+    email,
+    password,
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json()
+    } else {
+      return false
+    }
+  })
+  // const client = buildClient(ctx);
+  // const { data } = await client
+  //   .post('/api/usuario/iniciarsesion',{
+  //     email,
+  //     password,
+  //   });
+  // return data && data.usuarioActual
 }
 
 export default verifyCurrentUserPrueba
