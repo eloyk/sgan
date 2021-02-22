@@ -1,5 +1,6 @@
 //import buildClient from "./build-client";
 import fetch from "isomorphic-unfetch"
+import absoluteUrl from "next-absolute-url"
 
 async function verifyCurrentUser(ctx) {
   const { origin } = absoluteUrl(ctx.req)

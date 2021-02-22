@@ -1,4 +1,6 @@
-import buildClient from "./build-client";
+//import buildClient from "./build-client";
+import fetch from "isomorphic-unfetch"
+import absoluteUrl from "next-absolute-url"
 
 async function verifyCurrentUserPrueba(ctx, email, password) {
   const { origin } = absoluteUrl(ctx.req)
