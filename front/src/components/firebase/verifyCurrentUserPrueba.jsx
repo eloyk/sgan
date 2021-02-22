@@ -7,7 +7,7 @@ async function verifyCurrentUserPrueba(ctx, email, password) {
     password,
   })
   .then(res => {
-    if (res.ok) {
+    if (res) {
       return res.json()
     } else {
       return false

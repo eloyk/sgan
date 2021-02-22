@@ -5,7 +5,7 @@ async function verifyCurrentUser(ctx) {
   const client = buildClient(ctx);
   return await client.get('/api/usuario/usuarioactual')
   .then(res => {
-    if (res.ok) {
+    if (res) {
       return res.json()
     } else {
       return false
