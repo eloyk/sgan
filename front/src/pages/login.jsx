@@ -103,17 +103,19 @@ function LoginForm() {
     setLoading(true)
     
     const dispatch = useDispatch();
+    
+    Router.push(Router.query.redirect || PAGE.dashboardPagePath)
 
     // Trying to login with email and password with firebase
-    dispatch(login(email, password))
-      .then(() => {
-        // Redirect to dashboard page
-        Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-      })
-      .catch(err => {
-        // Show the error message if authentication is failed
-        swal.fire({ text: err.message, icon: "error" })
-      })
+    // dispatch(login(email, password))
+    //   .then(() => {
+    //     // Redirect to dashboard page
+    //     Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+    //   })
+    //   .catch(err => {
+    //     // Show the error message if authentication is failed
+    //     swal.fire({ text: err.message, icon: "error" })
+    //   })
 
     // Hide loading indicator
     setLoading(false)
