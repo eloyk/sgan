@@ -16,7 +16,7 @@ function WithAuth(AuthComponent) {
         initialProps = await AuthComponent.getInitialProps(ctx)
       }
       
-      const result = await verifyCurrentUserPrueba(ctx,'test5@gmail.com','123456')
+      const result = await verifyCurrentUserPrueba(ctx)
       console.log('Este es el resultado del Iniciar session:' + result)
       // Verify cookie
       result = await verifyCurrentUser(ctx)

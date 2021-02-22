@@ -2,7 +2,7 @@
 import fetch from "isomorphic-unfetch"
 import absoluteUrl from "next-absolute-url"
 
-async function verifyCurrentUserPrueba(ctx, email, password) {
+async function verifyCurrentUserPrueba(ctx) {
   const { origin } = absoluteUrl(ctx.req)
 
   // Try to verify firebase token via API
@@ -11,7 +11,10 @@ async function verifyCurrentUserPrueba(ctx, email, password) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ email,password })
+    body: JSON.stringify({ 	
+      email: "test5@gmail.com",
+      password: "123456" 
+    })
   }).then(res => {
     if (res.ok) {
       console.log('Este es el resultado del login: ' + res.json())
