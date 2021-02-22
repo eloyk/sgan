@@ -29,7 +29,7 @@ async function verifyCurrentUserPrueba(ctx) {
       email: "test5@gmail.com",
       password: "123456" 
     });
-    console.log('Este es el resultado de data: ' + JSON.stringify(resp))
+    console.log('Este es el resultado de data: ' + JSON.stringify(resp.data))
     if (resp) {
       return resp
     } else {
