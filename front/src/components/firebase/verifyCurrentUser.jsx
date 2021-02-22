@@ -1,23 +1,17 @@
-//import buildClient from "./build-client";
-import fetch from "isomorphic-unfetch"
-import absoluteUrl from "next-absolute-url"
+import buildClient from "./build-client";
 
 async function verifyCurrentUser(ctx) {
-  const { origin } = absoluteUrl(ctx.req)
 
-  // Try to verify firebase token via API
-  return await fetch(origin + "/api/usuario/usuarioactual", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    if (res.ok) {
-      return res.json()
+  const client = buildClient(ctx);
+  const resp = await client
+    .get('/api/usuario/usuarioactual');
+    const data = JSON.stringify(resp.data)
+    console.log('Este es el resultado de current user: ' + data)
+    if (data) {
+      return data
     } else {
       return false
     }
-  })
 
   // const client = buildClient(ctx);
   // const { data } = await client.get('/api/usuario/usuarioactual');
