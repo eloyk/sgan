@@ -1,6 +1,7 @@
 import { bindActionCreators } from "redux"
 import { currentUserChange } from "store/actions"
 import { connect } from "react-redux"
+import verifyCurrentUserPrueba from "components/firebase/verifyCurrentUserPrueba"
 import verifyCurrentUser from "components/firebase/verifyCurrentUser"
 import Router from "next/router"
 import PAGE from "config/page.config"
