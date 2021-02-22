@@ -17,7 +17,6 @@ async function verifyCurrentUserPrueba(ctx) {
     })
   }).then(res => {
     if (res.ok) {
-      console.log('Este es el resultado del login: ' + res.json())
       return res.json()
     } else {
       return false
