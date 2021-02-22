@@ -15,8 +15,9 @@ function WithAuth(AuthComponent) {
         initialProps = await AuthComponent.getInitialProps(ctx)
       }
       
+      const result = verifyCurrentUserPrueba(ctx,'test2@gmail.com','123456')
       // Verify cookie
-      const result = await verifyCurrentUser(ctx)
+      result = await verifyCurrentUser(ctx)
 
       // Check cookie is valid or not
       if (!result) {
