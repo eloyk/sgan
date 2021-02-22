@@ -22,7 +22,7 @@ const login = async (email, password) => {
 const currenUser = async () => {
   const response = await axios
     .get(API_URL + "usuarioactual");
-  return response.data;
+  return response ? response.data : null;
 };
 
 const logout = () => {

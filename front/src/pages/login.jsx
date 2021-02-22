@@ -6,75 +6,62 @@ import {
   Input,
   Button,
   Portlet,
+  Spinner,
   Container,
-  FloatLabel,
   CustomInput,
+  FloatLabel,
   Widget12
 } from "@panely/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useForm, Controller } from "react-hook-form"
+//import { firebaseClient } from "components/firebase/firebaseClient"
 import { yupResolver } from "@hookform/resolvers"
-import * as BrandsIcon from "@fortawesome/free-brands-svg-icons"
+import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import * as yup from "yup"
+//import verifyCookie from "components/firebase/firebaseVerifyCookie"
+import verifyCurrentUser from "components/firebase/verifyCurrentUser"
 import withLayout from "components/layout/withLayout"
-
-import { useDispatch, useSelector } from "react-redux";
-//import withAuth from "components/firebase/firebaseWithAuth"
+import swalContent from "sweetalert2-react-content"
+import Router from "next/router"
+import Swal from "@panely/sweetalert2"
 import Link from "next/link"
 import Head from "next/head"
+import PAGE from "config/page.config"
+import { useDispatch, useSelector } from "react-redux";
+
+// Use SweetAlert React Content library
+const ReactSwal = swalContent(Swal)
+
+// Set SweetAlert options
+const swal = ReactSwal.mixin({
+  customClass: {
+    confirmButton: "btn btn-label-success btn-wide mx-1",
+    cancelButton: "btn btn-label-danger btn-wide mx-1"
+  },
+  buttonsStyling: false
+})
 
 function LoginPage() {
   return (
     <React.Fragment>
       <Head>
-        <title>Login 2 | Panely</title>
+        <title>Login | Panely</title>
       </Head>
       <Container fluid>
         <Row noGutters className="align-items-center justify-content-center h-100">
-          <Col lg="8" xl="6">
+          <Col sm="8" md="6" lg="4">
             {/* BEGIN Portlet */}
-            <Portlet className="overflow-hidden">
-              <Row noGutters>
-                <Col md="6">
-                  <Portlet.Body className="d-flex flex-column justify-content-center align-items-start h-100 bg-primary text-white">
-                    <h2>Welcome back!</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, temporibus,
-                      repudiandae. Voluptate tempore, expedita placeat rem labore iste eveniet
-                      ratione.
-                    </p>
-                    <Link href="/pages/register/register-2">
-                      <Button
-                        pill
-                        variant="outline-light"
-                        size="lg"
-                        width="widest"
-                      >
-                        Register
-                      </Button>
-                    </Link>
-                  </Portlet.Body>
-                </Col>
-                <Col md="6">
-                  <Portlet.Body className="h-100">
-                    <div className="d-flex justify-content-center mb-4">
-                      <Button pill variant="label-primary">
-                        <FontAwesomeIcon icon={BrandsIcon.faFacebook} className="mr-2" />
-                        Facebook
-                      </Button>
-                      <Button pill variant="label-info" className="mx-2">
-                        <FontAwesomeIcon icon={BrandsIcon.faGoogle} className="mr-2" />
-                        Google
-                      </Button>
-                      <Button pill variant="label-danger" className="mx-2">
-                        <FontAwesomeIcon icon={BrandsIcon.faPinterest} className="mr-2" />
-                        Pinterest
-                      </Button>
-                    </div>
-                    <LoginForm />
-                  </Portlet.Body>
-                </Col>
-              </Row>
+            <Portlet>
+              <Portlet.Body>
+                <div className="text-center mt-2 mb-4">
+                  {/* BEGIN Widget */}
+                  <Widget12 display circle variant="label-primary" className="mb-4">
+                    <FontAwesomeIcon icon={SolidIcon.faUserAlt} />
+                  </Widget12>
+                  {/* END Widget */}
+                </div>
+                <LoginForm />
+              </Portlet.Body>
             </Portlet>
             {/* END Portlet */}
           </Col>
@@ -97,8 +84,7 @@ function LoginForm() {
     password: yup
       .string()
       .min(6, "Please enter at least 6 characters")
-      .required("Please provide your password"),
-    remember: yup.boolean()
+      .required("Please provide your password")
   })
 
   const { control, handleSubmit, errors } = useForm({
@@ -107,34 +93,31 @@ function LoginForm() {
     // Define the default values for all input forms
     defaultValues: {
       email: "",
-      password: "",
-      remember: false
+      password: ""
     }
   })
 
   // Handle form submit event
-  const onSubmit = ({ email, password }) => {
+  const onSubmit = async ({ email, password }) => {
+    // Show loading indicator
     setLoading(true)
-
-    const { isLoggedIn } = useSelector(state => state.auth);
-    const { message } = useSelector(state => state.message);
-  
+    
     const dispatch = useDispatch();
-  
+
+    // Trying to login with email and password with firebase
     dispatch(login(email, password))
       .then(() => {
+        // Redirect to dashboard page
         Router.push(Router.query.redirect || PAGE.dashboardPagePath)
       })
-      .catch(() => {
-        setLoading(false);
-      });
+      .catch(err => {
+        // Show the error message if authentication is failed
+        swal.fire({ text: err.message, icon: "error" })
+      })
 
-    setLoading(false);
-    };
-  
-    if (isLoggedIn) {
-      return <Redirect to="/profile" />;
-    }
+    // Hide loading indicator
+    setLoading(false)
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -174,34 +157,32 @@ function LoginForm() {
         </FloatLabel>
       </Form.Group>
       {/* END Form Group */}
-      <div className="d-flex align-items-center justify-content-between mb-4">
-        {/* BEGIN Form Group */}
-        <Form.Group className="mb-0">
-          <Controller
-            control={control}
-            name="remember"
-            render={({ onChange, onBlur, value, name, ref }) => (
-              <CustomInput
-                type="switch"
-                size="lg"
-                id="remember"
-                label="Remember me"
-                onBlur={onBlur}
-                onChange={e => onChange(e.target.checked)}
-                checked={value}
-                innerRef={ref}
-              />
-            )}
-          />
-        </Form.Group>
-        {/* END Form Group */}
-        <Link href="#">Forgot password?</Link>
+      <div className="d-flex align-items-center justify-content-between">
+        <span>
+          Don't have an account ? <Link href="/register">Sign Up</Link>
+        </span>
+        <Button type="submit" variant="label-primary" size="lg" width="widest" disabled={loading}>
+          {loading ? <Spinner className="mr-2" /> : null} Login
+        </Button>
       </div>
-      <Button block type="submit" variant="label-primary" size="lg">
-        Login
-      </Button>
     </Form>
   )
+}
+
+LoginPage.getInitialProps = async ctx => {
+  const result = await verifyCurrentUser(ctx)
+
+  // Redirect to dashboard page if the user has logged in
+  if (result) {
+    if (ctx.res) {
+      ctx.res.writeHead(302, { Location: ctx.query.redirect || PAGE.dashboardPagePath })
+      ctx.res.end()
+    } else {
+      Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+    }
+  }
+
+  return { firebase: null }
 }
 
 export default withLayout(LoginPage, "blank")

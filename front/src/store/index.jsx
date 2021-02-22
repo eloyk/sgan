@@ -19,7 +19,7 @@ const makeStore = (context) => {
       devToolsEnhancer()
     )
   )
-debugger
+  
   // Run Redux Saga
   sagaMiddleware.run(sagas)
   return store

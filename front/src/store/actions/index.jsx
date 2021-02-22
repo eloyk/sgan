@@ -5,6 +5,7 @@ import { breadcrumbChange } from "./breadcrumbAction"
 import { firebaseChange } from "./firebaseAction"
 import { register, login, logout } from "./auth"
 import { setMessage, clearMessage } from "./message"
+import { currentUserChange } from "./currentUserAction"
 
 // Export all actions
 export {
@@ -20,5 +21,6 @@ export {
   login, 
   logout,
   setMessage, 
-  clearMessage
+  clearMessage,
+  currentUserChange
 }
