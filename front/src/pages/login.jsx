@@ -76,14 +76,13 @@ function LoginForm() {
   const [loading, setLoading] = React.useState(false)
   const [emailAuth, setEmailAuth] = React.useState('');
   const [passwordAuth, setPasswordAuth] = React.useState('');
-  const { doRequest, errores } = useRequest({
+  const doRequest = useRequest({
     url: '/api/usuario/iniciarsesion',
     method: 'post',
     body: {
       email: emailAuth,
       password: passwordAuth,
-    },
-    onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
+    }
   });
 
   // Define Yup schema for form validation
@@ -115,13 +114,18 @@ function LoginForm() {
     setEmailAuth(email)
     setPasswordAuth(password)
 
-    await doRequest();
-    console.log(`Este es el usuario: ${emailAuth}, esta la claver de seguridad: ${passwordAuth} y estos lo errores: ${errores}`)
+    await doRequest()
+          .then(() => {
+            // Redirect to dashboard page
+            Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+          })
+          .catch(err => {
+            // Show the error message if authentication is failed
+            swal.fire({ text: err.mensaje, icon: "error" })
+          })
 
-    if(errores){
-      // Show the error message if authentication is failed
-      swal.fire({ text: errores, icon: "error" })
-    }
+    console.log(`Este es el usuario: ${emailAuth}, esta la claver de seguridad: ${passwordAuth}`)
+
     //const dispatch = useDispatch();
     // Trying to login with email and password with firebase
     // dispatch(login(email, password))
