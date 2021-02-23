@@ -17,7 +17,6 @@ export default ({ url, method, body, onSuccess }) => {
         () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
       }
       const data = JSON.stringify(response.data)
-      console.log(data);
       return data;
     } catch (err) {
       const errores = JSON.stringify(err.response.data.errores)
