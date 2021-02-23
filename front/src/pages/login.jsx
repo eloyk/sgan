@@ -199,7 +199,7 @@ LoginPage.getInitialProps = async ctx => {
     }
   }
 
-  return { firebase: null }
+  return { currentUser: null }
 }
 
 export default withLayout(LoginPage, "blank")
