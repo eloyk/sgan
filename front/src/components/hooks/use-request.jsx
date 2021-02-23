@@ -14,11 +14,11 @@ export default ({ url, method, body }) => {
       // } else {
       //   () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
       // }
-
-      return response.data;
+      const data = JSON.stringify(response.data)
+      return data;
     } catch (err) {
-      //const errores = JSON.stringify(err.response.data.errores)
-      return err.response.data.errores;
+      const errores = JSON.stringify(err.response.data.errores)
+      return errores;
     }
   };
 
