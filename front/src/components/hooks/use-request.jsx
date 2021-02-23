@@ -13,11 +13,11 @@ export default ({ url, method, body }) => {
       // } else {
       //   () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
       // }
-      const data = JSON.stringify(response.data)
-      return data;
+      //const data = JSON.stringify(response.data)
+      return response.data;
     } catch (err) {
-      const errores = JSON.stringify(err.response.data.errores)
-      return errores;
+      //const errores = JSON.stringify(err.response.data.errores)
+      return err.response.data.errores;
     }
   };
 
