@@ -29,6 +29,7 @@ import Head from "next/head"
 import PAGE from "config/page.config"
 import { useDispatch, useSelector } from "react-redux";
 import authMethod from "../components/firebase/clientAuth"
+import useRequest from "../components/hooks/use-request"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
