@@ -102,7 +102,7 @@ function LoginForm() {
   })
 
   const login = async (email, password) => {
-    const { doRequest, errores } = useRequest({
+    const errores = useRequest({
       url: '/api/usuario/iniciarsesion',
       method: 'post',
       body: {
@@ -112,9 +112,7 @@ function LoginForm() {
       onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
     });  
 
-    await doRequest()
-
-    return errores
+    return JSON.stringify(errores)
   }
 
   // Handle form submit event
