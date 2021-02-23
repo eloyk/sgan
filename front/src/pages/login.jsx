@@ -74,14 +74,14 @@ function LoginPage() {
 function LoginForm() {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [emailAuth, setEmailAuth] = React.useState('');
+  const [passwordAuth, setPasswordAuth] = React.useState('');
   const { doRequest, errores } = useRequest({
     url: '/api/usuario/iniciarsesion',
     method: 'post',
     body: {
-      email,
-      password,
+      email: emailAuth,
+      password: passwordAuth,
     },
     onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
   });
@@ -112,8 +112,10 @@ function LoginForm() {
   const onSubmit = async ({ email, password }) => {
     // Show loading indicator
     setLoading(true)
-    setEmail(email)
-    setPassword(password)
+    setEmailAuth(email)
+    setPasswordAuth(password)
+
+    console.log(`Este es el usuario: ${emailAuth} y esta la claver de seguridad: ${passwordAuth}`)
     await doRequest();
 
     if(errores){
