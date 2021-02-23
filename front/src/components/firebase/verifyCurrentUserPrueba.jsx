@@ -9,7 +9,7 @@ async function verifyCurrentUserPrueba(ctx) {
     });
     const data = JSON.stringify(resp.data)
     console.log('Este es el resultado de data: ' + data)
-    if (data) {
+    if (data != "null") {
       return data
     } else {
       return false
