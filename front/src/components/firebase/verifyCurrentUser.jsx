@@ -7,7 +7,7 @@ async function verifyCurrentUser(ctx) {
     .get('/api/usuario/usuarioactual');
     const data = JSON.stringify(resp.data.usuarioActual)
     console.log('Este es el resultado de current user: ' + data)
-    if (data) {
+    if (data != 'null') {
       return data
     } else {
       return false
