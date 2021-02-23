@@ -75,6 +75,17 @@ function LoginPage() {
 function LoginForm() {
   // Loading state
   const [loading, setLoading] = React.useState(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { doRequest, errores } = useRequest({
+    url: '/api/usuario/iniciarsesion',
+    method: 'post',
+    body: {
+      email,
+      password,
+    },
+    onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
+  });
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -102,13 +113,13 @@ function LoginForm() {
   const onSubmit = async ({ email, password }) => {
     // Show loading indicator
     setLoading(true)
-    
+    setEmail(email)
+    setPassword(password)
     //const dispatch = useDispatch();
     
     //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
 
     // Trying to login with email and password with firebase
-    const { doRequest, errores } = authMethod.login(email, password)
     await doRequest();
 
     if(errores){
