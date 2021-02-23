@@ -115,8 +115,8 @@ function LoginForm() {
     setEmailAuth(email)
     setPasswordAuth(password)
 
-    console.log(`Este es el usuario: ${emailAuth} y esta la claver de seguridad: ${passwordAuth}`)
     await doRequest();
+    console.log(`Este es el usuario: ${emailAuth}, esta la claver de seguridad: ${passwordAuth} y estos lo errores: ${errores}`)
 
     if(errores){
       // Show the error message if authentication is failed
