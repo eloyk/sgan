@@ -6,23 +6,25 @@ import PAGE from "config/page.config"
 export default ({ url, method, body, onSuccess }) => {
   const [errores, setErrores] = useState(null);
 
-  (async function(props = {}) {
+  const doRequest = async (props = {}) => {
     try {
       setErrores(null);
       const response = await axios[method](url, { ...body, ...props });
 
       if (onSuccess) {
-        onSuccess(response.data);
+        onSuccess();
       } else {
         () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
       }
-
-      return response.data;
+      const data = JSON.stringify(response.data)
+      console.log(data);
+      return data;
     } catch (err) {
-      console.log(err.response.data);
-      setErrores( err.response.data.errores );
+      const errores = JSON.stringify(err.response.data.errores)
+      console.log(errores);
+      setErrores(errores);
     }
-  })();
+  };
 
-  return { errores };
+  return { doRequest, errores };
 };
