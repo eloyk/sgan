@@ -20,6 +20,7 @@ function WithAuth(AuthComponent) {
       //console.log('Este es el resultado del Iniciar session:' + result)
       // Verify cookie
       const result = await verifyCurrentUser(ctx)
+      console.log('Este es el resultado del Iniciar session:' + result)
 
       // Check cookie is valid or not
       if (!result) {
