@@ -121,7 +121,7 @@ function LoginForm() {
           })
           .catch(err => {
             // Show the error message if authentication is failed
-            swal.fire({ text: err.mensaje, icon: "error" })
+            swal.fire({ text: err, icon: "error" })
           })
 
     console.log(`Este es el usuario: ${emailAuth}, esta la claver de seguridad: ${passwordAuth}`)

@@ -4,11 +4,9 @@ import axios from 'axios';
 import PAGE from "config/page.config"
 
 export default ({ url, method, body }) => {
-  //const [errores, setErrores] = useState(null);
 
   const doRequest = async (props = {}) => {
     try {
-      setErrores(null);
       const response = await axios[method](url, { ...body, ...props });
 
       // if (onSuccess) {
@@ -21,7 +19,6 @@ export default ({ url, method, body }) => {
     } catch (err) {
       //const errores = JSON.stringify(err.response.data.errores)
       return err.response.data.errores;
-      //setErrores(err.response.data.errores);
     }
   };
 
