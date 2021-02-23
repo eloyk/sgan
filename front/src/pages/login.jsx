@@ -27,9 +27,9 @@ import Swal from "@panely/sweetalert2"
 import Link from "next/link"
 import Head from "next/head"
 import { useDispatch, useSelector } from "react-redux";
-import doRequest from "../components/hooks/use-request"
+//import doRequest from "../components/hooks/use-request"
 import PAGE from "config/page.config"
-import authMethod from "../components/firebase/currentAuth"
+import authMethod from "../components/firebase/clientAuth"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
