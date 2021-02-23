@@ -1,4 +1,4 @@
-import buildClient from "./build-client";
+import buildClient from "../api/build-client";
 
 async function verifyCurrentUser(ctx) {
 

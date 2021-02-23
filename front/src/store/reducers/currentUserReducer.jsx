@@ -2,7 +2,7 @@ import TYPES from "store/types"
 
 const initialState = null
 
-function currentUserChange(state = initialState, action) {
+function currentUserReducer(state = initialState, action) {
   switch (action.type) {
     case TYPES.CURRENT_USER_CHANGE:
       return action.payload
@@ -11,4 +11,4 @@ function currentUserChange(state = initialState, action) {
   }
 }
 
-export default currentUserChange
+export default currentUserReducer

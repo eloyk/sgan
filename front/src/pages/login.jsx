@@ -28,6 +28,7 @@ import Link from "next/link"
 import Head from "next/head"
 import PAGE from "config/page.config"
 import { useDispatch, useSelector } from "react-redux";
+import authMethod from "../components/firebase/clientAuth"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
@@ -102,20 +103,18 @@ function LoginForm() {
     // Show loading indicator
     setLoading(true)
     
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     
-    Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+    //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
 
     // Trying to login with email and password with firebase
-    // dispatch(login(email, password))
-    //   .then(() => {
-    //     // Redirect to dashboard page
-    //     Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-    //   })
-    //   .catch(err => {
-    //     // Show the error message if authentication is failed
-    //     swal.fire({ text: err.message, icon: "error" })
-    //   })
+    const { doRequest, errores } = authMethod.login(email, password)
+    await doRequest();
+
+    if(errores){
+      // Show the error message if authentication is failed
+      swal.fire({ text: errores.mensaje, icon: "error" })
+    }
 
     // Hide loading indicator
     setLoading(false)

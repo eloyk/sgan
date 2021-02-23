@@ -6,7 +6,7 @@ import asideReducer from "./asideReducer"
 import pageReducer from "./pageReducer"
 import messageReducer from "./messageReducer"
 import authReducer from "./authReducer"
-import currentUserChange from "./currentUserReducer"
+import currentUserReducer from "./currentUserReducer"
 
 // Concatenate all reducers
 const reducers = combineReducers({
@@ -17,7 +17,7 @@ const reducers = combineReducers({
   page: pageReducer,
   message: messageReducer,
   auth: authReducer,
-  currentUser :currentUserChange
+  currentUser :currentUserReducer
 })
 
 export default reducers
