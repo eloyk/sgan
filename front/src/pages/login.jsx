@@ -116,12 +116,12 @@ function LoginForm() {
       onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
     });  
     //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-
+    const err = JSON.stringify(errores)
     // Trying to login with email and password with firebase
 
-    if(errores){
+    if(err){
       // Show the error message if authentication is failed
-      swal.fire({ text: errores, icon: "error" })
+      swal.fire({ text: err, icon: "error" })
     }
 
     // Hide loading indicator
