@@ -7,10 +7,10 @@ async function verifyCurrentUser(ctx) {
     .get('/api/usuario/usuarioactual');
     const data = JSON.stringify(resp.data.usuarioActual)
     console.log('Este es el resultado de current user: ' + data)
-    if (data == null) {
-      return false
-    } else {
+    if (data) {
       return data
+    } else {
+      return false
     }
 
   // const client = buildClient(ctx);
