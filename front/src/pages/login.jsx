@@ -118,9 +118,10 @@ function LoginForm() {
     .catch(err => {
       // Show the error message if authentication is failed
       swal.fire({ text: err, icon: "error" })
-    })
+      console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}`)
 
-    console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}`)
+    });
+
 
     //const dispatch = useDispatch();
     // Trying to login with email and password with firebase

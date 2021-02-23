@@ -11,13 +11,13 @@ const doRequest = async ({ url, method, body }, props = {}) => {
       // } else {
       //   () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
       // }
-      //const data = JSON.stringify(response.data)
-      console.log('Respuesta desde el try: ' + response.data);
-      return response.data;
+      const data = JSON.stringify(response.data)
+      console.log('Respuesta desde el try: ' + data);
+      return data;
     } catch (err) {
-      //const errores = JSON.stringify(err.response.data.errores)
+      const errores = JSON.stringify(err.response.data.errores)
       console.log('Respuesta desde el catch: ' + err.response.data.errores);
-      return err.response.data.errores;
+      throw errores;
     }
   };
 
