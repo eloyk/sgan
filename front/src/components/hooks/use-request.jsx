@@ -19,9 +19,9 @@ export default ({ url, method, body, onSuccess }) => {
       const data = JSON.stringify(response.data)
       return data;
     } catch (err) {
-      const errores = JSON.stringify(err.response.data.errores)
-      console.log(errores);
-      setErrores(errores);
+      //const errores = JSON.stringify(err.response.data.errores)
+      console.log(err.response.data);
+      setErrores(err.response.data.errores);
     }
   };
 
