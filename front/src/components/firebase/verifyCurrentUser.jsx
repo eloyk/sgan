@@ -5,7 +5,7 @@ async function verifyCurrentUser(ctx) {
   const client = buildClient(ctx);
   const resp = await client
     .get('/api/usuario/usuarioactual');
-    const data = JSON.stringify(resp.data)
+    const data = JSON.stringify(resp.data.usuarioActual)
     console.log('Este es el resultado de current user: ' + data)
     if (data) {
       return data
