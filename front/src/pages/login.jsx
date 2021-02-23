@@ -76,17 +76,8 @@ function LoginPage() {
 function LoginForm() {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const { doRequest, errores } = useRequest({
-    url: '/api/usuario/iniciarsesion',
-    method: 'post',
-    body: {
-      email,
-      password,
-    },
-    onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
-  });
+  // const [email, setEmail] = React.useState('');
+  // const [password, setPassword] = React.useState('');
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -114,8 +105,16 @@ function LoginForm() {
   const onSubmit = async ({ email, password }) => {
     // Show loading indicator
     setLoading(true)
-    setEmail(email)
-    setPassword(password)
+    const { doRequest, errores } = useRequest({
+      url: '/api/usuario/iniciarsesion',
+      method: 'post',
+      body: {
+        email,
+        password,
+      },
+      onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
+    });
+  
     //const dispatch = useDispatch();
     
     //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
@@ -125,7 +124,7 @@ function LoginForm() {
 
     if(errores){
       // Show the error message if authentication is failed
-      swal.fire({ text: errores.mensaje, icon: "error" })
+      swal.fire({ text: errores, icon: "error" })
     }
 
     // Hide loading indicator
