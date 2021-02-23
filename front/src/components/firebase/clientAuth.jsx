@@ -1,44 +1,72 @@
-import Router from 'next/router';
+import doRequest from "../api/do-request"
 import PAGE from "config/page.config"
+import Router from "next/router"
 
-const login = async (email, password) => {
-const { doRequest, errores } = await useRequest({
-  url: '/api/usuario/iniciarsesion',
-  method: 'post',
-  body: {
-    email,
-    password,
-  },
-  onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
-});
+const login = async ({email, password, onSuccess}) => {
 
-return { doRequest, errores };
+  await doRequest({
+    url: '/api/usuario/iniciarsesion',
+    method: 'post',
+    body: {
+      email,
+      password,
+    },
+  })
+  .then(() => {
+    if (onSuccess) {
+      onSuccess();
+    } else {
+      () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
+    }
+  })
+  .catch(err => {
+    throw err
+  })
+
 }
 
-const register = async (email, password) => {
-  const { doRequest, errores } = await useRequest({
+const register = async ({email, password, onSuccess}) => {
+
+  await doRequest({
     url: '/api/usuario/registrousuario',
     method: 'post',
     body: {
       email,
       password,
     },
-    onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
-  });
-  
-  return { doRequest, errores };
-  }
-
-  const logout = async () => {
-    const { doRequest, errores } = await useRequest({
-      url: '/api/usuario/cerrarsesion',
-      method: 'post',
-      body: {},
-      onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
-    });
-    
-    return { doRequest, errores };
+  })
+  .then(() => {
+    if (onSuccess) {
+      onSuccess();
+    } else {
+      () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
     }
+  })
+  .catch(err => {
+    throw err
+  })
+
+}
+
+const logout = async () => {
+
+  await doRequest({
+    url: '/api/usuario/cerrarsesion',
+    method: 'post',
+    body: {},
+  })
+  .then(() => {
+    if (onSuccess) {
+      onSuccess();
+    } else {
+      () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
+    }
+  })
+  .catch(err => {
+    throw err
+  })
+
+}
 
 export default {
   register,

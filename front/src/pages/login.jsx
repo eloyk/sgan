@@ -29,6 +29,7 @@ import Head from "next/head"
 import { useDispatch, useSelector } from "react-redux";
 import doRequest from "../components/hooks/use-request"
 import PAGE from "config/page.config"
+import authMethod from "../components/firebase/currentAuth"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
@@ -103,24 +104,37 @@ function LoginForm() {
     // Show loading indicator
     setLoading(true)
 
-    await doRequest({
-      url: '/api/usuario/iniciarsesion',
-      method: 'post',
-      body: {
-        email,
-        password,
-      }
+    authMethod.login({
+      email,
+      password,
+      onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath)
     })
-    .then(() => {
-      // Redirect to dashboard page
-      Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-    })
+    .then()
     .catch(err => {
       // Show the error message if authentication is failed
       swal.fire({ text: err, icon: "error" })
-      console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}`)
+      console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}, error: ${err}`)
 
     });
+
+    // await doRequest({
+    //   url: '/api/usuario/iniciarsesion',
+    //   method: 'post',
+    //   body: {
+    //     email,
+    //     password,
+    //   }
+    // })
+    // .then(() => {
+    //   // Redirect to dashboard page
+    //   Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+    // })
+    // .catch(err => {
+    //   // Show the error message if authentication is failed
+    //   swal.fire({ text: err, icon: "error" })
+    //   console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}`)
+
+    // });
 
 
     //const dispatch = useDispatch();
