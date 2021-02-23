@@ -27,6 +27,7 @@ import Swal from "@panely/sweetalert2"
 import Link from "next/link"
 import Head from "next/head"
 import { useDispatch, useSelector } from "react-redux";
+import useRequest from "../components/hooks/use-request"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
@@ -73,8 +74,8 @@ function LoginPage() {
 function LoginForm() {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const { doRequest, errores } = useRequest({
     url: '/api/usuario/iniciarsesion',
     method: 'post',
