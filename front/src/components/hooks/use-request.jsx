@@ -6,7 +6,7 @@ import PAGE from "config/page.config"
 export default ({ url, method, body, onSuccess }) => {
   const [errores, setErrores] = useState(null);
 
-  async (props = {}) => {
+  const doRequest = async (props = {}) => {
     try {
       setErrores(null);
       const response = await axios[method](url, { ...body, ...props });
@@ -16,9 +16,7 @@ export default ({ url, method, body, onSuccess }) => {
       } else {
         () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
       }
-      const data = JSON.stringify(response.data)
-      console.log('Este es el resultado de current user: ' + data)
-  
+
       return response.data;
     } catch (err) {
       console.log(err.response.data);
@@ -26,5 +24,5 @@ export default ({ url, method, body, onSuccess }) => {
     }
   };
 
-  return errores;
+  return { doRequest, errores };
 };

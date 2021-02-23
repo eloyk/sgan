@@ -101,12 +101,8 @@ function LoginForm() {
     }
   })
 
-  // Handle form submit event
-  const onSubmit = async ({ email, password }) => {
-    // Show loading indicator
-    setLoading(true)
-    //const dispatch = useDispatch();
-    const errores = useRequest({
+  const login = async (email, password) => {
+    const { doRequest, errores } = useRequest({
       url: '/api/usuario/iniciarsesion',
       method: 'post',
       body: {
@@ -115,6 +111,18 @@ function LoginForm() {
       },
       onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
     });  
+
+    await doRequest()
+
+    return errores
+  }
+
+  // Handle form submit event
+  const onSubmit = async ({ email, password }) => {
+    // Show loading indicator
+    setLoading(true)
+    //const dispatch = useDispatch();
+    const errores = login(email, password)
     //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
 
     // Trying to login with email and password with firebase
