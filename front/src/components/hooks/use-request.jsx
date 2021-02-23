@@ -15,7 +15,7 @@ const doRequest = async ({ url, method, body }, props = {}) => {
       console.log('Respuesta desde el try: ' + data);
       return data;
     } catch (err) {
-      const errores = JSON.stringify(err.response.data.errores.mensaje)
+      const errores = JSON.stringify(err.response.data.errores.map((err) => err.mensaje))
       console.log('Respuesta desde el catch: ' + err.response.data.errores);
       throw errores;
     }
