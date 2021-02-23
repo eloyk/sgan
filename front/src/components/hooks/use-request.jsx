@@ -1,7 +1,6 @@
 import Router from 'next/router';
 import axios from 'axios';
 //import { useState } from 'react';
-import PAGE from "config/page.config"
 
 export default ({ url, method, body }) => {
 

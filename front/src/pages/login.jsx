@@ -28,6 +28,7 @@ import Link from "next/link"
 import Head from "next/head"
 import { useDispatch, useSelector } from "react-redux";
 import useRequest from "../components/hooks/use-request"
+import PAGE from "config/page.config"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
