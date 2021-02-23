@@ -2,9 +2,7 @@ import Router from 'next/router';
 import axios from 'axios';
 //import { useState } from 'react';
 
-export default ({ url, method, body }) => {
-
-  const doRequest = async (props = {}) => {
+const doRequest = async ({ url, method, body }, props = {}) => {
     try {
       const response = await axios[method](url, { ...body, ...props });
 
@@ -21,5 +19,4 @@ export default ({ url, method, body }) => {
     }
   };
 
-  return doRequest;
-};
+export default  doRequest;

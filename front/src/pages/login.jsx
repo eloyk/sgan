@@ -27,7 +27,7 @@ import Swal from "@panely/sweetalert2"
 import Link from "next/link"
 import Head from "next/head"
 import { useDispatch, useSelector } from "react-redux";
-import useRequest from "../components/hooks/use-request"
+import doRequest from "../components/hooks/use-request"
 import PAGE from "config/page.config"
 
 // Use SweetAlert React Content library
@@ -75,16 +75,6 @@ function LoginPage() {
 function LoginForm() {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [emailAuth, setEmailAuth] = React.useState('');
-  const [passwordAuth, setPasswordAuth] = React.useState('');
-  const doRequest = useRequest({
-    url: '/api/usuario/iniciarsesion',
-    method: 'post',
-    body: {
-      email: emailAuth,
-      password: passwordAuth,
-    }
-  });
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -112,20 +102,25 @@ function LoginForm() {
   const onSubmit = async ({ email, password }) => {
     // Show loading indicator
     setLoading(true)
-    setEmailAuth(email)
-    setPasswordAuth(password)
 
-    await doRequest()
-          .then(() => {
-            // Redirect to dashboard page
-            Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-          })
-          .catch(err => {
-            // Show the error message if authentication is failed
-            swal.fire({ text: err, icon: "error" })
-          })
+    await doRequest({
+      url: '/api/usuario/iniciarsesion',
+      method: 'post',
+      body: {
+        email,
+        password,
+      }
+    })
+    .then(() => {
+      // Redirect to dashboard page
+      Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+    })
+    .catch(err => {
+      // Show the error message if authentication is failed
+      swal.fire({ text: err, icon: "error" })
+    })
 
-    console.log(`Este es el usuario: ${emailAuth}, esta la claver de seguridad: ${passwordAuth}`)
+    console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}`)
 
     //const dispatch = useDispatch();
     // Trying to login with email and password with firebase
