@@ -1,7 +1,6 @@
 import { bindActionCreators } from "redux"
 import { currentUserChange } from "store/actions"
 import { connect } from "react-redux"
-import verifyCurrentUserPrueba from "components/firebase/verifyCurrentUserPrueba"
 import verifyCurrentUser from "components/firebase/verifyCurrentUser"
 import Router from "next/router"
 import PAGE from "config/page.config"
@@ -16,11 +15,8 @@ function WithAuth(AuthComponent) {
         initialProps = await AuthComponent.getInitialProps(ctx)
       }
       
-      //const result = await verifyCurrentUserPrueba(ctx)
-      //console.log('Este es el resultado del Iniciar session:' + result)
       // Verify cookie
       const result = await verifyCurrentUser(ctx)
-      console.log('Este es el resultado del Iniciar session:' + result)
 
       // Check cookie is valid or not
       if (!result) {

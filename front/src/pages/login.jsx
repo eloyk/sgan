@@ -14,11 +14,9 @@ import {
 } from "@panely/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useForm, Controller } from "react-hook-form"
-//import { firebaseClient } from "components/firebase/firebaseClient"
 import { yupResolver } from "@hookform/resolvers"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import * as yup from "yup"
-//import verifyCookie from "components/firebase/firebaseVerifyCookie"
 import verifyCurrentUser from "components/firebase/verifyCurrentUser"
 import withLayout from "components/layout/withLayout"
 import swalContent from "sweetalert2-react-content"
@@ -26,8 +24,6 @@ import Router from "next/router"
 import Swal from "@panely/sweetalert2"
 import Link from "next/link"
 import Head from "next/head"
-import { useDispatch, useSelector } from "react-redux";
-//import doRequest from "../components/hooks/use-request"
 import PAGE from "config/page.config"
 import authMethod from "../components/firebase/clientAuth"
 
@@ -104,6 +100,7 @@ function LoginForm() {
     // Show loading indicator
     setLoading(true)
 
+    // Trying login with user account
     authMethod.login({
       email,
       password,
@@ -113,41 +110,7 @@ function LoginForm() {
     .catch(err => {
       // Show the error message if authentication is failed
       swal.fire({ text: err, icon: "error" })
-      console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}, error: ${err}`)
-
     });
-
-    // await doRequest({
-    //   url: '/api/usuario/iniciarsesion',
-    //   method: 'post',
-    //   body: {
-    //     email,
-    //     password,
-    //   }
-    // })
-    // .then(() => {
-    //   // Redirect to dashboard page
-    //   Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-    // })
-    // .catch(err => {
-    //   // Show the error message if authentication is failed
-    //   swal.fire({ text: err, icon: "error" })
-    //   console.log(`Este es el usuario: ${email}, esta la claver de seguridad: ${password}`)
-
-    // });
-
-
-    //const dispatch = useDispatch();
-    // Trying to login with email and password with firebase
-    // dispatch(login(email, password))
-    //   .then(() => {
-    //     // Redirect to dashboard page
-    //     Router.push(Router.query.redirect || PAGE.dashboardPagePath)
-    //   })
-    //   .catch(err => {
-    //     // Show the error message if authentication is failed
-    //     swal.fire({ text: err.message, icon: "error" })
-    //   })
 
     // Hide loading indicator
     setLoading(false)
