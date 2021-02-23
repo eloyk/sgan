@@ -85,11 +85,6 @@ function LoginForm() {
     onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
   });
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-
-    await doRequest();
-  };
   // Define Yup schema for form validation
   const schema = yup.object().shape({
     email: yup
