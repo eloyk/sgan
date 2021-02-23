@@ -101,7 +101,11 @@ function LoginForm() {
     }
   })
 
-  const login = async (email, password) => {
+  // Handle form submit event
+  const onSubmit = async ({ email, password }) => {
+    // Show loading indicator
+    setLoading(true)
+    //const dispatch = useDispatch();
     const errores = useRequest({
       url: '/api/usuario/iniciarsesion',
       method: 'post',
@@ -111,16 +115,6 @@ function LoginForm() {
       },
       onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
     });  
-
-    return JSON.stringify(errores)
-  }
-
-  // Handle form submit event
-  const onSubmit = async ({ email, password }) => {
-    // Show loading indicator
-    setLoading(true)
-    //const dispatch = useDispatch();
-    const errores = login(email, password)
     //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
 
     // Trying to login with email and password with firebase
@@ -197,7 +191,7 @@ LoginPage.getInitialProps = async ctx => {
     }
   }
 
-  return { firebase: null }
+  return { currentUser: null }
 }
 
 export default withLayout(LoginPage, "blank")
