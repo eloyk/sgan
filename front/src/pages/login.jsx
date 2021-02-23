@@ -105,7 +105,8 @@ function LoginForm() {
   const onSubmit = async ({ email, password }) => {
     // Show loading indicator
     setLoading(true)
-    const { doRequest, errores } = useRequest({
+    //const dispatch = useDispatch();
+    const errores = useRequest({
       url: '/api/usuario/iniciarsesion',
       method: 'post',
       body: {
@@ -113,14 +114,10 @@ function LoginForm() {
         password,
       },
       onSuccess: () => Router.push(Router.query.redirect || PAGE.dashboardPagePath),
-    });
-  
-    //const dispatch = useDispatch();
-    
+    });  
     //Router.push(Router.query.redirect || PAGE.dashboardPagePath)
 
     // Trying to login with email and password with firebase
-    await doRequest();
 
     if(errores){
       // Show the error message if authentication is failed

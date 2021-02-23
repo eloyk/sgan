@@ -6,7 +6,7 @@ import PAGE from "config/page.config"
 export default ({ url, method, body, onSuccess }) => {
   const [errores, setErrores] = useState(null);
 
-  const doRequest = async (props = {}) => {
+  async (props = {}) => {
     try {
       setErrores(null);
       const response = await axios[method](url, { ...body, ...props });
@@ -26,5 +26,5 @@ export default ({ url, method, body, onSuccess }) => {
     }
   };
 
-  return { doRequest, errores };
+  return errores;
 };
