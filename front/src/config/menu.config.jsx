@@ -16,7 +16,7 @@ const MENU = [
     link: "/"
   },
   {
-    title: "Elements",
+    title: "Administrar",
     section: true
   },
   {
@@ -190,6 +190,22 @@ const MENU = [
         title: "Lista de Productos",
         bullet: true,
         link: "/productos/lista-productos"
+      }
+    ]
+  },
+  {
+    title: "Empresa",
+    icon: () => <FontAwesomeIcon icon={SolidIcon.faBox} />,
+    child: [
+      {
+        title: "Vista Principal",
+        bullet: true,
+        link: "/empresa/vista-principal"
+      },
+      {
+        title: "Crear empresa",
+        bullet: true,
+        link: "/empresa/crear-empresa"
       }
     ]
   },
