@@ -6,6 +6,7 @@ async function verifyCurrentUser(ctx) {
   const resp = await client
     .get('/api/usuario/usuarioactual');
     const data = JSON.parse(resp.data.usuarioActual)
+    console.log("DATA: " + data)
     if (data != "null") {
       return data
     } else {
