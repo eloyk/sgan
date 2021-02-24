@@ -6,7 +6,7 @@ async function verifyCurrentUser(ctx) {
   const resp = await client
     .get('/api/usuario/usuarioactual');
     const data = JSON.stringify(resp.data.usuarioActual)
-    const result = JSON.parse(resp.data.usuarioActual)
+    const result = resp.data.usuarioActual
     console.log("DATA: " + data + "," + result)
     if (result != null) {
       return result
