@@ -11,7 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { bindActionCreators } from "redux"
 import { firebaseClient } from "components/firebase/firebaseClient"
-import { firebaseChange } from "store/actions"
+import { currentUserChange } from "store/actions"
 import { connect } from "react-redux"
 import * as RegularIcon from "@fortawesome/free-regular-svg-icons"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
@@ -21,6 +21,7 @@ import SimpleBar from "simplebar"
 import Router from "next/router"
 import Swal from "@panely/sweetalert2"
 import PAGE from "config/page.config"
+import authMethod from "../../firebase/clientAuth"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
@@ -78,25 +79,25 @@ class HeaderUser extends React.Component {
 
   handleSignOut = () => {
     // Try to signing out
-    firebaseClient.auth().signOut().then(() => {
-      // Redirect to login page and remove firebase data from state management
-      this.props.firebaseChange(null)
-      Router.push(PAGE.loginPagePath)
-    }).catch(err => {
-      // Show error message with SweetAlert
-      swal.fire({ text: err.message, icon: "error" })
+    authMethod.logout({
+      onSuccess: () => Router.push(PAGE.loginPagePath)
     })
+    .then(() => this.props.currentUserChange(null))
+    .catch(err => {
+      // Show the error message if authentication is failed
+      swal.fire({ text: err, icon: "error" })
+    });
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.firebase !== prevProps.firebase) {
+    if (this.props.currentUser !== prevProps.currentUser) {
       // Check whether user has logged in
-      if (this.props.firebase) {
-        const { name, email } = this.props.firebase
+      if (this.props.currentUser) {
+        const { email } = this.props.currentUser
 
         // Set the component state
         this.setState({
-          ...this.state, name, email
+          ...this.state, email
         })
       }
     }
@@ -104,7 +105,7 @@ class HeaderUser extends React.Component {
 
   render() {
     const { avatar: WidgetAvatar, name, email, count, navs } = this.state
-    const { dispatch, firebase, firebaseChange, ...attributes } = this.props
+    const { dispatch, currentUser, currentUserChange, ...attributes } = this.props
 
     return (
       <Dropdown.Uncontrolled {...attributes}>
@@ -165,12 +166,12 @@ class HeaderUser extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    firebase: state.firebase
+    currentUser: state.currentUser
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ firebaseChange }, dispatch)
+  return bindActionCreators({ currentUserChange }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderUser)

@@ -78,11 +78,11 @@ function RegisterForm() {
   const schema = yup.object().shape({
     firstName: yup
       .string()
-      .min(5, "Please enter at least 5 characters")
+      .min(4, "Please enter at least 5 characters")
       .required("Please enter your lastname"),
     lastName: yup
       .string()
-      .min(5, "Please enter at least 5 characters")
+      .min(4, "Please enter at least 5 characters")
       .required("Please enter your lastname"),
     email: yup
       .string()
