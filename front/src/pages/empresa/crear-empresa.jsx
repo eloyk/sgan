@@ -36,9 +36,6 @@ const swal = ReactSwal.mixin({
   },
   buttonsStyling: false
 })
-    
-// Loading state
-const [loading, setLoading] = React.useState(false)
 
 class CrearEmpresaPage extends React.Component {
   componentDidMount() {
@@ -84,7 +81,10 @@ class CrearEmpresaPage extends React.Component {
     setLoading(false)
   } 
 
-  render() {  
+  render() { 
+    // Loading state
+    const [loading, setLoading] = React.useState(false)
+ 
     // Define Yup schema for form validation
     const schema = yup.object().shape({
       nombreEmpresa: yup
