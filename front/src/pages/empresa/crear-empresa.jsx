@@ -63,9 +63,9 @@ class CrearEmpresaPage extends React.Component {
                 <Portlet.Header bordered>
                   <Portlet.Title>Complex layout with floating label</Portlet.Title>
                 </Portlet.Header>
-                <Portlet.Body>
+                <Portlet.Body >
                   {/* BEGIN Form */}
-                  <businessForm />
+                  <BusinessForm />
                   {/* END Form */}
                 </Portlet.Body>
               </Portlet>
@@ -77,7 +77,7 @@ class CrearEmpresaPage extends React.Component {
     )
   }
 }
-function businessForm(props) {
+function BusinessForm(props) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
 
