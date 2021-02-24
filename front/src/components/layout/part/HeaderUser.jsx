@@ -97,7 +97,7 @@ class HeaderUser extends React.Component {
 
         // Set the component state
         this.setState({
-          ...this.state, email
+          ...this.state, name: email, email
         })
       }
     }
