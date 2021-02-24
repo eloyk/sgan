@@ -14,11 +14,10 @@ import {
 } from "@panely/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useForm, Controller } from "react-hook-form"
-import { firebaseClient } from "components/firebase/firebaseClient"
 import { yupResolver } from "@hookform/resolvers"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import * as yup from "yup"
-import verifyCurrentUser from "components/firebase/verifyCurrentUser"
+import verifyCurrentUser from "components/user/verifyCurrentUser"
 import withLayout from "components/layout/withLayout"
 import swalContent from "sweetalert2-react-content"
 import Router from "next/router"
@@ -26,7 +25,7 @@ import Swal from "@panely/sweetalert2"
 import Link from "next/link"
 import Head from "next/head"
 import PAGE from "config/page.config"
-import authMethod from "../components/firebase/clientAuth"
+import authMethod from "../components/user/clientAuth"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)

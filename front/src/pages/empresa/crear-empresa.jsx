@@ -17,7 +17,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/withAuth"
+import withAuth from "components/user/withAuth"
 import Head from "next/head"
 
 class CrearEmpresaPage extends React.Component {

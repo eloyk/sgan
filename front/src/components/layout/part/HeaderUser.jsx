@@ -10,18 +10,16 @@ import {
 } from "@panely/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { bindActionCreators } from "redux"
-import { firebaseClient } from "components/firebase/firebaseClient"
 import { currentUserChange } from "store/actions"
 import { connect } from "react-redux"
 import * as RegularIcon from "@fortawesome/free-regular-svg-icons"
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons"
-import verifyCookie from "components/firebase/firebaseVerifyCookie"
 import swalContent from "sweetalert2-react-content"
 import SimpleBar from "simplebar"
 import Router from "next/router"
 import Swal from "@panely/sweetalert2"
 import PAGE from "config/page.config"
-import authMethod from "../../firebase/clientAuth"
+import authMethod from "../../user/clientAuth"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)

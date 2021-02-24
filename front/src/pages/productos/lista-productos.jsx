@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as FeatherIcon from "react-feather"
 import withLayout from "components/layout/withLayout"
-import withAuth from "components/firebase/withAuth"
+import withAuth from "components/user/withAuth"
 import Head from "next/head"
 
 class ProductoIndexPage extends React.Component {
