@@ -94,11 +94,11 @@ class HeaderUser extends React.Component {
       // Check whether user has logged in
       if (this.props.currentUser) {
         const { email } = this.props.currentUser
-        const data = this.props
-        console.log(`El email es: ${data}`)
+        const name = email
+        console.log(`El email es: ${email}`)
         // Set the component state
         this.setState({
-          ...this.state //, name, email
+          ...this.state , name, email
         })
       }
     }
