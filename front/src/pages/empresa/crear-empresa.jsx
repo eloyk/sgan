@@ -49,6 +49,34 @@ class CrearEmpresaPage extends React.Component {
     ])
   }
 
+  render() { 
+    return (
+      <React.Fragment>
+        <Head>
+          <title>Crear empresa | Panely</title>
+        </Head>
+        <Container fluid>
+          <Row>
+            <Col md="12">
+              {/* BEGIN Portlet */}
+              <Portlet>
+                <Portlet.Header bordered>
+                  <Portlet.Title>Complex layout with floating label</Portlet.Title>
+                </Portlet.Header>
+                <Portlet.Body>
+                  {/* BEGIN Form */}
+                  <businessForm />
+                  {/* END Form */}
+                </Portlet.Body>
+              </Portlet>
+              {/* END Portlet */}
+            </Col>
+          </Row>
+        </Container>
+      </React.Fragment>
+    )
+  }
+
   businessForm(){
     // Loading state
     const [loading, setLoading] = React.useState(false)
@@ -98,8 +126,8 @@ class CrearEmpresaPage extends React.Component {
       }
     })
 
-      // Handle form submit event
-    onSubmit = async ({ nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC }) => {
+    // Handle form submit event
+    const onSubmit = async ({ nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC }) => {
       // Show loading indicator
       setLoading(true)
       const { id, email } = this.props.currentUser
@@ -128,7 +156,7 @@ class CrearEmpresaPage extends React.Component {
 
       // Hide loading indicator
       setLoading(false)
-    } 
+    }
 
     return(
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -290,35 +318,7 @@ class CrearEmpresaPage extends React.Component {
         </Button>
       </Form>
     )
-  }
-
-  render() { 
-    return (
-      <React.Fragment>
-        <Head>
-          <title>Crear empresa | Panely</title>
-        </Head>
-        <Container fluid>
-          <Row>
-            <Col md="12">
-              {/* BEGIN Portlet */}
-              <Portlet>
-                <Portlet.Header bordered>
-                  <Portlet.Title>Complex layout with floating label</Portlet.Title>
-                </Portlet.Header>
-                <Portlet.Body>
-                  {/* BEGIN Form */}
-                  <businessForm />
-                  {/* END Form */}
-                </Portlet.Body>
-              </Portlet>
-              {/* END Portlet */}
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
-    )
-  }
+  }  
 }
 
 function mapStateToProps(state) {
