@@ -10,7 +10,7 @@ import Head from "next/head"
 class ProductoIndexPage extends React.Component {
   componentDidMount() {
     // Set header title
-    this.props.pageChangeHeaderTitle("Lista de Productos")
+    this.props.pageChangeHeaderTitle("Vista principal")
     // Set breadcrumb data
     this.props.breadcrumbChange([
       { text: "Dashboard", link: "/" },
