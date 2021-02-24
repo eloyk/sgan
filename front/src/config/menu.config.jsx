@@ -195,7 +195,7 @@ const MENU = [
   },
   {
     title: "Empresa",
-    icon: () => <FontAwesomeIcon icon={SolidIcon.faBox} />,
+    icon: () => <FontAwesomeIcon icon={SolidIcon.faChartPie} />,
     child: [
       {
         title: "Vista Principal",
