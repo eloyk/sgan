@@ -65,7 +65,164 @@ class CrearEmpresaPage extends React.Component {
                 </Portlet.Header>
                 <Portlet.Body>
                   {/* BEGIN Form */}
-                  <businessForm />
+                  <Form onSubmit={handleSubmit(onSubmit)}>
+                    {/* BEGIN Form Group */}
+                    <Form.Group>
+                      <FloatLabel>
+                        <Controller
+                          as={Input}
+                          type="text"
+                          id="nombreEmpresa"
+                          name="nombreEmpresa"
+                          size="lg"
+                          control={control}
+                          invalid={Boolean(errors.nombreEmpresa)}
+                          placeholder="Por favor inserte el nombre de su empresa"
+                        />
+                        <Label for="nombreEmpresa">Nombre de la empresa</Label>
+                        {errors.nombreEmpresa && <Form.Feedback children={errors.nombreEmpresa.message} />}
+                      </FloatLabel>
+                    </Form.Group>
+                    {/* BEGIN Form Group */}
+                    <Row form>
+                      <Col md="6">
+                        {/* BEGIN Form Group */}
+                        <Form.Group>
+                          <FloatLabel>
+                            <Controller
+                              as={Input}
+                              type="select"
+                              id="clasifEmpresa"
+                              name="clasifEmpresa"
+                              size="lg"
+                              control={control}
+                              invalid={Boolean(errors.clasifEmpresa)}
+                            >
+                              <option value="">Choose...</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </Controller>
+                            <Label for="clasifEmpresa">Clasificación de la Empresa</Label>
+                            {errors.clasifEmpresa && <Form.Feedback children={errors.clasifEmpresa.message} />}
+                          </FloatLabel>
+                        </Form.Group>
+                        {/* BEGIN Form Group */}
+                      </Col>
+                      <Col md="6">
+                        {/* BEGIN Form Group */}
+                        <Form.Group>
+                          <FloatLabel>
+                            <Controller
+                                as={Input}
+                                type="select"
+                                id="tipoEmpresa"
+                                name="tipoEmpresa"
+                                size="lg"
+                                control={control}
+                                invalid={Boolean(errors.tipoEmpresa)}
+                              >
+                                <option value="">Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </Controller>
+                            <Label for="tipoEmpresa">Tipo de Empresa</Label>
+                            {errors.tipoEmpresa && <Form.Feedback children={errors.tipoEmpresa.message} />}
+                          </FloatLabel>
+                        </Form.Group>
+                        {/* BEGIN Form Group */}
+                      </Col>
+                    </Row>
+                    {/* BEGIN Form Group */}
+                    <Form.Group>
+                      <FloatLabel>
+                        <Controller
+                            as={Input}
+                            type="text"
+                            id="fundador"
+                            name="fundador"
+                            size="lg"
+                            control={control}
+                            invalid={Boolean(errors.fundador)}
+                            placeholder="Por favor inserte el nombre del fundador de la empresa"
+                          />
+                          <Label for="fundador">Fundador de la empresa</Label>
+                          {errors.fundador && <Form.Feedback children={errors.fundador.message} />}
+                      </FloatLabel>
+                    </Form.Group>
+                    {/* BEGIN Form Group */}
+                    <Row form>
+                      <Col md="4">
+                        {/* BEGIN Form Group */}
+                        <Form.Group>
+                          <FloatLabel>
+                            <Controller
+                              as={Input}
+                              type="text"
+                              id="telefono"
+                              name="telefono"
+                              size="lg"
+                              control={control}
+                              invalid={Boolean(errors.telefono)}
+                              placeholder="Por favor inserte el teléfono de la empresa"
+                            />
+                            <Label for="telefono">Teléfono de la empresa</Label>
+                            {errors.telefono && <Form.Feedback children={errors.telefono.message} />}
+                          </FloatLabel>
+                        </Form.Group>
+                        {/* BEGIN Form Group */}
+                      </Col>
+                      <Col md="4">
+                        {/* BEGIN Form Group */}
+                        <Form.Group>
+                          <FloatLabel>
+                            <Controller
+                                as={Input}
+                                type="email"
+                                id="emailEmpresa"
+                                name="emailEmpresa"
+                                size="lg"
+                                control={control}
+                                invalid={Boolean(errors.emailEmpresa)}
+                                placeholder="Por favor inserte el email de la empresa"
+                              />
+                              <Label for="emailEmpresa">Email de la empresa</Label>
+                              {errors.emailEmpresa && <Form.Feedback children={errors.emailEmpresa.message} />}
+                          </FloatLabel>
+                        </Form.Group>
+                        {/* BEGIN Form Group */}
+                      </Col>
+                      <Col md="4">
+                        {/* BEGIN Form Group */}
+                        <Form.Group>
+                          <FloatLabel>
+                            <Controller
+                                as={Input}
+                                type="text"
+                                id="RNC"
+                                name="RNC"
+                                size="lg"
+                                control={control}
+                                invalid={Boolean(errors.RNC)}
+                                placeholder="Por favor inserte el RNC de la empresa"
+                              />
+                              <Label for="RNC">RNC de la empresa</Label>
+                              {errors.RNC && <Form.Feedback children={errors.RNC.message} />}
+                          </FloatLabel>
+                        </Form.Group>
+                        {/* BEGIN Form Group */}
+                      </Col>
+                    </Row>
+                    {/* BEGIN Form Group */}
+                    <Form.Group>
+                      <CustomInput type="checkbox" id="checkboxExample10" label="Check me out" />
+                    </Form.Group>
+                    {/* BEGIN Form Group */}
+                    <Button type="submit" variant="primary">
+                    {loading ? <Spinner className="mr-2" /> : null} Guardar
+                    </Button>
+                  </Form>
                   {/* END Form */}
                 </Portlet.Body>
               </Portlet>
@@ -77,10 +234,12 @@ class CrearEmpresaPage extends React.Component {
     )
   }
 
-  businessForm(){
+
+  // Handle form submit event
+  onSubmit = async ({ nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC }) => {
     // Loading state
     const [loading, setLoading] = React.useState(false)
- 
+    
     // Define Yup schema for form validation
     const schema = yup.object().shape({
       nombreEmpresa: yup
@@ -125,201 +284,33 @@ class CrearEmpresaPage extends React.Component {
         RNC: "",
       }
     })
-
-    // Handle form submit event
-    const onSubmit = async ({ nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC }) => {
-      // Show loading indicator
-      setLoading(true)
-      const { id, email } = this.props.currentUser
-
-      // Trying login with user account
-      businessMethod.createBusiness(
-        nombreEmpresa,
-        clasifEmpresa, 
-        tipoEmpresa, 
-        fundador, 
-        telefono, 
-        emailEmpresa, 
-        RNC,
-        id,
-        email,
-        {
-        onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
-      })
-      .then(data => this.props.currentBusinessChange(data))
-      .catch(err => {
-        // Show the error message if authentication is failed
-        swal.fire({ text: err, icon: "error" })
-      });
-
-      console.log(`Estos son todos los datos de la empresa: ${nombreEmpresa}, ${clasifEmpresa}, ${tipoEmpresa}, ${fundador}, ${telefono}, ${emailEmpresa}, ${RNC}, ${id}, ${email}`)
-
-      // Hide loading indicator
-      setLoading(false)
-    }
-
-    return(
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        {/* BEGIN Form Group */}
-        <Form.Group>
-          <FloatLabel>
-            <Controller
-              as={Input}
-              type="text"
-              id="nombreEmpresa"
-              name="nombreEmpresa"
-              size="lg"
-              control={control}
-              invalid={Boolean(errors.nombreEmpresa)}
-              placeholder="Por favor inserte el nombre de su empresa"
-            />
-            <Label for="nombreEmpresa">Nombre de la empresa</Label>
-            {errors.nombreEmpresa && <Form.Feedback children={errors.nombreEmpresa.message} />}
-          </FloatLabel>
-        </Form.Group>
-        {/* BEGIN Form Group */}
-        <Row form>
-          <Col md="6">
-            {/* BEGIN Form Group */}
-            <Form.Group>
-              <FloatLabel>
-                <Controller
-                  as={Input}
-                  type="select"
-                  id="clasifEmpresa"
-                  name="clasifEmpresa"
-                  size="lg"
-                  control={control}
-                  invalid={Boolean(errors.clasifEmpresa)}
-                >
-                  <option value="">Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Controller>
-                <Label for="clasifEmpresa">Clasificación de la Empresa</Label>
-                {errors.clasifEmpresa && <Form.Feedback children={errors.clasifEmpresa.message} />}
-              </FloatLabel>
-            </Form.Group>
-            {/* BEGIN Form Group */}
-          </Col>
-          <Col md="6">
-            {/* BEGIN Form Group */}
-            <Form.Group>
-              <FloatLabel>
-                <Controller
-                    as={Input}
-                    type="select"
-                    id="tipoEmpresa"
-                    name="tipoEmpresa"
-                    size="lg"
-                    control={control}
-                    invalid={Boolean(errors.tipoEmpresa)}
-                  >
-                    <option value="">Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </Controller>
-                <Label for="tipoEmpresa">Tipo de Empresa</Label>
-                {errors.tipoEmpresa && <Form.Feedback children={errors.tipoEmpresa.message} />}
-              </FloatLabel>
-            </Form.Group>
-            {/* BEGIN Form Group */}
-          </Col>
-        </Row>
-        {/* BEGIN Form Group */}
-        <Form.Group>
-          <FloatLabel>
-            <Controller
-                as={Input}
-                type="text"
-                id="fundador"
-                name="fundador"
-                size="lg"
-                control={control}
-                invalid={Boolean(errors.fundador)}
-                placeholder="Por favor inserte el nombre del fundador de la empresa"
-              />
-              <Label for="fundador">Fundador de la empresa</Label>
-              {errors.fundador && <Form.Feedback children={errors.fundador.message} />}
-          </FloatLabel>
-        </Form.Group>
-        {/* BEGIN Form Group */}
-        <Row form>
-          <Col md="4">
-            {/* BEGIN Form Group */}
-            <Form.Group>
-              <FloatLabel>
-                <Controller
-                  as={Input}
-                  type="text"
-                  id="telefono"
-                  name="telefono"
-                  size="lg"
-                  control={control}
-                  invalid={Boolean(errors.telefono)}
-                  placeholder="Por favor inserte el teléfono de la empresa"
-                />
-                <Label for="telefono">Teléfono de la empresa</Label>
-                {errors.telefono && <Form.Feedback children={errors.telefono.message} />}
-              </FloatLabel>
-            </Form.Group>
-            {/* BEGIN Form Group */}
-          </Col>
-          <Col md="4">
-            {/* BEGIN Form Group */}
-            <Form.Group>
-              <FloatLabel>
-                <Controller
-                    as={Input}
-                    type="email"
-                    id="emailEmpresa"
-                    name="emailEmpresa"
-                    size="lg"
-                    control={control}
-                    invalid={Boolean(errors.emailEmpresa)}
-                    placeholder="Por favor inserte el email de la empresa"
-                  />
-                  <Label for="emailEmpresa">Email de la empresa</Label>
-                  {errors.emailEmpresa && <Form.Feedback children={errors.emailEmpresa.message} />}
-              </FloatLabel>
-            </Form.Group>
-            {/* BEGIN Form Group */}
-          </Col>
-          <Col md="4">
-            {/* BEGIN Form Group */}
-            <Form.Group>
-              <FloatLabel>
-                <Controller
-                    as={Input}
-                    type="text"
-                    id="RNC"
-                    name="RNC"
-                    size="lg"
-                    control={control}
-                    invalid={Boolean(errors.RNC)}
-                    placeholder="Por favor inserte el RNC de la empresa"
-                  />
-                  <Label for="RNC">RNC de la empresa</Label>
-                  {errors.RNC && <Form.Feedback children={errors.RNC.message} />}
-              </FloatLabel>
-            </Form.Group>
-            {/* BEGIN Form Group */}
-          </Col>
-        </Row>
-        {/* BEGIN Form Group */}
-        <Form.Group>
-          <CustomInput type="checkbox" id="checkboxExample10" label="Check me out" />
-        </Form.Group>
-        {/* BEGIN Form Group */}
-        <Button type="submit" variant="primary">
-        {loading ? <Spinner className="mr-2" /> : null} Guardar
-        </Button>
-      </Form>
-    )
-  }  
-}
+    // Show loading indicator
+    setLoading(true)
+    const { id, email } = this.props.currentUser
+    // Trying login with user account
+    businessMethod.createBusiness(
+      nombreEmpresa,
+      clasifEmpresa, 
+      tipoEmpresa, 
+      fundador, 
+      telefono, 
+      emailEmpresa, 
+      RNC,
+      id,
+      email,
+      {
+      onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
+    })
+    .then(data => this.props.currentBusinessChange(data))
+    .catch(err => {
+      // Show the error message if authentication is failed
+      swal.fire({ text: err, icon: "error" })
+    });
+    console.log(`Estos son todos los datos de la empresa: ${nombreEmpresa}, ${clasifEmpresa}, ${tipoEmpresa}, ${fundador}, ${telefono}, ${emailEmpresa}, ${RNC}, ${id}, ${email}`)
+    // Hide loading indicator
+    setLoading(false)
+  }
+}  
 
 function mapStateToProps(state) {
   return {
