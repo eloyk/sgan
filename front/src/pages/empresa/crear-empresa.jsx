@@ -52,7 +52,7 @@ class CrearEmpresaPage extends React.Component {
   // Handle form submit event
   onSubmit = async ({ nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC }) => {
     // Show loading indicator
-    setLoading(true)
+    //setLoading(true)
     const { id, email } = this.props.currentUser
 
     // Trying login with user account
@@ -78,13 +78,11 @@ class CrearEmpresaPage extends React.Component {
     console.log(`Estos son todos los datos de la empresa: ${nombreEmpresa}, ${clasifEmpresa}, ${tipoEmpresa}, ${fundador}, ${telefono}, ${emailEmpresa}, ${RNC}, ${id}, ${email}`)
 
     // Hide loading indicator
-    setLoading(false)
+    //setLoading(false)
   } 
 
   render() { 
-    // Loading state
-    const [loading, setLoading] = React.useState(false)
- 
+
     // Define Yup schema for form validation
     const schema = yup.object().shape({
       nombreEmpresa: yup
@@ -300,7 +298,7 @@ class CrearEmpresaPage extends React.Component {
                     </Form.Group>
                     {/* BEGIN Form Group */}
                     <Button type="submit" variant="primary">
-                    {loading ? <Spinner className="mr-2" /> : null} Guardar
+                     Guardar
                     </Button>
                   </Form>
                   {/* END Form */}
