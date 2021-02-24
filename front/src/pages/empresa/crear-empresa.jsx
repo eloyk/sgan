@@ -47,7 +47,6 @@ class CrearEmpresaPage extends React.Component {
                   <Portlet.Title>Complex layout with floating label</Portlet.Title>
                 </Portlet.Header>
                 <Portlet.Body>
-                <Col md="6">
                   {/* BEGIN Form */}
                   <Form>
                     <Row form>
@@ -147,7 +146,6 @@ class CrearEmpresaPage extends React.Component {
                     </Button>
                   </Form>
                   {/* END Form */}
-                </Col>
                 </Portlet.Body>
               </Portlet>
               {/* END Portlet */}
