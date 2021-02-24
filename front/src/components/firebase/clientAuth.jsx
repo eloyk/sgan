@@ -48,7 +48,7 @@ const register = async ({email, password, onSuccess}) => {
 
 }
 
-const logout = async () => {
+const logout = async ({onSuccess}) => {
 
   await doRequest({
     url: '/api/usuario/cerrarsesion',
