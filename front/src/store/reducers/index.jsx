@@ -4,6 +4,7 @@ import sidemenuReducer from "./sidemenuReducer"
 import asideReducer from "./asideReducer"
 import pageReducer from "./pageReducer"
 import currentUserReducer from "./currentUserReducer"
+import currentBusinessReducer from "./currentBusinessReducer"
 
 // Concatenate all reducers
 const reducers = combineReducers({
@@ -11,7 +12,8 @@ const reducers = combineReducers({
   breadcrumb: breadcrumbReducer,
   aside: asideReducer,
   page: pageReducer,
-  currentUser :currentUserReducer
+  currentUser: currentUserReducer,
+  currentBusiness: currentBusinessReducer
 })
 
 export default reducers

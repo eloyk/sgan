@@ -5,6 +5,8 @@
 
 const PAGE = {
   loginPagePath: "/login",
+  createBusinessPagePath: "/empresa/crear-empresa",
+  viewBusinessPagePath: "/empresa/vista-principal",
   dashboardPagePath: "/",
   favicon: "/images/favicon.ico",
   layout: {

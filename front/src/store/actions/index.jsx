@@ -3,6 +3,7 @@ import { sidemenuToggle, sidemenuChange } from "./sidemenuAction"
 import { asideToggle, asideChange } from "./asideAction"
 import { breadcrumbChange } from "./breadcrumbAction"
 import { currentUserChange } from "./currentUserAction"
+import { currentBusinessChange } from "./currentBusinessAction"
 
 // Export all actions
 export {
@@ -13,5 +14,6 @@ export {
   asideToggle,
   asideChange,
   breadcrumbChange,
-  currentUserChange
+  currentUserChange,
+  currentBusinessChange
 }
