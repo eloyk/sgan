@@ -112,7 +112,7 @@ class HeaderUser extends React.Component {
       <Dropdown.Uncontrolled {...attributes}>
         <Widget13 dropdown variant="flat-primary">
           <Widget13.Text>
-            Hi <strong>User</strong>
+            Hi <strong>{name}</strong>
           </Widget13.Text>
           {/* BEGIN Avatar */}
           <Widget13.Avatar variant="info">
