@@ -128,7 +128,7 @@ function BusinessForm(props) {
   const onSubmit = data => {
     // Show loading indicator
     setLoading(true)
-    const { email } = props.currentUser
+    const { id, email } = props
     console.log(`Estos son todos los datos de la empresa: ${data} y el email: ${email}` )
 
     // Trying login with user account
@@ -140,7 +140,7 @@ function BusinessForm(props) {
       data.telefono, 
       data.emailEmpresa, 
       RNC,
-      'id',
+      id,
       email,
       {
       onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
