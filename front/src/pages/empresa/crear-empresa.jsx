@@ -153,12 +153,12 @@ function BusinessForm({props}) {
       RNC,
       usuarioIdAlta: id,
       emailUsuarioAlta: email,
-      onSuccess: () => Router.push(PAGE.viewBusinessPagePath)
+      //onSuccess: () => Router.push(PAGE.viewBusinessPagePath)
     })
     .then(data => {
       console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
       props.currentBusinessChange(data)
-
+      Router.push(PAGE.viewBusinessPagePath)
     })
     .catch(err => {
       console.log(`Este es el error : ${err}`)
