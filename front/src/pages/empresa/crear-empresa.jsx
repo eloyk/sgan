@@ -87,7 +87,7 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props.currentBusiness;
+  const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props && props.currentBusiness;
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
