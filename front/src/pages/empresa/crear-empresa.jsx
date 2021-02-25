@@ -67,7 +67,7 @@ class CrearEmpresaPage extends React.Component {
                 </Portlet.Header>
                 <Portlet.Body >
                   {/* BEGIN Form */}
-                  <BusinessForm />
+                  <BusinessForm props={this.props} />
                   {/* END Form */}
                 </Portlet.Body>
               </Portlet>
@@ -129,7 +129,8 @@ function BusinessForm(props) {
     // Show loading indicator
     setLoading(true)
     const convertProp = JSON.stringify(props)
-    console.log(`Estos son todos los datos de la empresa: ${data} y propiedades: ${convertProp}` )
+    const convertData = JSON.stringify(data)
+    console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
     const { id, email } = props
     console.log(`Este es el email: ${email}` )
 
