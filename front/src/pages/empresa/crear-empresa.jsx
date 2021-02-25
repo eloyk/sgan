@@ -143,7 +143,7 @@ function BusinessForm({props}) {
     console.log(`Este es el email: ${email}` )
 
     // Trying login with user account
-    businessMethod.createBusiness({
+    businessMethod.createBusiness({props,
       nombreEmpresa,
       clasifEmpresa, 
       tipoEmpresa, 
