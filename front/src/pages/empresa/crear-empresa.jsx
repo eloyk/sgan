@@ -317,7 +317,7 @@ function BusinessForm({props}) {
                   id="RNC"
                   name="RNC"
                   size="lg"
-                  disabled="false"
+                  enabled
                   control={control}
                   invalid={Boolean(errors.RNC)}
                   placeholder="Por favor inserte el RNC de la empresa"
