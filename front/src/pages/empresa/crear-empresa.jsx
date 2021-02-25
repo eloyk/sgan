@@ -67,7 +67,7 @@ class CrearEmpresaPage extends React.Component {
                 </Portlet.Header>
                 <Portlet.Body >
                   {/* BEGIN Form */}
-                  <BusinessForm props={this.props.props} />
+                  <BusinessForm props={this.props} />
                   {/* END Form */}
                 </Portlet.Body>
               </Portlet>
@@ -128,10 +128,10 @@ function BusinessForm(props) {
   const onSubmit = data => {
     // Show loading indicator
     setLoading(true)
-    const convertProp = JSON.stringify(props)
+    const convertProp = JSON.stringify(props.props)
     const convertData = JSON.stringify(data)
     console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
-    const { id, email } = props.currentUser
+    const { id, email } = props.props.currentUser
     console.log(`Este es el email: ${email}` )
 
     // Trying login with user account
@@ -149,7 +149,7 @@ function BusinessForm(props) {
       onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
     })
     .then(data => {
-      props.currentBusinessChange(data)
+      props.props.currentBusinessChange(data)
       console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
 
     })
