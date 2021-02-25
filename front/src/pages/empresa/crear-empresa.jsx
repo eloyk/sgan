@@ -128,10 +128,10 @@ function BusinessForm(props) {
   const onSubmit = data => {
     // Show loading indicator
     setLoading(true)
-    const convertProp = JSON.stringify(props.currentUser)
+    const convertProp = JSON.stringify(props)
     const convertData = JSON.stringify(data)
     console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
-    const { id, email } = props.currentUser
+    const { id, email } = props.user
     console.log(`Este es el email: ${email}` )
 
     // Trying login with user account
