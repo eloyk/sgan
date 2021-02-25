@@ -103,14 +103,15 @@ function BusinessForm({props}) {
     setFlagBusiness(true)
   }else{
     defaultValues = {
-      nombreEmpresa: "hola",
-      clasifEmpresa: "2",
-      tipoEmpresa: "2",
-      fundador: "klk",
-      telefono: "weeey",
-      emailEmpresa: "hola",
-      RNC: "RNC",
+      nombreEmpresa: "",
+      clasifEmpresa: "default",
+      tipoEmpresa: "default",
+      fundador: "",
+      telefono: "",
+      emailEmpresa: "",
+      RNC: "",
     }
+    setFlagBusiness(false)
   }
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -198,7 +199,6 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
-            disabled
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
@@ -333,8 +333,6 @@ function BusinessForm({props}) {
                   name="RNC"
                   size="lg"
                   enabled
-                  hidden
-                  visible
                   control={control}
                   invalid={Boolean(errors.RNC)}
                   placeholder="Por favor inserte el RNC de la empresa"
