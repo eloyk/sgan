@@ -2,7 +2,17 @@ import doRequest from "../api/do-request"
 import PAGE from "config/page.config"
 import Router from "next/router"
 
-const createBusiness = async ( nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC, usuarioIdAlta, emailUsuarioAlta, {onSuccess}) => {
+const createBusiness = async ({
+  nombreEmpresa, 
+  clasifEmpresa, 
+  tipoEmpresa, 
+  fundador, 
+  telefono, 
+  emailEmpresa, 
+  RNC, 
+  usuarioIdAlta, 
+  emailUsuarioAlta, 
+  onSuccess}) => {
 
   await doRequest({
     url: '/api/empresa',

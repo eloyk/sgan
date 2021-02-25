@@ -79,7 +79,7 @@ class CrearEmpresaPage extends React.Component {
     )
   }
 }
-function BusinessForm(props) {
+function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
 
@@ -125,32 +125,38 @@ function BusinessForm(props) {
   })
 
   // Handle form submit event
-  const onSubmit = data => {
+  const onSubmit = ({ 
+    nombreEmpresa,
+    clasifEmpresa, 
+    tipoEmpresa, 
+    fundador, 
+    telefono, 
+    emailEmpresa,
+    RNC }) => {
     // Show loading indicator
     setLoading(true)
-    const convertProp = JSON.stringify(props.props)
+    const convertProp = JSON.stringify(props)
     const convertData = JSON.stringify(data)
     console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
-    const { id, email } = props.props.currentUser
+    const { id, email } = props.currentUser
     console.log(`Este es el email: ${email}` )
 
     // Trying login with user account
-    businessMethod.createBusiness(
-      data.nombreEmpresa,
-      data.clasifEmpresa, 
-      data.tipoEmpresa, 
-      data.fundador, 
-      data.telefono, 
-      data.emailEmpresa, 
+    businessMethod.createBusiness({
+      nombreEmpresa,
+      clasifEmpresa, 
+      tipoEmpresa, 
+      fundador, 
+      telefono, 
+      emailEmpresa, 
       RNC,
-      id,
-      email,
-      {
+      usuarioIdAlta: id,
+      emailUsuarioAlta: email,
       onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
     })
-    .then(data => {
-      console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
-      props.props.currentBusinessChange(data)
+    .then(dataResp => {
+      console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${dataResp}`)
+      props.currentBusinessChange(dataResp)
 
     })
     .catch(err => {
