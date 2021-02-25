@@ -27,6 +27,7 @@ import Head from "next/head"
 import Swal from "@panely/sweetalert2"
 import businessMethod from "../../components/business/clientBusiness"
 import Router from "next/router"
+import PAGE from "config/page.config"
 
 // Use SweetAlert React Content library
 const ReactSwal = swalContent(Swal)
