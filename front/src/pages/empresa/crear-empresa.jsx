@@ -128,7 +128,7 @@ function BusinessForm(props) {
   const onSubmit = data => {
     // Show loading indicator
     setLoading(true)
-    const convertProp = JSON.stringify(props.layout)
+    const convertProp = JSON.stringify(props.props.layout)
     const convertData = JSON.stringify(data)
     console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
     const { id, email } = props.layout
