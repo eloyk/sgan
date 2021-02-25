@@ -20,14 +20,6 @@ function WithVerifyBusiness(AuthComponent) {
 
       // Check cookie is valid or not
       if (result) {
-        // Redirect to
-        if (ctx.res) {
-          ctx.res.writeHead(302, { Location: PAGE.viewBusinessPagePath })
-          ctx.res.end()
-        } else {
-          Router.push(PAGE.viewBusinessPagePath);
-        }
-
         return {
           ...initialProps,
           business: result

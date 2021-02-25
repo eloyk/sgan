@@ -65,7 +65,7 @@ class CrearEmpresaPage extends React.Component {
               {/* BEGIN Portlet */}
               <Portlet>
                 <Portlet.Header bordered>
-                  <Portlet.Title>Complex layout with floating label</Portlet.Title>
+                  <Portlet.Title>Por favor rellene los campos queridos para crear su empresa</Portlet.Title>
                 </Portlet.Header>
                 <Portlet.Body >
                   {/* BEGIN Form */}
@@ -81,9 +81,13 @@ class CrearEmpresaPage extends React.Component {
     )
   }
 }
+
+
+
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
+  const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props.currentBusiness;
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -139,7 +143,7 @@ function BusinessForm({props}) {
     setLoading(true)
     const convertProp = JSON.stringify(props)
     console.log(`Estas son las propiedades: ${convertProp}` )
-    const { id, email } = props.currentUser
+    const { id, email } = props.user
     console.log(`Este es el email: ${email}` )
 
     // Trying login with user account
@@ -155,11 +159,7 @@ function BusinessForm({props}) {
       emailUsuarioAlta: email,
       onSuccess: () => Router.push(PAGE.viewBusinessPagePath)
     })
-    .then(data => {
-      console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
-      //props.currentBusinessChange(data)
-
-    })
+    .then()
     .catch(err => {
       console.log(`Este es el error : ${err}`)
 
@@ -172,6 +172,7 @@ function BusinessForm({props}) {
   }
 
   return(
+
     <Form onSubmit={handleSubmit(onSubmit)}>
       {/* BEGIN Form Group */}
       <Form.Group>
@@ -182,6 +183,7 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
+            value={nombreEmpresa}
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
@@ -202,6 +204,7 @@ function BusinessForm({props}) {
                 id="clasifEmpresa"
                 name="clasifEmpresa"
                 size="lg"
+                value={clasifEmpresa}
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
               >
@@ -226,6 +229,7 @@ function BusinessForm({props}) {
                   id="tipoEmpresa"
                   name="tipoEmpresa"
                   size="lg"
+                  value={tipoEmpresa}
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
                 >
@@ -250,6 +254,7 @@ function BusinessForm({props}) {
               id="fundador"
               name="fundador"
               size="lg"
+              value={fundador}
               control={control}
               invalid={Boolean(errors.fundador)}
               placeholder="Por favor inserte el nombre del fundador de la empresa"
@@ -270,6 +275,7 @@ function BusinessForm({props}) {
                 id="telefono"
                 name="telefono"
                 size="lg"
+                value={telefono}
                 control={control}
                 invalid={Boolean(errors.telefono)}
                 placeholder="Por favor inserte el teléfono de la empresa"
@@ -290,6 +296,7 @@ function BusinessForm({props}) {
                   id="emailEmpresa"
                   name="emailEmpresa"
                   size="lg"
+                  value={emailEmpresa}
                   control={control}
                   invalid={Boolean(errors.emailEmpresa)}
                   placeholder="Por favor inserte el email de la empresa"
@@ -310,6 +317,7 @@ function BusinessForm({props}) {
                   id="RNC"
                   name="RNC"
                   size="lg"
+                  value={RNC}
                   control={control}
                   invalid={Boolean(errors.RNC)}
                   placeholder="Por favor inserte el RNC de la empresa"
@@ -330,7 +338,7 @@ function BusinessForm({props}) {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentBusiness: state.currentBusiness
   }
 }
 
