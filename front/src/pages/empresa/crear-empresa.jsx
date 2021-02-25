@@ -345,7 +345,7 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <Button type="submit" variant="primary">
-      {loading ? <Spinner className="mr-2" /> : null} Guardar
+      {loading ? <Spinner className="mr-2" /> : null} Guardar1
       </Button>
     </Form>
   )
