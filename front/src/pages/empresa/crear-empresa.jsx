@@ -128,7 +128,7 @@ function BusinessForm(props) {
   const onSubmit = data => {
     // Show loading indicator
     setLoading(true)
-    const convertProp = JSON.stringify(props)
+    const convertProp = JSON.stringify(props.currentUser)
     const convertData = JSON.stringify(data)
     console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
     const { id, email } = props.currentUser
@@ -197,7 +197,7 @@ function BusinessForm(props) {
                 invalid={Boolean(errors.clasifEmpresa)}
               >
                 <option value="default">Choose...</option>
-                <option value="1">Industria de bienes no duraderos</option>
+                <option value="Industria de bienes no duraderos">Industria de bienes no duraderos</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </Controller>
@@ -212,27 +212,19 @@ function BusinessForm(props) {
           <Form.Group>
             <FloatLabel>
               <Controller
-                control={control}
-                name="tipoEmpresa"
-                  render={({ onChange, onBlur, value, name, ref }) => (
-                    <CustomInput
-                    type="select"
-                      id="tipoEmpresa"
-                      name="tipoEmpresa"
-                      value={e => value = onChange(e.target.value)}
-                      onChange={e => onChange(e.target.value)}
-                      onBlur={e => onBlur(e.target.value)}
-                      size="lg"
-                      control={control}
-                      invalid={Boolean(errors.tipoEmpresa)}
-                    >
-                      <option value="default">Choose...</option>
-                      <option value="1">Productos</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </CustomInput>
-                  )}
-              />
+                  as={Input}
+                  type="select"
+                  id="tipoEmpresa"
+                  name="tipoEmpresa"
+                  size="lg"
+                  control={control}
+                  invalid={Boolean(errors.tipoEmpresa)}
+                >
+                  <option value="default">Choose...</option>
+                  <option value="Productos">Productos</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+              </Controller>
               <Label for="tipoEmpresa">Tipo de Empresa</Label>
               {errors.tipoEmpresa && <Form.Feedback children={errors.tipoEmpresa.message} />}
             </FloatLabel>
@@ -320,11 +312,6 @@ function BusinessForm(props) {
           {/* BEGIN Form Group */}
         </Col>
       </Row>
-      {/* BEGIN Form Group */}
-      <Form.Group>
-        <CustomInput type="checkbox" id="checkboxExample10" label="Check me out" />
-      </Form.Group>
-      {/* BEGIN Form Group */}
       <Button type="submit" variant="primary">
       {loading ? <Spinner className="mr-2" /> : null} Guardar
       </Button>
