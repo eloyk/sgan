@@ -88,12 +88,8 @@ function BusinessForm(props) {
       .string()
       .min(6, "Please enter at least 6 characters")
       .required("Please provide your business name"),
-    clasifEmpresa: yup
-      .string()
-      .required("Please provide your classification business"),
-    tipoEmpresa: yup
-      .string()
-      .required("Please provide your type business"),
+    clasifEmpresa: yup.string().notOneOf(["default"], "Please enter your classification business"),
+    tipoEmpresa: yup.string().notOneOf(["default"], "Please enter your business type"),
     fundador: yup
       .string()
       .min(6, "Please enter at least 6 characters")
@@ -118,8 +114,8 @@ function BusinessForm(props) {
     // Define the default values for all input forms
     defaultValues: {
       nombreEmpresa: "",
-      clasifEmpresa: "",
-      tipoEmpresa: "",
+      clasifEmpresa: "default",
+      tipoEmpresa: "default",
       fundador: "",
       telefono: "",
       emailEmpresa: "",
@@ -128,32 +124,35 @@ function BusinessForm(props) {
   })
 
   // Handle form submit event
-  const onSubmit = async ({ nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC }) => {
+  const onSubmit = data => {
     // Show loading indicator
     setLoading(true)
     const { id, email } = props.currentUser
+    console.log(`Estos son todos los datos de la empresa: ${data}`)
 
     // Trying login with user account
     businessMethod.createBusiness(
-      nombreEmpresa,
-      clasifEmpresa, 
-      tipoEmpresa, 
-      fundador, 
-      telefono, 
-      emailEmpresa, 
+      data.nombreEmpresa,
+      data.clasifEmpresa, 
+      data.tipoEmpresa, 
+      data.fundador, 
+      data.telefono, 
+      data.emailEmpresa, 
       RNC,
       id,
       email,
       {
       onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
     })
-    .then(data => props.currentBusinessChange(data))
+    .then(data => {
+      props.currentBusinessChange(data)
+      console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
+
+    })
     .catch(err => {
       // Show the error message if authentication is failed
       swal.fire({ text: err, icon: "error" })
     });
-
-    console.log(`Estos son todos los datos de la empresa: ${nombreEmpresa}, ${clasifEmpresa}, ${tipoEmpresa}, ${fundador}, ${telefono}, ${emailEmpresa}, ${RNC}, ${id}, ${email}`)
 
     // Hide loading indicator
     setLoading(false)
@@ -193,7 +192,7 @@ function BusinessForm(props) {
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
               >
-                <option value="">Choose...</option>
+                <option value="default">Choose...</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
@@ -217,7 +216,7 @@ function BusinessForm(props) {
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
                 >
-                  <option value="">Choose...</option>
+                  <option value="default">Choose...</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
