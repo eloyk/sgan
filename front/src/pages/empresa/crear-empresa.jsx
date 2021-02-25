@@ -87,7 +87,7 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props && props.currentBusiness;
+  //const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props && props.currentBusiness;
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -120,13 +120,13 @@ function BusinessForm({props}) {
     resolver: yupResolver(schema),
     // Define the default values for all input forms
     defaultValues: {
-      nombreEmpresa: "",
-      clasifEmpresa: "default",
-      tipoEmpresa: "default",
-      fundador: "",
-      telefono: "",
-      emailEmpresa: "",
-      RNC: "",
+      nombreEmpresa: "hola",
+      clasifEmpresa: "2",
+      tipoEmpresa: "2",
+      fundador: "klk",
+      telefono: "weeey",
+      emailEmpresa: "hola",
+      RNC: "RNC",
     }
   })
 
@@ -183,7 +183,6 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
-            value={nombreEmpresa}
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
@@ -204,7 +203,6 @@ function BusinessForm({props}) {
                 id="clasifEmpresa"
                 name="clasifEmpresa"
                 size="lg"
-                value={clasifEmpresa}
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
               >
@@ -229,7 +227,6 @@ function BusinessForm({props}) {
                   id="tipoEmpresa"
                   name="tipoEmpresa"
                   size="lg"
-                  value={tipoEmpresa}
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
                 >
@@ -254,7 +251,6 @@ function BusinessForm({props}) {
               id="fundador"
               name="fundador"
               size="lg"
-              value={fundador}
               control={control}
               invalid={Boolean(errors.fundador)}
               placeholder="Por favor inserte el nombre del fundador de la empresa"
@@ -275,7 +271,6 @@ function BusinessForm({props}) {
                 id="telefono"
                 name="telefono"
                 size="lg"
-                value={telefono}
                 control={control}
                 invalid={Boolean(errors.telefono)}
                 placeholder="Por favor inserte el teléfono de la empresa"
@@ -296,7 +291,6 @@ function BusinessForm({props}) {
                   id="emailEmpresa"
                   name="emailEmpresa"
                   size="lg"
-                  value={emailEmpresa}
                   control={control}
                   invalid={Boolean(errors.emailEmpresa)}
                   placeholder="Por favor inserte el email de la empresa"
@@ -317,7 +311,6 @@ function BusinessForm({props}) {
                   id="RNC"
                   name="RNC"
                   size="lg"
-                  value={RNC}
                   control={control}
                   invalid={Boolean(errors.RNC)}
                   placeholder="Por favor inserte el RNC de la empresa"
