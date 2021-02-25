@@ -155,9 +155,9 @@ function BusinessForm({props}) {
       emailUsuarioAlta: email,
       onSuccess: () => Router.push(PAGE.viewBusinessPagePath)
     })
-    .then(dataResp => {
-      console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${dataResp}`)
-      props.currentBusinessChange(dataResp)
+    .then(data => {
+      console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
+      props.currentBusinessChange(data)
 
     })
     .catch(err => {
