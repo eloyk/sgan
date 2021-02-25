@@ -183,6 +183,7 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
+            disabled
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
@@ -203,6 +204,7 @@ function BusinessForm({props}) {
                 id="clasifEmpresa"
                 name="clasifEmpresa"
                 size="lg"
+                disabled
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
               >
@@ -227,6 +229,7 @@ function BusinessForm({props}) {
                   id="tipoEmpresa"
                   name="tipoEmpresa"
                   size="lg"
+                  disabled
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
                 >
@@ -251,6 +254,7 @@ function BusinessForm({props}) {
               id="fundador"
               name="fundador"
               size="lg"
+              disabled
               control={control}
               invalid={Boolean(errors.fundador)}
               placeholder="Por favor inserte el nombre del fundador de la empresa"
@@ -271,6 +275,7 @@ function BusinessForm({props}) {
                 id="telefono"
                 name="telefono"
                 size="lg"
+                disabled
                 control={control}
                 invalid={Boolean(errors.telefono)}
                 placeholder="Por favor inserte el teléfono de la empresa"
@@ -291,6 +296,7 @@ function BusinessForm({props}) {
                   id="emailEmpresa"
                   name="emailEmpresa"
                   size="lg"
+                  disabled
                   control={control}
                   invalid={Boolean(errors.emailEmpresa)}
                   placeholder="Por favor inserte el email de la empresa"
@@ -311,6 +317,7 @@ function BusinessForm({props}) {
                   id="RNC"
                   name="RNC"
                   size="lg"
+                  disabled="false"
                   control={control}
                   invalid={Boolean(errors.RNC)}
                   placeholder="Por favor inserte el RNC de la empresa"
