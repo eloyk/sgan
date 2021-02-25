@@ -26,6 +26,9 @@ const createBusiness = async ( nombreEmpresa, clasifEmpresa, tipoEmpresa, fundad
     } else {
       () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
     }
+    const convetData = JSON.stringify(data)
+    console.log('Data proveniente del clientBusiness: ' + convetData)
+
     return data;
   })
   .catch(err => {

@@ -149,11 +149,13 @@ function BusinessForm(props) {
       onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
     })
     .then(data => {
-      props.props.currentBusinessChange(data)
       console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${data}`)
+      props.props.currentBusinessChange(data)
 
     })
     .catch(err => {
+      console.log(`Este es el error : ${err}`)
+
       // Show the error message if authentication is failed
       swal.fire({ text: err, icon: "error" })
     });

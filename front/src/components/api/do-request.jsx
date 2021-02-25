@@ -6,7 +6,8 @@ const doRequest = async ({ url, method, body }, props = {}) => {
       const response = await axios[method](url, { ...body, ...props });
       
       const data = response.data
-
+      const convetData = JSON.stringify(data)
+      console.log('Data proveniente del do-request: ' + convetData)
       return data;
     } catch (err) {
       
