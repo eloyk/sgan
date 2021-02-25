@@ -152,7 +152,7 @@ function BusinessForm({props}) {
       RNC,
       usuarioIdAlta: id,
       emailUsuarioAlta: email,
-      onSuccess: () => Router.push(Router.query.redirect || PAGE.viewBusinessPagePath)
+      onSuccess: () => Router.push(PAGE.viewBusinessPagePath)
     })
     .then(dataResp => {
       console.log(`Estos son todos los datos de la empresa dentro de la consulta: ${dataResp}`)
