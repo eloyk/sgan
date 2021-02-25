@@ -131,7 +131,7 @@ function BusinessForm(props) {
     const convertProp = JSON.stringify(props)
     const convertData = JSON.stringify(data)
     console.log(`Estos son todos los datos de la empresa: ${convertData} y propiedades: ${convertProp}` )
-    const { id, email } = props
+    const { id, email } = props.currentUser
     console.log(`Este es el email: ${email}` )
 
     // Trying login with user account
@@ -212,19 +212,27 @@ function BusinessForm(props) {
           <Form.Group>
             <FloatLabel>
               <Controller
-                  as={Input}
-                  type="select"
-                  id="tipoEmpresa"
-                  name="tipoEmpresa"
-                  size="lg"
-                  control={control}
-                  invalid={Boolean(errors.tipoEmpresa)}
-                >
-                  <option value="default">Choose...</option>
-                  <option value="1">Productos</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-              </Controller>
+                control={control}
+                name="tipoEmpresa"
+                  render={({ onChange, onBlur, value, name, ref }) => (
+                    <CustomInput
+                    type="select"
+                      id="tipoEmpresa"
+                      name="tipoEmpresa"
+                      value={e => value = onChange(e.target.value)}
+                      onChange={e => onChange(e.target.value)}
+                      onBlur={e => onBlur(e.target.value)}
+                      size="lg"
+                      control={control}
+                      invalid={Boolean(errors.tipoEmpresa)}
+                    >
+                      <option value="default">Choose...</option>
+                      <option value="1">Productos</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </CustomInput>
+                  )}
+              />
               <Label for="tipoEmpresa">Tipo de Empresa</Label>
               {errors.tipoEmpresa && <Form.Feedback children={errors.tipoEmpresa.message} />}
             </FloatLabel>
