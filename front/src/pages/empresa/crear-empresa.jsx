@@ -98,7 +98,7 @@ function BusinessForm({props}) {
   //   emailEmpresa, 
   //   RNC,
   // } = props.currentBusiness !== null ? props.currentBusiness: {};
-  if (!props.currentBusiness){
+  if (true){
     setEmpresaValue({
       nombreEmpresa: "",
       clasifEmpresa: "default",
