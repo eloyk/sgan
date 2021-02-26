@@ -89,15 +89,15 @@ function BusinessForm({props}) {
   const [loading, setLoading] = React.useState(false)
   const [empresaValues, setEmpresaValue] = React.useState({})
   const [flagBusiness, setFlagBusiness] = React.useState(true)
-  const {
-    nombreEmpresa, 
-    clasifEmpresa, 
-    tipoEmpresa, 
-    fundador, 
-    telefono, 
-    emailEmpresa, 
-    RNC,
-  } = props.currentBusiness !== null ? props.currentBusiness: {};
+  // const valores  = {
+  //   nombreEmpresa, 
+  //   clasifEmpresa, 
+  //   tipoEmpresa, 
+  //   fundador, 
+  //   telefono, 
+  //   emailEmpresa, 
+  //   RNC,
+  // } = props.currentBusiness !== null ? props.currentBusiness: {};
   if (!props.currentBusiness){
     setEmpresaValue({
       nombreEmpresa: "",
@@ -111,13 +111,13 @@ function BusinessForm({props}) {
     setFlagBusiness(false)
   }else{
     setEmpresaValue({
-      nombreEmpresa,
-      clasifEmpresa,
-      tipoEmpresa,
-      fundador,
-      telefono,
-      emailEmpresa,
-      RNC,
+      nombreEmpresa:"1",
+      clasifEmpresa:"2",
+      tipoEmpresa:"3",
+      fundador:"4",
+      telefono:"5",
+      emailEmpresa:"6",
+      RNC:"7",
     });
     setFlagBusiness(true)
   }
