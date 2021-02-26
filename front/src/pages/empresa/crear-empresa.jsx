@@ -95,27 +95,28 @@ function BusinessForm({props}) {
   telefono: "",
   emailEmpresa: "",
   RNC: "",})
-  // const [flagBusiness, setFlagBusiness] = React.useState(true)
-  // let {
-  //   id, 
-  //   nombreEmpresa, 
-  //   clasifEmpresa, 
-  //   tipoEmpresa, 
-  //   fundador, 
-  //   telefono, 
-  //   emailEmpresa, 
-  //   RNC,
-  // } = props.currentBusiness !== null ? props.currentBusiness: "";
-  // if (!props.currentBusiness){
-  //   nombreEmpresa= "",
-  //   clasifEmpresa= "default",
-  //   tipoEmpresa= "default",
-  //   fundador= "",
-  //   telefono= "",
-  //   emailEmpresa= "",
-  //   RNC= "",
-  //   setFlagBusiness(false)
-  // }
+  const [flagBusiness, setFlagBusiness] = React.useState(true)
+  setEmpresaValue({
+    nombreEmpresa, 
+    clasifEmpresa, 
+    tipoEmpresa, 
+    fundador, 
+    telefono, 
+    emailEmpresa, 
+    RNC,
+  }) = props.currentBusiness !== null ? props.currentBusiness: {};
+  if (!props.currentBusiness){
+    setEmpresaValue({
+      nombreEmpresa: "",
+      clasifEmpresa: "default",
+      tipoEmpresa: "default",
+      fundador: "",
+      telefono: "",
+      emailEmpresa: "",
+      RNC: "",
+    });
+    setFlagBusiness(false)
+  }
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
