@@ -87,7 +87,14 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [nombreEmpresaValue, setnombreEmpresaValue] = React.useState("")
+  const [empresaValues, setEmpresaValue] = React.useState({      
+  nombreEmpresa: "",
+  clasifEmpresa: "default",
+  tipoEmpresa: "default",
+  fundador: "",
+  telefono: "",
+  emailEmpresa: "",
+  RNC: "",})
   // const [flagBusiness, setFlagBusiness] = React.useState(true)
   // let {
   //   id, 
@@ -141,13 +148,7 @@ function BusinessForm({props}) {
     resolver: yupResolver(schema),
     // Define the default values for all input forms
     defaultValues:{
-      nombreEmpresa: nombreEmpresaValue,
-      clasifEmpresa: "default",
-      tipoEmpresa: "default",
-      fundador: "",
-      telefono: "",
-      emailEmpresa: "",
-      RNC: "",
+      empresaValues
       }
   })
 
