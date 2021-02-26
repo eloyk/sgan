@@ -88,16 +88,14 @@ function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
   const [flagBusiness, setFlagBusiness] = React.useState(true)
-  let {
-    id, 
-    nombreEmpresa, 
-    clasifEmpresa, 
-    tipoEmpresa, 
-    fundador, 
-    telefono, 
-    emailEmpresa, 
-    RNC,
-  } = "" //props.currentBusiness !== null ? props.currentBusiness: "";
+  let nombreEmpresa="" 
+  let clasifEmpresa="" 
+  let tipoEmpresa=""
+  let fundador="" 
+  let telefono="" 
+  let emailEmpresa="" 
+  let RNC=""
+  //} = "" //props.currentBusiness !== null ? props.currentBusiness: "";
   if (!props.currentBusiness){
     nombreEmpresa= "",
     clasifEmpresa= "default",
