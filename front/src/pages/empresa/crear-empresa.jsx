@@ -88,7 +88,7 @@ function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
   const [flagBusiness, setFlagBusiness] = React.useState(false)
-  const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props && props.currentBusiness;
+  const {id, nombreEmpresa, clasifEmpresa, tipoEmpresa, fundador, telefono, emailEmpresa, RNC,} = props.currentBusiness ? props.currentBusiness : null;
   let defaultValues = {};
   if (props.currentBusiness){
     defaultValues = {
@@ -345,7 +345,7 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <Button type="submit" variant="primary">
-      {loading ? <Spinner className="mr-2" /> : null} Guardar1
+      {loading ? <Spinner className="mr-2" /> : null} Guardar
       </Button>
     </Form>
   )
