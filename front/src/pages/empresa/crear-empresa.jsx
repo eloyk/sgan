@@ -87,7 +87,7 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [flagEnabled, setFlagEnabled] = React.useState(true)
+  const [flagEnabled, setFlagEnabled] = React.useState(false)
   // let valores  = {
   //   nombreEmpresa: "", 
   //   clasifEmpresa: "", 
@@ -171,7 +171,7 @@ function BusinessForm({props}) {
           telefono = ""
           emailEmpresa = ""
           RNC = ""
-          flagEnabled(true)
+          flagEnabled(false)
       }
       return {
         nombreEmpresa, 
@@ -238,7 +238,7 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
-            disabled="true"
+            disabled={flagEnabled}
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
