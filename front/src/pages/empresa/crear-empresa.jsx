@@ -87,40 +87,40 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [empresaValues, setEmpresaValue] = React.useState({})
-  const [flagBusiness, setFlagBusiness] = React.useState(true)
-  let valores  = {
-    nombreEmpresa: "", 
-    clasifEmpresa: "", 
-    tipoEmpresa: "", 
-    fundador: "", 
-    telefono: "", 
-    emailEmpresa: "", 
-    RNC: "",
-  } //= props.currentBusiness !== null ? props.currentBusiness: {};
-  if (true){
-    valores ={
-      nombreEmpresa: "",
-      clasifEmpresa: "default",
-      tipoEmpresa: "default",
-      fundador: "",
-      telefono: "",
-      emailEmpresa: "",
-      RNC: "",
-    };
-    setFlagBusiness(false)
-  }else{
-    valores = {
-      nombreEmpresa:"1",
-      clasifEmpresa:"2",
-      tipoEmpresa:"3",
-      fundador:"4",
-      telefono:"5",
-      emailEmpresa:"6",
-      RNC:"7",
-    };
-    setFlagBusiness(true)
-  }
+  // const [empresaValues, setEmpresaValue] = React.useState({})
+  // const [flagBusiness, setFlagBusiness] = React.useState(true)
+  // let valores  = {
+  //   nombreEmpresa: "", 
+  //   clasifEmpresa: "", 
+  //   tipoEmpresa: "", 
+  //   fundador: "", 
+  //   telefono: "", 
+  //   emailEmpresa: "", 
+  //   RNC: "",
+  // } = props.currentBusiness !== null ? props.currentBusiness: {};
+  // if (true){
+  //   valores ={
+  //     nombreEmpresa: "",
+  //     clasifEmpresa: "default",
+  //     tipoEmpresa: "default",
+  //     fundador: "",
+  //     telefono: "",
+  //     emailEmpresa: "",
+  //     RNC: "",
+  //   };
+  //   setFlagBusiness(false)
+  // }else{
+  //   valores = {
+  //     nombreEmpresa:"1",
+  //     clasifEmpresa:"2",
+  //     tipoEmpresa:"3",
+  //     fundador:"4",
+  //     telefono:"5",
+  //     emailEmpresa:"6",
+  //     RNC:"7",
+  //   };
+  //   setFlagBusiness(true)
+  // }
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -152,9 +152,36 @@ function BusinessForm({props}) {
     // Apply Yup as resolver for react-hook-form
     resolver: yupResolver(schema),
     // Define the default values for all input forms
-    defaultValues:{
-      valores
+    defaultValues:() => {
+      const {
+        nombreEmpresa, 
+        clasifEmpresa, 
+        tipoEmpresa, 
+        fundador, 
+        telefono, 
+        emailEmpresa, 
+        RNC,
+      } = props.currentBusiness !== null ? props.currentBusiness : "";
+  
+      if (!props.currentBusiness) {
+          nombreEmpresa = "" 
+          clasifEmpresa = "default"
+          tipoEmpresa = "default"
+          fundador = ""
+          telefono = ""
+          emailEmpresa = ""
+          RNC = ""
       }
+      return {
+        nombreEmpresa, 
+        clasifEmpresa, 
+        tipoEmpresa, 
+        fundador, 
+        telefono, 
+        emailEmpresa, 
+        RNC,
+      }
+  }
   })
 
   // Handle form submit event
