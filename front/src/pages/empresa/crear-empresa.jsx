@@ -87,8 +87,7 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  // const [empresaValues, setEmpresaValue] = React.useState({})
-  // const [flagBusiness, setFlagBusiness] = React.useState(true)
+  const [flagEnabled, setFlagEnabled] = React.useState(true)
   // let valores  = {
   //   nombreEmpresa: "", 
   //   clasifEmpresa: "", 
@@ -162,7 +161,8 @@ function BusinessForm({props}) {
         emailEmpresa, 
         RNC,
       } = props.currentBusiness !== null ? props.currentBusiness : "";
-  
+      flagEnabled(false)
+
       if (!props.currentBusiness) {
           nombreEmpresa = "" 
           clasifEmpresa = "default"
@@ -171,6 +171,7 @@ function BusinessForm({props}) {
           telefono = ""
           emailEmpresa = ""
           RNC = ""
+          flagEnabled(true)
       }
       return {
         nombreEmpresa, 
@@ -237,6 +238,7 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
+            disabled="true"
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
@@ -257,7 +259,7 @@ function BusinessForm({props}) {
                 id="clasifEmpresa"
                 name="clasifEmpresa"
                 size="lg"
-                disabled
+                disabled="false"
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
               >
