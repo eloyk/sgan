@@ -96,7 +96,7 @@ function BusinessForm({props}) {
     fundador: "", 
     telefono: "", 
     emailEmpresa: "", 
-    RNC,
+    RNC: "",
   } //= props.currentBusiness !== null ? props.currentBusiness: {};
   if (true){
     valores ={
