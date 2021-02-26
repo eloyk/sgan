@@ -111,7 +111,7 @@ function BusinessForm({props}) {
     }}
     setFlagBusiness(true)
   }else{
-    defaultValues = {
+    defaultValues = {defaultValues:{
       nombreEmpresa: "",
       clasifEmpresa: "default",
       tipoEmpresa: "default",
@@ -119,7 +119,7 @@ function BusinessForm({props}) {
       telefono: "",
       emailEmpresa: "",
       RNC: "",
-    }
+    }}
     setFlagBusiness(false)
   }
   // Define Yup schema for form validation
