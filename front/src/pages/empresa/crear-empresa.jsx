@@ -97,7 +97,7 @@ function BusinessForm({props}) {
     telefono, 
     emailEmpresa, 
     RNC,
-  } = typeof props.currentBusiness !== 'undefined' && props.currentBusiness;
+  } = props.currentBusiness !== null && props.currentBusiness;
   let defaultValues = {};
   if (props.currentBusiness){
     defaultValues = {
