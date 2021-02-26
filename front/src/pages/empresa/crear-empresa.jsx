@@ -87,41 +87,28 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  const [flagBusiness, setFlagBusiness] = React.useState(false)
-  //const {
-  //  id, 
-  //  nombreEmpresa, 
-  //  clasifEmpresa, 
-  //  tipoEmpresa, 
-  //  fundador, 
-  //  telefono, 
-  //  emailEmpresa, 
-  //  RNC,
-  //} = props.currentBusiness !== null ? props.currentBusiness: {};
-  let defaultValues = {};
-  if (props.currentBusiness){
-    defaultValues = {defaultValues:{
-      nombreEmpresa,
-      clasifEmpresa,
-      tipoEmpresa,
-      fundador,
-      telefono,
-      emailEmpresa,
-      RNC,
-    }}
-    setFlagBusiness(true)
-  }else{
-    defaultValues = {defaultValues:{
-      nombreEmpresa: "",
-      clasifEmpresa: "default",
-      tipoEmpresa: "default",
-      fundador: "",
-      telefono: "",
-      emailEmpresa: "",
-      RNC: "",
-    }}
+  const [flagBusiness, setFlagBusiness] = React.useState(true)
+  const {
+    id, 
+    nombreEmpresa, 
+    clasifEmpresa, 
+    tipoEmpresa, 
+    fundador, 
+    telefono, 
+    emailEmpresa, 
+    RNC,
+  } = props.currentBusiness !== null ? props.currentBusiness: {};
+  if (!props.currentBusiness){
+      nombreEmpresa= "",
+      clasifEmpresa= "default",
+      tipoEmpresa= "default",
+      fundador= "",
+      telefono= "",
+      emailEmpresa= "",
+      RNC= "",
     setFlagBusiness(false)
   }
+
   // Define Yup schema for form validation
   const schema = yup.object().shape({
     nombreEmpresa: yup
@@ -152,7 +139,15 @@ function BusinessForm({props}) {
     // Apply Yup as resolver for react-hook-form
     resolver: yupResolver(schema),
     // Define the default values for all input forms
-    defaultValues
+    defaultValues:{
+      nombreEmpresa,
+      clasifEmpresa,
+      tipoEmpresa,
+      fundador,
+      telefono,
+      emailEmpresa,
+      RNC,
+    }
   })
 
   // Handle form submit event
