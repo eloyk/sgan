@@ -97,7 +97,7 @@ function BusinessForm({props}) {
     telefono, 
     emailEmpresa, 
     RNC,
-  } = props.currentBusiness !== null ? props.currentBusiness: "";
+  } = "" //props.currentBusiness !== null ? props.currentBusiness: "";
   if (!props.currentBusiness){
     nombreEmpresa= "",
     clasifEmpresa= "default",
