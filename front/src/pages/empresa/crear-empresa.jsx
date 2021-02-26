@@ -100,7 +100,7 @@ function BusinessForm({props}) {
   //} = props.currentBusiness !== null ? props.currentBusiness: {};
   let defaultValues = {};
   if (props.currentBusiness){
-    defaultValues = {
+    defaultValues = {defaultValues:{
       nombreEmpresa,
       clasifEmpresa,
       tipoEmpresa,
@@ -108,7 +108,7 @@ function BusinessForm({props}) {
       telefono,
       emailEmpresa,
       RNC,
-    }
+    }}
     setFlagBusiness(true)
   }else{
     defaultValues = {
