@@ -89,7 +89,7 @@ function BusinessForm({props}) {
   const [loading, setLoading] = React.useState(false)
   const [empresaValues, setEmpresaValue] = React.useState({})
   const [flagBusiness, setFlagBusiness] = React.useState(true)
-  const valores  = {
+  let valores  = {
     nombreEmpresa: "", 
     clasifEmpresa: "", 
     tipoEmpresa: "", 
