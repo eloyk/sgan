@@ -88,7 +88,7 @@ function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
   const [flagBusiness, setFlagBusiness] = React.useState(true)
-  const {
+  let {
     id, 
     nombreEmpresa, 
     clasifEmpresa, 
