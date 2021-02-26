@@ -139,15 +139,15 @@ function BusinessForm({props}) {
     // Apply Yup as resolver for react-hook-form
     resolver: yupResolver(schema),
     // Define the default values for all input forms
-    // defaultValues:{
-    //   nombreEmpresa,
-    //   clasifEmpresa,
-    //   tipoEmpresa,
-    //   fundador,
-    //   telefono,
-    //   emailEmpresa,
-    //   RNC,
-    // }
+    defaultValues:{
+      nombreEmpresa: "",
+      clasifEmpresa: "default",
+      tipoEmpresa: "default",
+      fundador: "",
+      telefono: "",
+      emailEmpresa: "",
+      RNC: "",
+      }
   })
 
   // Handle form submit event
