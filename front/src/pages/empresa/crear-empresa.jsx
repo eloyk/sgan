@@ -140,13 +140,13 @@ function BusinessForm({props}) {
     resolver: yupResolver(schema),
     // Define the default values for all input forms
     defaultValues:{
-      nombreEmpresa= "",
-      clasifEmpresa= "default",
-      tipoEmpresa= "default",
-      fundador= "",
-      telefono= "",
-      emailEmpresa= "",
-      RNC= "",
+      nombreEmpresa: "",
+      clasifEmpresa: "default",
+      tipoEmpresa: "default",
+      fundador: "",
+      telefono: "",
+      emailEmpresa: "",
+      RNC: "",
     }
   })
 
