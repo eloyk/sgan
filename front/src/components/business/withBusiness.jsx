@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import verifyCurrentBusiness from "components/business/verifyCurrentBusiness"
 import Router from "next/router"
 import PAGE from "config/page.config"
-import getBusiness from "components/business/clientBusiness"
+import businessMethod from "components/business/clientBusiness"
 
 function WithVerifyBusiness(AuthComponent) {
   class Authentication extends React.Component {
@@ -37,7 +37,7 @@ function WithVerifyBusiness(AuthComponent) {
 
     componentDidMount() {
       console.log('Este es el valor del context:' + JSON.stringify(this.props.user.empresaId))
-      const result = getBusiness(this.props.user.empresaId)
+      const result = businessMethod.getBusiness(this.props.user.empresaId)
       if (result) {
         this.props.currentBusinessChange(result)
           
