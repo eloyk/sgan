@@ -47,10 +47,10 @@ const createBusiness = async ({props,
 
 }
 
-const getBusiness = async ({props}) => {
+const getBusiness = async ({props}, id) => {
 
   await doRequest({
-    url: `/api/empresa/${props.user.empresaId}`,
+    url: `/api/empresa/${id}`,
     method: 'get',
     body: {},
   })

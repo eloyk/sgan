@@ -25,7 +25,7 @@ function WithVerifyBusiness(AuthComponent) {
     }
 
     componentDidMount() {
-      const result = businessMethod.getBusiness(this.props)
+      const result = businessMethod.getBusiness(this.props, this.props.user.empresaId)
       if (result) {
         this.props.currentBusinessChange(result)
           
