@@ -14,7 +14,7 @@ function WithVerifyBusiness(AuthComponent) {
       // Get initial properties
       if (AuthComponent.getInitialProps) {
         initialProps = await AuthComponent.getInitialProps(ctx)
-        propiedades = await AuthComponent.getInitialProps
+        propiedades = await AuthComponent.getInitialProps()
       }
       console.log('Este es el valor del context:' + JSON.stringify(propiedades))
       // Verify cookie
@@ -43,11 +43,17 @@ function WithVerifyBusiness(AuthComponent) {
     }
   }
 
+  function mapStateToProps(state) {
+    return {
+      currentUser: state.currentUser
+    }
+  }
+  
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({ currentBusinessChange }, dispatch)
   }
 
-  return connect(null, mapDispatchToProps)(Authentication)
+  return connect(mapStateToProps, mapDispatchToProps)(Authentication)
 }
 
 export default WithVerifyBusiness
