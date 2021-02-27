@@ -89,7 +89,7 @@ function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
   const [flagDisabled, setFlagDisabled] = React.useState(false)
-  console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+  console.log('Respuesta desde la creacion de empresa: ' + JSON.stringify(props.currentBusiness))
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
