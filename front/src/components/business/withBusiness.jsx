@@ -14,7 +14,7 @@ function WithVerifyBusiness(AuthComponent) {
       // Get initial properties
       if (AuthComponent.getInitialProps) {
         initialProps = await AuthComponent.getInitialProps(ctx)
-        propiedades = await AuthComponent.props
+        propiedades = await AuthComponent.getInitialProps()
       }
       console.log('Este es el valor del context:' + JSON.stringify(propiedades))
       // Verify cookie
