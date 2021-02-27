@@ -7,7 +7,7 @@ import PAGE from "config/page.config"
 
 function WithVerifyBusiness(AuthComponent) {
   class Authentication extends React.Component {
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx, props={}) {
       let initialProps = {}
 
       // Get initial properties
