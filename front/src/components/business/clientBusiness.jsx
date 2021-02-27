@@ -56,7 +56,8 @@ const getBusiness = async ({props}, id) => {
   })
   .then(data => {
     const convetData = JSON.stringify(data)
-    console.log('Data proveniente del GetclientBusiness: ' + convetData)
+    const convetData1 = JSON.stringify(props)
+    console.log('Data proveniente del GetclientBusiness: ' + convetData + 'propiedades: ' + convetData1)
     props.currentBusinessChange(data)
   })
   .catch(err => {
