@@ -131,7 +131,7 @@ function BusinessForm({props}) {
         RNC,
       } = props.currentBusiness !== null ? props.currentBusiness : "";
       setFlagDisabled(true)
-
+      console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
       if (!props.currentBusiness) {
           nombreEmpresa = "" 
           clasifEmpresa = "default"
