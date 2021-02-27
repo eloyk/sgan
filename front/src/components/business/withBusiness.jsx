@@ -4,38 +4,47 @@ import { connect } from "react-redux"
 import verifyCurrentBusiness from "components/business/verifyCurrentBusiness"
 import Router from "next/router"
 import PAGE from "config/page.config"
+import getBusiness from "components/business/clientBusiness"
 
 function WithVerifyBusiness(AuthComponent) {
   class Authentication extends React.Component {
-    static async getInitialProps(ctx) {
-      let initialProps = {}
-      let propiedades = {}
+    // static async getInitialProps(ctx) {
+    //   let initialProps = {}
+    //   let propiedades = {}
 
-      // Get initial properties
-      if (AuthComponent.getInitialProps) {
-        initialProps = await AuthComponent.getInitialProps(ctx)
-        propiedades = await AuthComponent.getInitialProps()
-      }
-      console.log('Este es el valor del context:' + JSON.stringify(propiedades))
-      // Verify cookie
-      //const result = await verifyCurrentBusiness(ctx)
+    //   // Get initial properties
+    //   if (AuthComponent.getInitialProps) {
+    //     initialProps = await AuthComponent.getInitialProps(ctx)
+    //     propiedades = await AuthComponent.getInitialProps()
+    //   }
+    //   console.log('Este es el valor del context:' + JSON.stringify(propiedades))
+    //   // Verify cookie
+    //   //const result = await verifyCurrentBusiness(ctx)
 
-      // Check cookie is valid or not
-      if (false) {
-        return {
-          ...initialProps,
-          business: result
-        }
-      }else {
-        return {
-        ...initialProps,
-        business: null
-        }
-      }
-    }
+    //   // Check cookie is valid or not
+    //   if (false) {
+    //     return {
+    //       ...initialProps,
+    //       business: result
+    //     }
+    //   }else {
+    //     return {
+    //     ...initialProps,
+    //     business: null
+    //     }
+    //   }
+    // }
 
     componentDidMount() {
-      this.props.currentBusinessChange(this.props.business)
+      console.log('Este es el valor del context:' + JSON.stringify(this.props.currentUser))
+      const result = await getBusiness(this.props.currentUser.empresaId)
+      if (result) {
+        this.props.currentBusinessChange(result)
+          
+      }else {
+        this.props.currentBusinessChange(null)
+
+      }
     }
 
     render() {

@@ -47,20 +47,14 @@ const createBusiness = async ({props,
 
 }
 
-const getBusiness = async ({onSuccess}) => {
+const getBusiness = async (id) => {
 
   await doRequest({
-    url: '/api/empresa',
+    url: '/api/empresa/' + id,
     method: 'get',
     body: {},
   })
-  .then(() => {
-    if (onSuccess) {
-      onSuccess();
-    } else {
-      () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
-    }
-  })
+  .then(data => data)
   .catch(err => {
     throw err
   })
