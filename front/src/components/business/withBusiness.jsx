@@ -8,32 +8,21 @@ import businessMethod from "components/business/clientBusiness"
 
 function WithVerifyBusiness(AuthComponent) {
   class Authentication extends React.Component {
-    // static async getInitialProps(ctx) {
-    //   let initialProps = {}
-    //   let propiedades = {}
+    static async getInitialProps(ctx) {
+      let initialProps = {}
 
-    //   // Get initial properties
-    //   if (AuthComponent.getInitialProps) {
-    //     initialProps = await AuthComponent.getInitialProps(ctx)
-    //     propiedades = await AuthComponent.getInitialProps()
-    //   }
-    //   console.log('Este es el valor del context:' + JSON.stringify(propiedades))
-    //   // Verify cookie
-    //   //const result = await verifyCurrentBusiness(ctx)
+      // Get initial properties
+      if (AuthComponent.getInitialProps) {
+        initialProps = await AuthComponent.getInitialProps(ctx)
+      }
+      // Verify cookie
+      //const result = await verifyCurrentBusiness(ctx)
 
-    //   // Check cookie is valid or not
-    //   if (false) {
-    //     return {
-    //       ...initialProps,
-    //       business: result
-    //     }
-    //   }else {
-    //     return {
-    //     ...initialProps,
-    //     business: null
-    //     }
-    //   }
-    // }
+      // Check cookie is valid or not
+      return {
+      ...initialProps
+      }
+    }
 
     componentDidMount() {
       const result = businessMethod.getBusiness(this.props)
