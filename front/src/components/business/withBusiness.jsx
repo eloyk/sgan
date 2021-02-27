@@ -19,7 +19,7 @@ function WithVerifyBusiness(AuthComponent) {
       //const result = await verifyCurrentBusiness(ctx)
 
       // Check cookie is valid or not
-      if (result) {
+      if (false) {
         return {
           ...initialProps,
           business: result
