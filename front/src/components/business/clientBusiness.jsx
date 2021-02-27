@@ -47,14 +47,18 @@ const createBusiness = async ({props,
 
 }
 
-const getBusiness = async (id) => {
+const getBusiness = async ({props}) => {
 
   await doRequest({
-    url: `/api/empresa/${id}`,
+    url: `/api/empresa/${props.user.empresaId}`,
     method: 'get',
     body: {},
   })
-  .then(data => data)
+  .then(data => {
+    const convetData = JSON.stringify(data)
+    console.log('Data proveniente del GetclientBusiness: ' + convetData)
+    props.currentBusinessChange(data)
+  })
   .catch(err => {
     throw err
   })
