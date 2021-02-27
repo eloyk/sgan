@@ -52,17 +52,11 @@ function WithVerifyBusiness(AuthComponent) {
     }
   }
 
-  function mapStateToProps(state) {
-    return {
-      currentUser: state.currentUser
-    }
-  }
-  
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({ currentBusinessChange }, dispatch)
   }
 
-  return connect(mapStateToProps, mapDispatchToProps)(Authentication)
+  return connect(null, mapDispatchToProps)(Authentication)
 }
 
 export default WithVerifyBusiness
