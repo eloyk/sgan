@@ -9,12 +9,14 @@ function WithVerifyBusiness(AuthComponent) {
   class Authentication extends React.Component {
     static async getInitialProps(ctx) {
       let initialProps = {}
+      let propiedades = {}
 
       // Get initial properties
       if (AuthComponent.getInitialProps) {
-        initialProps = await AuthComponent.getInitialProps(ctx,)
+        initialProps = await AuthComponent.getInitialProps(ctx)
+        propiedades = await AuthComponent.getInitialProps
       }
-      console.log('Este es el valor del context:' + JSON.stringify(this.props))
+      console.log('Este es el valor del context:' + JSON.stringify(propiedades))
       // Verify cookie
       //const result = await verifyCurrentBusiness(ctx)
 
