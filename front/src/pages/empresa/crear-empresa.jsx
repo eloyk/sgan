@@ -130,19 +130,19 @@ function BusinessForm({props}) {
         telefono, 
         emailEmpresa, 
         RNC,
-      } = props.currentBusiness !== null && props.currentBusiness;
+      } = props.currentBusiness;
       setFlagDisabled(true)
-      if (!props.currentBusiness) {
-          nombreEmpresa = "" 
-          clasifEmpresa = "default"
-          tipoEmpresa = "default"
-          fundador = ""
-          telefono = ""
-          emailEmpresa = ""
-          RNC = ""
-          console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
-          setFlagDisabled(false)
-      }
+      //if (!props.currentBusiness) {
+      //    nombreEmpresa = "" 
+      //    clasifEmpresa = "default"
+      //    tipoEmpresa = "default"
+      //    fundador = ""
+      //    telefono = ""
+      //    emailEmpresa = ""
+      //    RNC = ""
+      //    console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+      //    setFlagDisabled(false)
+      //}
       return {
         nombreEmpresa, 
         clasifEmpresa, 
