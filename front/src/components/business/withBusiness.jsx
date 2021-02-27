@@ -36,7 +36,7 @@ function WithVerifyBusiness(AuthComponent) {
     // }
 
     componentDidMount() {
-      console.log('Este es el valor del context:' + JSON.stringify(this.props.currentUser))
+      console.log('Este es el valor del context:' + JSON.stringify(this.props))
       const result = getBusiness(this.props.currentUser.empresaId)
       if (result) {
         this.props.currentBusinessChange(result)
