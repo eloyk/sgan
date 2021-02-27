@@ -14,9 +14,9 @@ function WithVerifyBusiness(AuthComponent) {
       if (AuthComponent.getInitialProps) {
         initialProps = await AuthComponent.getInitialProps(ctx)
       }
-      
+      console.log('Este es el valor del context:' + ctx)
       // Verify cookie
-      const result = await verifyCurrentBusiness(ctx)
+      //const result = await verifyCurrentBusiness(ctx)
 
       // Check cookie is valid or not
       if (result) {

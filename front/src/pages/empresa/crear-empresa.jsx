@@ -26,6 +26,7 @@ import withAuth from "components/user/withAuth"
 import Head from "next/head"
 import Swal from "@panely/sweetalert2"
 import businessMethod from "../../components/business/clientBusiness"
+import WithVerifyBusiness from "../../components/business/withBusiness"
 import Router from "next/router"
 import PAGE from "config/page.config"
 
@@ -369,4 +370,4 @@ function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange, currentBusinessChange }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(withAuth(withLayout(CrearEmpresaPage)))
+export default connect(mapStateToProps, mapDispathToProps)(withAuth(WithVerifyBusiness(withLayout(CrearEmpresaPage))))
