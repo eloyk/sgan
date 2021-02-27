@@ -129,7 +129,7 @@ function BusinessForm({props}) {
         telefono, 
         emailEmpresa, 
         RNC,
-      } = props.currentBusiness !== null ? props.currentBusiness : "";
+      } = props.currentBusiness !== null && props.currentBusiness;
       setFlagDisabled(true)
       if (!props.currentBusiness) {
           nombreEmpresa = "" 
