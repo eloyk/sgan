@@ -89,7 +89,6 @@ function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
   const [flagDisabled, setFlagDisabled] = React.useState(false)
-  console.log('Respuesta desde la creacion de empresa: ' + JSON.stringify(props.currentBusiness))
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -121,7 +120,7 @@ function BusinessForm({props}) {
     // Apply Yup as resolver for react-hook-form
     resolver: yupResolver(schema),
     // Define the default values for all input forms
-    defaultValues:(props) => {
+    defaultValues:() => {
       const {
         nombreEmpresa, 
         clasifEmpresa, 
@@ -130,28 +129,36 @@ function BusinessForm({props}) {
         telefono, 
         emailEmpresa, 
         RNC,
-      } = props.currentBusiness;
+      } = props.currentBusiness !== null ? props.currentBusiness : "";
+      let values = {}
       setFlagDisabled(true)
-      //if (!props.currentBusiness) {
-      //    nombreEmpresa = "" 
-      //    clasifEmpresa = "default"
-      //    tipoEmpresa = "default"
-      //    fundador = ""
-      //    telefono = ""
-      //    emailEmpresa = ""
-      //    RNC = ""
-      //    console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
-      //    setFlagDisabled(false)
-      //}
-      return {
-        nombreEmpresa, 
-        clasifEmpresa, 
-        tipoEmpresa, 
-        fundador, 
-        telefono, 
-        emailEmpresa, 
-        RNC,
+      if (!props.currentBusiness) {
+        values = {
+          nombreEmpresa: "",
+          clasifEmpresa: "default",
+          tipoEmpresa: "default",
+          fundador: "",
+          telefono: "",
+          emailEmpresa: "",
+          RNC: ""
+        }
+          console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+          setFlagDisabled(false)
+      }else{
+        values = {
+          nombreEmpresa,
+          clasifEmpresa,
+          tipoEmpresa,
+          fundador,
+          telefono,
+          emailEmpresa,
+          RNC
+        }
+        console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+        setFlagDisabled(false)
+
       }
+      return values
   }
   })
 
