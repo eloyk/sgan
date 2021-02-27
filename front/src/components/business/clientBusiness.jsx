@@ -36,8 +36,6 @@ const createBusiness = async ({props,
     } else {
       () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
     }
-    const convetData = JSON.stringify(data)
-    console.log('Data proveniente del clientBusiness: ' + convetData)
     props.currentBusinessChange(data)
     return data;
   })
@@ -47,17 +45,14 @@ const createBusiness = async ({props,
 
 }
 
-const getBusiness = async (props, id) => {
+const getBusiness = async (props) => {
 
   await doRequest({
-    url: `/api/empresa/${id}`,
+    url: `/api/empresa/${props.user.empresaId}`,
     method: 'get',
     body: {},
   })
   .then(data => {
-    const convetData = JSON.stringify(data)
-    const convetData1 = JSON.stringify(props)
-    console.log('Data proveniente del GetclientBusiness: ' + convetData + 'propiedades: ' + convetData1)
     props.currentBusinessChange(data)
   })
   .catch(err => {
