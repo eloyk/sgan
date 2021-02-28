@@ -10,11 +10,15 @@ function WithVerifyBusiness(AuthComponent) {
   class Authentication extends React.Component {
     static async getInitialProps(ctx) {
       let initialProps = {}
+      let propiedades = {}
 
       // Get initial properties
       if (AuthComponent.getInitialProps) {
         initialProps = await AuthComponent.getInitialProps(ctx)
+        propiedades = await AuthComponent.getInitialProps()
       }
+      console.log(`Estas son las propiedades en with business: ${propiedades}`)
+
       // Verify cookie
       //const result = await verifyCurrentBusiness(ctx)
 
@@ -40,11 +44,17 @@ function WithVerifyBusiness(AuthComponent) {
     }
   }
 
+  function mapStateToProps(state) {
+    return {
+      currentUser: state.currentUser
+    }
+  }
+  
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({ currentBusinessChange }, dispatch)
   }
 
-  return connect(null, mapDispatchToProps)(Authentication)
+  return connect(mapStateToProps, mapDispatchToProps)(Authentication)
 }
 
 export default WithVerifyBusiness

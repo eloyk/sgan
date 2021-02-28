@@ -132,7 +132,7 @@ function BusinessForm({props}) {
       } = props.currentBusiness !== null ? props.currentBusiness : "";
       let values = {}
       setFlagDisabled(true)
-      console.log('Respuesta 2 desde la creacion de empresa: ' + JSON.stringify(props))
+      console.log('Respuesta 1 desde la creacion de empresa: ' + JSON.stringify(props))
       if (!props.currentBusiness) {
         values = {
           nombreEmpresa: "",
