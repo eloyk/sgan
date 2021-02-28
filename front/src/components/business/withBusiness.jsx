@@ -19,10 +19,9 @@ function WithVerifyBusiness(AuthComponent) {
 
       // Verify cookie
       const User = await verifyCurrentUser(ctx)
-      const result = null;
 
       if (User.empresaId){
-        result = verifyCurrentBusiness(ctx, User.empresaId)
+        const result = verifyCurrentBusiness(ctx, User.empresaId)
         if (result) {
           return {
             ...initialProps,
