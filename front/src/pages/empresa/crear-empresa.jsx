@@ -120,7 +120,7 @@ function BusinessForm({props}) {
     // Apply Yup as resolver for react-hook-form
     resolver: yupResolver(schema),
     // Define the default values for all input forms
-    defaultValues:() => {
+    defaultValues:(() => {
       const {
         nombreEmpresa, 
         clasifEmpresa, 
@@ -132,6 +132,7 @@ function BusinessForm({props}) {
       } = props.currentBusiness !== null ? props.currentBusiness : "";
       let values = {}
       setFlagDisabled(true)
+      console.log('Respuesta 2 desde la creacion de empresa: ' + props)
       if (!props.currentBusiness) {
         values = {
           nombreEmpresa: "",
@@ -142,7 +143,7 @@ function BusinessForm({props}) {
           emailEmpresa: "",
           RNC: ""
         }
-          console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+          console.log('Respuesta 2 desde la creacion de empresa: ' + props.currentBusiness)
           setFlagDisabled(false)
       }else{
         values = {
@@ -154,12 +155,12 @@ function BusinessForm({props}) {
           emailEmpresa,
           RNC
         }
-        console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+        console.log('Respuesta 3 desde la creacion de empresa: ' + props.currentBusiness)
         setFlagDisabled(false)
 
       }
       return values
-  }
+  })()
   })
 
   // Handle form submit event
