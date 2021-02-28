@@ -129,10 +129,10 @@ function BusinessForm({props}) {
         telefono, 
         emailEmpresa, 
         RNC,
-      } = props.currentBusiness;
+      } = null // props.currentBusiness;
       let values = {}
       setFlagDisabled(true)
-      if (!props.currentBusiness) {
+      if (true) {
         values = {
           nombreEmpresa: "",
           clasifEmpresa: "default",
