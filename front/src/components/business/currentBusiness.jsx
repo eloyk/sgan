@@ -9,7 +9,7 @@ const BusinessContext = createContext({
 
 export function BusinessProvider({ children }) {
   const [business, setBusiness] = useState(null)
-  console.log('estas son las propiedades en current business: ' + children + props)
+  console.log('estas son las propiedades en current business: ' + JSON.stringify(children) )
 
   useEffect(() => {
 
