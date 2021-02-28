@@ -184,7 +184,7 @@ function BusinessForm({props}) {
             id="nombreEmpresa"
             name="nombreEmpresa"
             size="lg"
-            value="hola klk"
+            defaultValue="hola klk"
             disabled={flagDisabled}
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
