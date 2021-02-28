@@ -129,7 +129,7 @@ function BusinessForm({props}) {
         telefono, 
         emailEmpresa, 
         RNC,
-      } = props.currentBusiness !== null ? props.currentBusiness : "";
+      } = props.currentBusiness;
       let values = {}
       setFlagDisabled(true)
       if (!props.currentBusiness) {
@@ -142,7 +142,7 @@ function BusinessForm({props}) {
           emailEmpresa: "",
           RNC: ""
         }
-          console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+          console.log('Respuesta desde la creacion de empresa: ' + JSON.stringify(props.currentBusiness))
           setFlagDisabled(false)
       }else{
         values = {
@@ -154,7 +154,7 @@ function BusinessForm({props}) {
           emailEmpresa,
           RNC
         }
-        console.log('Respuesta desde la creacion de empresa: ' + props.currentBusiness)
+        console.log('Respuesta desde la creacion de empresa: ' + JSON.stringify(props.currentBusiness))
         setFlagDisabled(false)
 
       }
