@@ -102,7 +102,7 @@ function BusinessForm({props}) {
       RNC: props.currentBusiness.RNC
     })
     setFlagDisabled(true)
-    console.log("default values 1:" + defaultValues)
+    console.log("default values 1:" + JSON.stringify(defaultValues))
   }else{
     setDefaultValues({
       nombreEmpresa: "",
@@ -114,7 +114,7 @@ function BusinessForm({props}) {
       RNC: ""
     })
     setFlagDisabled(false)
-    console.log("default values 2:" + defaultValues)
+    console.log("default values 2:" + JSON.stringify(defaultValues))
   }
 
   // Define Yup schema for form validation
