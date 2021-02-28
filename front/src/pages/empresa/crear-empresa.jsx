@@ -132,7 +132,7 @@ function BusinessForm({props}) {
       } = props.currentBusiness !== null ? props.currentBusiness : "";
       let values = {}
       setFlagDisabled(true)
-      if (!props.currentBusiness) {
+      if (true) {
         values = {
           nombreEmpresa: "",
           clasifEmpresa: "default",
