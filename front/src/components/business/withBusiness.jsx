@@ -17,7 +17,7 @@ function WithVerifyBusiness(AuthComponent) {
         initialProps = await AuthComponent.getInitialProps(ctx)
         propiedades = await AuthComponent.getInitialProps()
       }
-      console.log(`Estas son las propiedades en with business: ${propiedades}`)
+      console.log('Estas son las propiedades en with business: ' + JSON.stringify(propiedades))
 
       // Verify cookie
       //const result = await verifyCurrentBusiness(ctx)
