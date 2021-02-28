@@ -61,12 +61,10 @@ class MyApp extends App {
 
     return (
       <AuthProvider>
-        <BusinessProvider>
-          <Layout>
-            <ProgressBar />
-            <Component {...pageProps} />
-          </Layout>
-        </BusinessProvider>
+        <Layout>
+          <ProgressBar />
+          <Component {...pageProps} />
+        </Layout>
       </AuthProvider>
     )
   }
