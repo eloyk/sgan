@@ -45,16 +45,14 @@ const createBusiness = async ({props,
 
 }
 
-const getBusiness = async (props) => {
+const getBusiness = async (empresaId) => {
 
   await doRequest({
-    url: `/api/empresa/${props.user.empresaId}`,
+    url: `/api/empresa/${empresaId}`,
     method: 'get',
     body: {},
   })
-  .then(data => {
-    props.currentBusinessChange(data)
-  })
+  .then(data => data)
   .catch(err => {
     throw err
   })
