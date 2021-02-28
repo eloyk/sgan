@@ -89,33 +89,42 @@ function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
   const [flagDisabled, setFlagDisabled] = React.useState(false)
-  const [defaultValues, setDefaultValues] = React.useState({})
+  const [defaultValues, setDefaultValues] = React.useState({
+    nombreEmpresa: "",
+    clasifEmpresa: "default",
+    tipoEmpresa: "default",
+    fundador: "",
+    telefono: "",
+    emailEmpresa: "",
+    RNC: ""
+  })
+  console.log("default values:" + JSON.stringify(defaultValues))
 
-  if (props.currentBusiness){
-    setDefaultValues({
-      nombreEmpresa: props.currentBusiness.nombreEmpresa,
-      clasifEmpresa: props.currentBusiness.clasifEmpresa,
-      tipoEmpresa: props.currentBusiness.tipoEmpresa,
-      fundador: props.currentBusiness.fundador,
-      telefono: props.currentBusiness.telefono,
-      emailEmpresa: props.currentBusiness.emailEmpresa,
-      RNC: props.currentBusiness.RNC
-    })
-    setFlagDisabled(true)
-    console.log("default values 1:" + JSON.stringify(defaultValues))
-  }else{
-    setDefaultValues({
-      nombreEmpresa: "",
-      clasifEmpresa: "default",
-      tipoEmpresa: "default",
-      fundador: "",
-      telefono: "",
-      emailEmpresa: "",
-      RNC: ""
-    })
-    setFlagDisabled(false)
-    console.log("default values 2:" + JSON.stringify(defaultValues))
-  }
+  // if (props.currentBusiness){
+  //   setDefaultValues({
+  //     nombreEmpresa: props.currentBusiness.nombreEmpresa,
+  //     clasifEmpresa: props.currentBusiness.clasifEmpresa,
+  //     tipoEmpresa: props.currentBusiness.tipoEmpresa,
+  //     fundador: props.currentBusiness.fundador,
+  //     telefono: props.currentBusiness.telefono,
+  //     emailEmpresa: props.currentBusiness.emailEmpresa,
+  //     RNC: props.currentBusiness.RNC
+  //   })
+  //   setFlagDisabled(true)
+  //   console.log("default values 1:" + JSON.stringify(defaultValues))
+  // }else{
+  //   setDefaultValues({
+  //     nombreEmpresa: "",
+  //     clasifEmpresa: "default",
+  //     tipoEmpresa: "default",
+  //     fundador: "",
+  //     telefono: "",
+  //     emailEmpresa: "",
+  //     RNC: ""
+  //   })
+  //   setFlagDisabled(false)
+  //   console.log("default values 2:" + JSON.stringify(defaultValues))
+  // }
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
