@@ -11,6 +11,7 @@ import "styles/sweetalert2/index.scss"
 import "styles/slick-carousel/index.scss"
 
 import { AuthProvider } from "components/user/currentAuth"
+import { BusinessProvider } from "components/business/currentBusiness"
 import { bindActionCreators } from "redux"
 import { pageChangeTheme } from "store/actions"
 import { wrapper } from "store"
@@ -60,10 +61,12 @@ class MyApp extends App {
 
     return (
       <AuthProvider>
-        <Layout>
-          <ProgressBar />
-          <Component {...pageProps} />
-        </Layout>
+        <BusinessProvider>
+          <Layout>
+            <ProgressBar />
+            <Component {...pageProps} />
+          </Layout>
+        </BusinessProvider>
       </AuthProvider>
     )
   }

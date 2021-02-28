@@ -7,14 +7,14 @@ import Router from "next/router"
 import PAGE from "config/page.config"
 import businessMethod from "components/business/clientBusiness"
 
-function WithVerifyBusiness(AuthComponent) {
-  class Authentication extends React.Component {
+function WithVerifyBusiness(BusinessComponent) {
+  class Business extends React.Component {
     static async getInitialProps(ctx) {
       let initialProps = {}
 
       // Get initial properties
-      if (AuthComponent.getInitialProps) {
-        initialProps = await AuthComponent.getInitialProps(ctx)
+      if (BusinessComponent.getInitialProps) {
+        initialProps = await BusinessComponent.getInitialProps(ctx)
       }
 
       // Verify cookie
@@ -48,7 +48,7 @@ function WithVerifyBusiness(AuthComponent) {
     }
 
     render() {
-      return <AuthComponent {...this.props} />
+      return <BusinessComponent {...this.props} />
     }
   }
   
@@ -56,7 +56,7 @@ function WithVerifyBusiness(AuthComponent) {
     return bindActionCreators({ currentBusinessChange }, dispatch)
   }
 
-  return connect(null, mapDispatchToProps)(Authentication)
+  return connect(null, mapDispatchToProps)(Business)
 }
 
 export default WithVerifyBusiness
