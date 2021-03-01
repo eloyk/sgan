@@ -16,10 +16,12 @@ function WithAuth(AuthComponent) {
       }
       
       // Verify cookie
-      const result = await verifyCurrentUser(ctx)
-
-      // Check cookie is valid or not
-      if (!result) {
+      await verifyCurrentUser(ctx).then(data => {
+        return {
+          ...initialProps,
+          user: data
+        }
+      }).catch(() => {
         // Redirect to login page
         if (ctx.res) {
           ctx.res.writeHead(302, { Location: PAGE.loginPagePath })
@@ -27,17 +29,33 @@ function WithAuth(AuthComponent) {
         } else {
           Router.push(PAGE.loginPagePath)
         }
-
+      
         return {
           ...initialProps,
           user: null
         }
-      }
+      })
 
-      return {
-        ...initialProps,
-        user: result
-      }
+      // // Check cookie is valid or not
+      // if (!result) {
+      //   // Redirect to login page
+      //   if (ctx.res) {
+      //     ctx.res.writeHead(302, { Location: PAGE.loginPagePath })
+      //     ctx.res.end()
+      //   } else {
+      //     Router.push(PAGE.loginPagePath)
+      //   }
+
+      //   return {
+      //     ...initialProps,
+      //     user: null
+      //   }
+      // }
+
+      // return {
+      //   ...initialProps,
+      //   user: result
+      // }
     }
 
     componentDidMount() {

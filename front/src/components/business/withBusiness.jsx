@@ -18,30 +18,47 @@ function WithVerifyBusiness(BusinessComponent) {
       }
 
       // Verify cookie
-      const User = await verifyCurrentUser(ctx)
-
-      if (User.empresaId){
-        const result = verifyCurrentBusiness(ctx, User.empresaId)
-        if (result) {
-          console.log('resultado de withBusiness: '+ JSON.stringify(result))
+      await verifyCurrentUser(ctx).then(user => {
+        await verifyCurrentBusiness(ctx, user.empresaId).then(empresa => {
           return {
             ...initialProps,
-            business: result
-            }
-                  
-        }else {
+            business: empresa
+          }
+        }).catch(() => {
           return {
             ...initialProps,
             business: null
-            }
+          }
+        })
+      }).catch(() => {
+        return {
+          ...initialProps,
+          business: null
         }
-      }else{
-      // Check cookie is valid or not
-      return {
-        ...initialProps,
-        business: null
-        }
-      }
+      })
+
+      // if (User.empresaId){
+      //   const result = verifyCurrentBusiness(ctx, User.empresaId)
+      //   if (result) {
+      //     console.log('resultado de withBusiness: '+ JSON.stringify(result))
+      //     return {
+      //       ...initialProps,
+      //       business: result
+      //       }
+                  
+      //   }else {
+      //     return {
+      //       ...initialProps,
+      //       business: null
+      //       }
+      //   }
+      // }else{
+      // // Check cookie is valid or not
+      // return {
+      //   ...initialProps,
+      //   business: null
+      //   }
+      // }
     }
 
     componentDidMount() {

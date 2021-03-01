@@ -1,17 +1,16 @@
 import buildClient from "../api/build-client";
 
 async function verifyCurrentBusiness(ctx, id) {
-
-  const client = buildClient(ctx);
-  const resp = await client
-    .get(`/api/empresa/${id}`);
-    const data = resp.data
-    console.log("DATA de verifyCurrentBusiness: " + JSON.stringify(data) )
-    if (data) {
+  try {
+    const client = buildClient(ctx);
+    const resp = await client
+      .get(`/api/empresa/${id}`);
+      const data = resp.data
+      console.log("DATA de verifyCurrentBusiness: " + JSON.stringify(data))
       return data
-    } else {
-      return false
-    }
+  } catch(e) {
+    throw e
+  }
 }
 
 export default verifyCurrentBusiness
