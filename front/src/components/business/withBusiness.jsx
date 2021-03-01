@@ -23,6 +23,7 @@ function WithVerifyBusiness(BusinessComponent) {
       if (User.empresaId){
         const result = verifyCurrentBusiness(ctx, User.empresaId)
         if (result) {
+          console.log('resultado de withBusiness: '+ JSON.stringify(result))
           return {
             ...initialProps,
             business: result

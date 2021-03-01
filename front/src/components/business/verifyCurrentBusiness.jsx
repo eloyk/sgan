@@ -6,7 +6,7 @@ async function verifyCurrentBusiness(ctx, id) {
   const resp = await client
     .get(`/api/empresa/${id}`);
     const data = resp.data
-    console.log("DATA: " + data)
+    console.log("DATA de verifyCurrentBusiness: " + JSON.stringify(data) )
     if (data) {
       return data
     } else {
