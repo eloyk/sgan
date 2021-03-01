@@ -345,9 +345,13 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <DemoWrapper>
-        <Button type="submit" variant="success">
-          {loading ? <Spinner className="mr-2" /> : null} Guardar
-        </Button>{" "}
+        <Controller
+            as={Input}
+            type="submit" 
+            variant="success"
+            defaultValue="Guardar">
+              {loading ? <Spinner className="mr-2" /> : null}
+        </Controller>{" "}
         <Button type="button" variant="warning">
           Editar
         </Button>{" "}
