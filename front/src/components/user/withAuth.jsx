@@ -16,7 +16,7 @@ function WithAuth(AuthComponent) {
       }
       
       // Verify cookie
-      await verifyCurrentUser(ctx).then(data => {
+      await verifyCurrentUser(ctx).then(async data => {
         return {
           ...initialProps,
           user: data

@@ -18,7 +18,7 @@ function WithVerifyBusiness(BusinessComponent) {
       }
 
       // Verify cookie
-      await verifyCurrentUser(ctx).then(user => {
+      await verifyCurrentUser(ctx).then(async user => {
         await verifyCurrentBusiness(ctx, user.empresaId).then(empresa => {
           return {
             ...initialProps,
