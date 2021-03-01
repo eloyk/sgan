@@ -2,7 +2,8 @@ import doRequest from "../api/do-request"
 import PAGE from "config/page.config"
 import Router from "next/router"
 
-const createBusiness = async ({props,
+const createBusiness = async ({
+  props,
   nombreEmpresa, 
   clasifEmpresa, 
   tipoEmpresa, 
@@ -12,7 +13,7 @@ const createBusiness = async ({props,
   RNC, 
   usuarioIdAlta, 
   emailUsuarioAlta, 
-  onSuccess}) => {
+  }) => {
 
   await doRequest({
     url: '/api/empresa',
@@ -30,19 +31,50 @@ const createBusiness = async ({props,
     },
   })
   .then(data => {
-
-    if (onSuccess) {
-      onSuccess();
-    } else {
-      () => Router.push(Router.query.redirect || PAGE.dashboardPagePath);
-    }
     props.currentBusinessChange(data)
     return data;
   })
   .catch(err => {
     throw err
   })
+}
 
+const updateBusiness = async ({
+  props,
+  id,
+  nombreEmpresa, 
+  clasifEmpresa, 
+  tipoEmpresa, 
+  fundador, 
+  telefono, 
+  emailEmpresa, 
+  RNC, 
+  usuarioIdAlta, 
+  emailUsuarioAlta, 
+  }) => {
+
+  await doRequest({
+    url: `/api/empresa/${id}`,
+    method: 'put',
+    body: {
+      nombreEmpresa,
+      clasifEmpresa,
+      tipoEmpresa,
+      fundador,
+      telefono,
+      emailEmpresa,
+      RNC,
+      usuarioIdAlta,
+      emailUsuarioAlta,
+    },
+  })
+  .then(data => {
+    props.currentBusinessChange(data)
+    return data;
+  })
+  .catch(err => {
+    throw err
+  })
 }
 
 const getBusiness = async (empresaId) => {
@@ -56,10 +88,10 @@ const getBusiness = async (empresaId) => {
   .catch(err => {
     throw err
   })
-
 }
 
 export default {
   createBusiness,
+  updateBusiness,
   getBusiness,
 };

@@ -151,28 +151,53 @@ function BusinessForm({props}) {
     const convertProp = JSON.stringify(props)
     console.log(`Estas son las propiedades: ${convertProp}` )
     const { id, email } = props.user
+    //const { id } = props.business
     console.log(`Este es el email: ${email}` )
 
-    // Trying login with user account
-    businessMethod.createBusiness({props,
-      nombreEmpresa,
-      clasifEmpresa, 
-      tipoEmpresa, 
-      fundador, 
-      telefono, 
-      emailEmpresa, 
-      RNC,
-      usuarioIdAlta: id,
-      emailUsuarioAlta: email,
-      onSuccess: () => Router.push(PAGE.viewBusinessPagePath)
-    })
-    .then()
-    .catch(err => {
-      console.log(`Este es el error : ${err}`)
+    if(props.business){
+      // Trying login with user account
+      businessMethod.updateBusiness({
+        props,
+        id: props.business.id,
+        nombreEmpresa,
+        clasifEmpresa, 
+        tipoEmpresa, 
+        fundador, 
+        telefono, 
+        emailEmpresa, 
+        RNC,
+        usuarioIdAlta: id,
+        emailUsuarioAlta: email,
+      })
+      .then()
+      .catch(err => {
+        console.log(`Este es el error : ${err}`)
 
-      // Show the error message if authentication is failed
-      swal.fire({ text: err, icon: "error" })
-    });
+        // Show the error message if authentication is failed
+        swal.fire({ text: err, icon: "error" })
+      });
+    }else{
+      // Trying login with user account
+      businessMethod.createBusiness({
+        props,
+        nombreEmpresa,
+        clasifEmpresa, 
+        tipoEmpresa, 
+        fundador, 
+        telefono, 
+        emailEmpresa, 
+        RNC,
+        usuarioIdAlta: id,
+        emailUsuarioAlta: email,
+      })
+      .then()
+      .catch(err => {
+        console.log(`Este es el error : ${err}`)
+
+        // Show the error message if authentication is failed
+        swal.fire({ text: err, icon: "error" })
+      });
+    }
 
     // Hide loading indicator
     setLoading(false)
