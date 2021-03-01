@@ -63,7 +63,7 @@ class CrearEmpresaPage extends React.Component {
         </Head>
         <Container fluid>
           <Row>
-            <Col md="12">
+            <Col md="6">
               {/* BEGIN Portlet */}
               <Portlet>
                 <Portlet.Header bordered>
