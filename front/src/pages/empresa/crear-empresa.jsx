@@ -369,7 +369,7 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <DemoWrapper>
-        <Button type="submit" disabled={flagDisabled} variant="success">
+        <Button type="submit" disabled={flagDisabled} variant="success" onClick={() => setFlagDisabled(true)}>
           {loading ? <Spinner className="mr-2" /> : null} Guardar
         </Button>{" "}
         <Button type="button" variant="warning" onClick={() => setFlagDisabled(false)}>
