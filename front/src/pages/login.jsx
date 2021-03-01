@@ -167,17 +167,24 @@ function LoginForm() {
 }
 
 LoginPage.getInitialProps = async ctx => {
-  const result = await verifyCurrentUser(ctx)
-
-  // Redirect to dashboard page if the user has logged in
-  if (result) {
+  await verifyCurrentUser(ctx).then(() => {
     if (ctx.res) {
       ctx.res.writeHead(302, { Location: ctx.query.redirect || PAGE.dashboardPagePath })
       ctx.res.end()
     } else {
       Router.push(Router.query.redirect || PAGE.dashboardPagePath)
     }
-  }
+  })
+
+  // // Redirect to dashboard page if the user has logged in
+  // if (result) {
+  //   if (ctx.res) {
+  //     ctx.res.writeHead(302, { Location: ctx.query.redirect || PAGE.dashboardPagePath })
+  //     ctx.res.end()
+  //   } else {
+  //     Router.push(Router.query.redirect || PAGE.dashboardPagePath)
+  //   }
+  // }
 
   return { currentUser: null }
 }
