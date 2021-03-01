@@ -98,7 +98,7 @@ function BusinessForm({props}) {
     emailEmpresa: props.business !== null ? props.business.emailEmpresa : "",
     RNC: props.business !== null ? props.business.RNC : ""
   })
-  console.log("default values:" + JSON.stringify(props))
+  console.log("default values:" + JSON.stringify(defaultValues))
 
   // if(props.business){
   //   setFlagDisabled(true)
@@ -237,6 +237,7 @@ function BusinessForm({props}) {
                   id="tipoEmpresa"
                   name="tipoEmpresa"
                   size="lg"
+                  defaultValue={defaultValues.tipoEmpresa}
                   disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
@@ -262,6 +263,7 @@ function BusinessForm({props}) {
               id="fundador"
               name="fundador"
               size="lg"
+              defaultValue={defaultValues.fundador}
               disabled={flagDisabled}
               control={control}
               invalid={Boolean(errors.fundador)}
@@ -283,6 +285,7 @@ function BusinessForm({props}) {
                 id="telefono"
                 name="telefono"
                 size="lg"
+                defaultValue={defaultValues.telefono}
                 disabled={flagDisabled}
                 control={control}
                 invalid={Boolean(errors.telefono)}
@@ -304,6 +307,7 @@ function BusinessForm({props}) {
                   id="emailEmpresa"
                   name="emailEmpresa"
                   size="lg"
+                  defaultValue={defaultValues.emailEmpresa}
                   disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.emailEmpresa)}
@@ -325,6 +329,7 @@ function BusinessForm({props}) {
                   id="RNC"
                   name="RNC"
                   size="lg"
+                  defaultValue={defaultValues.RNC}
                   disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.RNC)}
