@@ -90,13 +90,13 @@ function BusinessForm({props}) {
   const [loading, setLoading] = React.useState(false)
   const [flagDisabled, setFlagDisabled] = React.useState(false)
   const [defaultValues, setDefaultValues] = React.useState({
-    nombreEmpresa: props.currentBusiness !== null ? props.currentBusiness.nombreEmpresa : "",
-    clasifEmpresa: props.currentBusiness !== null ? props.currentBusiness.clasifEmpresa : "default",
-    tipoEmpresa: props.currentBusiness !== null ? props.currentBusiness.tipoEmpresa : "default",
-    fundador: props.currentBusiness !== null ? props.currentBusiness.fundador : "",
-    telefono: props.currentBusiness !== null ? props.currentBusiness.telefono : "",
-    emailEmpresa: props.currentBusiness !== null ? props.currentBusiness.emailEmpresa : "",
-    RNC: props.currentBusiness !== null ? props.currentBusiness.RNC : ""
+    nombreEmpresa: props.business !== null ? props.business.nombreEmpresa : "",
+    clasifEmpresa: props.business !== null ? props.business.clasifEmpresa : "default",
+    tipoEmpresa: props.business !== null ? props.business.tipoEmpresa : "default",
+    fundador: props.business !== null ? props.business.fundador : "",
+    telefono: props.business !== null ? props.business.telefono : "",
+    emailEmpresa: props.business !== null ? props.business.emailEmpresa : "",
+    RNC: props.business !== null ? props.business.RNC : ""
   })
   console.log("default values:" + JSON.stringify(props))
 
