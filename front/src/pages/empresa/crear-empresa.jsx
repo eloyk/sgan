@@ -100,31 +100,9 @@ function BusinessForm({props}) {
   })
   console.log("default values:" + JSON.stringify(props))
 
-  // if (props.currentBusiness){
-  //   setDefaultValues({
-  //     nombreEmpresa: props.currentBusiness.nombreEmpresa,
-  //     clasifEmpresa: props.currentBusiness.clasifEmpresa,
-  //     tipoEmpresa: props.currentBusiness.tipoEmpresa,
-  //     fundador: props.currentBusiness.fundador,
-  //     telefono: props.currentBusiness.telefono,
-  //     emailEmpresa: props.currentBusiness.emailEmpresa,
-  //     RNC: props.currentBusiness.RNC
-  //   })
-  //   setFlagDisabled(true)
-  //   console.log("default values 1:" + JSON.stringify(defaultValues))
-  // }else{
-  //   setDefaultValues({
-  //     nombreEmpresa: "",
-  //     clasifEmpresa: "default",
-  //     tipoEmpresa: "default",
-  //     fundador: "",
-  //     telefono: "",
-  //     emailEmpresa: "",
-  //     RNC: ""
-  //   })
-  //   setFlagDisabled(false)
-  //   console.log("default values 2:" + JSON.stringify(defaultValues))
-  // }
+  if(props.business){
+    setFlagDisabled(true)
+  }
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -233,6 +211,7 @@ function BusinessForm({props}) {
                 id="clasifEmpresa"
                 name="clasifEmpresa"
                 size="lg"
+                defaultValue={defaultValues.clasifEmpresa}
                 disabled={flagDisabled}
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
@@ -258,6 +237,7 @@ function BusinessForm({props}) {
                   id="tipoEmpresa"
                   name="tipoEmpresa"
                   size="lg"
+                  defaultValue={defaultValues.tipoEmpresa}
                   disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
@@ -283,6 +263,7 @@ function BusinessForm({props}) {
               id="fundador"
               name="fundador"
               size="lg"
+              defaultValue={defaultValues.fundador}
               disabled={flagDisabled}
               control={control}
               invalid={Boolean(errors.fundador)}
@@ -304,6 +285,7 @@ function BusinessForm({props}) {
                 id="telefono"
                 name="telefono"
                 size="lg"
+                defaultValue={defaultValues.telefono}
                 disabled={flagDisabled}
                 control={control}
                 invalid={Boolean(errors.telefono)}
@@ -325,6 +307,7 @@ function BusinessForm({props}) {
                   id="emailEmpresa"
                   name="emailEmpresa"
                   size="lg"
+                  defaultValue={defaultValues.emailEmpresa}
                   disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.emailEmpresa)}
@@ -346,6 +329,7 @@ function BusinessForm({props}) {
                   id="RNC"
                   name="RNC"
                   size="lg"
+                  defaultValue={defaultValues.RNC}
                   disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.RNC)}
@@ -365,14 +349,8 @@ function BusinessForm({props}) {
   )
 }  
 
-function mapStateToProps(state) {
-  return {
-    currentBusiness: state.currentBusiness
-  }
-}
-
 function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange, currentBusinessChange }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(withAuth(WithVerifyBusiness(withLayout(CrearEmpresaPage))))
+export default connect(null, mapDispathToProps)(withAuth(WithVerifyBusiness(withLayout(CrearEmpresaPage))))
