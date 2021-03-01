@@ -343,8 +343,14 @@ function BusinessForm({props}) {
           {/* BEGIN Form Group */}
         </Col>
       </Row>
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="success">
       {loading ? <Spinner className="mr-2" /> : null} Guardar
+      </Button>
+      <Button type="button" variant="warning">
+      Editar
+      </Button>
+      <Button type="button" variant="danger">
+      Cancelar
       </Button>
     </Form>
   )
