@@ -345,10 +345,10 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <DemoWrapper>
-      <Button type="submit" variant="success">
+      <Button type="submit" variant="success">{" "}
       {loading ? <Spinner className="mr-2" /> : null} Guardar
       </Button>
-      <Button type="button" variant="warning">
+      <Button type="button" variant="warning">{" "}
       Editar
       </Button>
       <Button type="button" variant="danger">
