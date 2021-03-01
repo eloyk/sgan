@@ -345,7 +345,7 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <DemoWrapper>
-        <Button type="submit" variant="success">
+        <Button type="submit" disabled={defaultValues.flagDisabled} variant="success">
           {loading ? <Spinner className="mr-2" /> : null} Guardar
         </Button>{" "}
         <Button type="button" variant="warning">
