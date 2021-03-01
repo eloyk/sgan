@@ -44,7 +44,7 @@ function WithVerifyBusiness(BusinessComponent) {
     }
 
     componentDidMount() {
-        this.props.currentBusinessChange(business)
+        this.props.currentBusinessChange(this.props.business)
     }
 
     render() {
