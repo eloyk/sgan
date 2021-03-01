@@ -90,41 +90,41 @@ function BusinessForm({props}) {
   const [loading, setLoading] = React.useState(false)
   const [flagDisabled, setFlagDisabled] = React.useState(false)
   const [defaultValues, setDefaultValues] = React.useState({
-    nombreEmpresa: "",
-    clasifEmpresa: "default",
-    tipoEmpresa: "default",
-    fundador: "",
-    telefono: "",
-    emailEmpresa: "",
-    RNC: ""
+    nombreEmpresa: props.currentBusiness !== null ? props.currentBusiness.nombreEmpresa : "",
+    clasifEmpresa: props.currentBusiness !== null ? props.currentBusiness.clasifEmpresa : "default",
+    tipoEmpresa: props.currentBusiness !== null ? props.currentBusiness.tipoEmpresa : "default",
+    fundador: props.currentBusiness !== null ? props.currentBusiness.fundador : "",
+    telefono: props.currentBusiness !== null ? props.currentBusiness.telefono : "",
+    emailEmpresa: props.currentBusiness !== null ? props.currentBusiness.emailEmpresa : "",
+    RNC: props.currentBusiness !== null ? props.currentBusiness.RNC : ""
   })
-  console.log("default values:" + JSON.stringify(defaultValues))
+  console.log("default values:" + JSON.stringify(props))
 
-  if (props.currentBusiness){
-    setDefaultValues({
-      nombreEmpresa: props.currentBusiness.nombreEmpresa,
-      clasifEmpresa: props.currentBusiness.clasifEmpresa,
-      tipoEmpresa: props.currentBusiness.tipoEmpresa,
-      fundador: props.currentBusiness.fundador,
-      telefono: props.currentBusiness.telefono,
-      emailEmpresa: props.currentBusiness.emailEmpresa,
-      RNC: props.currentBusiness.RNC
-    })
-    setFlagDisabled(true)
-    console.log("default values 1:" + JSON.stringify(defaultValues))
-  }else{
-    setDefaultValues({
-      nombreEmpresa: "",
-      clasifEmpresa: "default",
-      tipoEmpresa: "default",
-      fundador: "",
-      telefono: "",
-      emailEmpresa: "",
-      RNC: ""
-    })
-    setFlagDisabled(false)
-    console.log("default values 2:" + JSON.stringify(defaultValues))
-  }
+  // if (props.currentBusiness){
+  //   setDefaultValues({
+  //     nombreEmpresa: props.currentBusiness.nombreEmpresa,
+  //     clasifEmpresa: props.currentBusiness.clasifEmpresa,
+  //     tipoEmpresa: props.currentBusiness.tipoEmpresa,
+  //     fundador: props.currentBusiness.fundador,
+  //     telefono: props.currentBusiness.telefono,
+  //     emailEmpresa: props.currentBusiness.emailEmpresa,
+  //     RNC: props.currentBusiness.RNC
+  //   })
+  //   setFlagDisabled(true)
+  //   console.log("default values 1:" + JSON.stringify(defaultValues))
+  // }else{
+  //   setDefaultValues({
+  //     nombreEmpresa: "",
+  //     clasifEmpresa: "default",
+  //     tipoEmpresa: "default",
+  //     fundador: "",
+  //     telefono: "",
+  //     emailEmpresa: "",
+  //     RNC: ""
+  //   })
+  //   setFlagDisabled(false)
+  //   console.log("default values 2:" + JSON.stringify(defaultValues))
+  // }
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
