@@ -10,7 +10,8 @@ import {
   Container,
   FloatLabel,
   InputGroup,
-  CustomInput
+  CustomInput,
+  DemoWrapper
 } from "@panely/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useForm, Controller } from "react-hook-form"
@@ -343,6 +344,7 @@ function BusinessForm({props}) {
           {/* BEGIN Form Group */}
         </Col>
       </Row>
+      <DemoWrapper>
       <Button type="submit" variant="success">
       {loading ? <Spinner className="mr-2" /> : null} Guardar
       </Button>
@@ -352,6 +354,7 @@ function BusinessForm({props}) {
       <Button type="button" variant="danger">
       Cancelar
       </Button>
+      </DemoWrapper>
     </Form>
   )
 }  
