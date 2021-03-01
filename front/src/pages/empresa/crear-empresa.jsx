@@ -90,7 +90,7 @@ function BusinessForm({props}) {
   const [loading, setLoading] = React.useState(false)
   const [flagDisabled, setFlagDisabled] = React.useState(false)
   const [defaultValues, setDefaultValues] = React.useState({
-    nombreEmpresa: props.currentBusiness.nombreEmpresa,
+    nombreEmpresa:props.currentBusiness !== null ? props.currentBusiness.nombreEmpresa : "",
     clasifEmpresa: props.currentBusiness.clasifEmpresa,
     tipoEmpresa: props.currentBusiness.tipoEmpresa,
     fundador: props.currentBusiness.fundador,
