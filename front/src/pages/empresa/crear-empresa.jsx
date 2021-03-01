@@ -89,7 +89,7 @@ class CrearEmpresaPage extends React.Component {
 function BusinessForm({props}) {
   // Loading state
   const [loading, setLoading] = React.useState(false)
-  //const [flagDisabled, setFlagDisabled] = React.useState(false)
+  const [flagDisabled, setFlagDisabled] = React.useState(props.business !== null ? true : false)
   const [defaultValues, setDefaultValues] = React.useState({
     nombreEmpresa: props.business !== null ? props.business.nombreEmpresa : "",
     clasifEmpresa: props.business !== null ? props.business.clasifEmpresa : "default",
@@ -98,7 +98,6 @@ function BusinessForm({props}) {
     telefono: props.business !== null ? props.business.telefono : "",
     emailEmpresa: props.business !== null ? props.business.emailEmpresa : "",
     RNC: props.business !== null ? props.business.RNC : "",
-    flagDisabled: props.business !== null ? true : false
   })
   console.log("default values:" + JSON.stringify(defaultValues))
 
@@ -192,7 +191,7 @@ function BusinessForm({props}) {
             name="nombreEmpresa"
             size="lg"
             defaultValue={defaultValues.nombreEmpresa}
-            disabled={defaultValues.flagDisabled}
+            disabled={flagDisabled}
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
@@ -214,7 +213,7 @@ function BusinessForm({props}) {
                 name="clasifEmpresa"
                 size="lg"
                 defaultValue={defaultValues.clasifEmpresa}
-                disabled={defaultValues.flagDisabled}
+                disabled={flagDisabled}
                 control={control}
                 invalid={Boolean(errors.clasifEmpresa)}
               >
@@ -240,7 +239,7 @@ function BusinessForm({props}) {
                   name="tipoEmpresa"
                   size="lg"
                   defaultValue={defaultValues.tipoEmpresa}
-                  disabled={defaultValues.flagDisabled}
+                  disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.tipoEmpresa)}
                 >
@@ -266,7 +265,7 @@ function BusinessForm({props}) {
               name="fundador"
               size="lg"
               defaultValue={defaultValues.fundador}
-              disabled={defaultValues.flagDisabled}
+              disabled={flagDisabled}
               control={control}
               invalid={Boolean(errors.fundador)}
               placeholder="Por favor inserte el nombre del fundador de la empresa"
@@ -288,7 +287,7 @@ function BusinessForm({props}) {
                 name="telefono"
                 size="lg"
                 defaultValue={defaultValues.telefono}
-                disabled={defaultValues.flagDisabled}
+                disabled={flagDisabled}
                 control={control}
                 invalid={Boolean(errors.telefono)}
                 placeholder="Por favor inserte el teléfono de la empresa"
@@ -310,7 +309,7 @@ function BusinessForm({props}) {
                   name="emailEmpresa"
                   size="lg"
                   defaultValue={defaultValues.emailEmpresa}
-                  disabled={defaultValues.flagDisabled}
+                  disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.emailEmpresa)}
                   placeholder="Por favor inserte el email de la empresa"
@@ -332,7 +331,7 @@ function BusinessForm({props}) {
                   name="RNC"
                   size="lg"
                   defaultValue={defaultValues.RNC}
-                  disabled={defaultValues.flagDisabled}
+                  disabled={flagDisabled}
                   control={control}
                   invalid={Boolean(errors.RNC)}
                   placeholder="Por favor inserte el RNC de la empresa"
@@ -345,13 +344,13 @@ function BusinessForm({props}) {
         </Col>
       </Row>
       <DemoWrapper>
-        <Button type="submit" disabled={defaultValues.flagDisabled} variant="success">
+        <Button type="submit" disabled={flagDisabled} variant="success">
           {loading ? <Spinner className="mr-2" /> : null} Guardar
         </Button>{" "}
-        <Button type="button" variant="warning">
+        <Button type="button" variant="warning" onClick={() => setFlagDisabled(false)}>
           Editar
         </Button>{" "}
-        <Button type="button" variant="danger">
+        <Button type="button" variant="danger" onClick={() => setFlagDisabled(true)}>
           Cancelar
         </Button>
       </DemoWrapper>
