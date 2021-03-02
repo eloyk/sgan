@@ -8,11 +8,11 @@ export class EscuchadorUsuarioActualizado extends Escuchador<EventoActualizarUsu
   nombreGrupoCola = nombreGrupoCola;
 
   async onMessage(data: EventoActualizarUsuario['data'], msj: Message) {
-    const { id, nombreEmpresa, empresaId } = data;
+    const { id, nombreEmpresa, empresaId, establecimientoId } = data;
 
     const usuario = await Usuario.findById(id);
 
-    usuario!.set({ empresaId, nombreEmpresa });
+    usuario!.set({ empresaId, nombreEmpresa, establecimientoId });
 
     await usuario!.save();
     

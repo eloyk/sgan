@@ -9,7 +9,7 @@ interface AtribUsuario {
   password: string;
   nombreEmpresa?: string;
   empresaId?: string;
-  establecimientoId?: string;
+  establecimientoId?: [string];
   superUsuario?: boolean;
   estadoUsuario?: boolean;
 }
@@ -21,7 +21,7 @@ interface DocumentoUsuario extends mongoose.Document {
   password: string;
   nombreEmpresa?: string;
   empresaId?: string;
-  establecimientoId?: string;
+  establecimientoId?: [string];
   superUsuario?: boolean;
   estadoUsuario?: boolean;
   version: number;
@@ -50,7 +50,7 @@ const SchemaUsuario = new mongoose.Schema(
       type: String,
     },
     establecimientoId: {
-      type: String,
+      type: [String],
     },
     superUsuario: {
       type: Boolean,

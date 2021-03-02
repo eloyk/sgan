@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Establecimiento, requireAuth, validarSolicitud } from '@eloyk/comun';
+import jwt from 'jsonwebtoken';
 import { PublicadorEstablecimientoCreado } from '../eventos/publicadores/publicador-establecimiento-creado';
 import { natsWrapper } from '../nats-wrapper';
 
@@ -45,7 +46,26 @@ router.post(
       version: establecimiento!.version,
     });
 
-    res.status(201).send(establecimiento);
+    req.session = null;
+
+    // Generate JWT
+    const usuarioJwt = jwt.sign(
+      {
+        id: req.usuarioActual!.id,
+        email: req.usuarioActual!.email,
+        nombreEmpresa: req.usuarioActual!.nombreEmpresa,
+        empresaId: establecimiento.empresaId,
+        establecimientoId: establecimiento!.id
+      },
+      process.env.JWT_KEY!
+    );
+
+    // Store it on session object
+    req.session = {
+      jwt: usuarioJwt,
+    };
+
+    res.status(201).send(establecimiento); 
   }
 );
 

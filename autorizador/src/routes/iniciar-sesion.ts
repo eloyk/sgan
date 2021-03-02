@@ -41,6 +41,7 @@ router.post(
         email: usuarioExiste.email,
         nombreEmpresa: usuarioExiste.nombreEmpresa,
         empresaId: usuarioExiste.empresaId,
+        establecimientoId: usuarioExiste.establecimientoId
       },
       process.env.JWT_KEY!
     );
