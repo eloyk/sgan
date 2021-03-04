@@ -127,10 +127,6 @@ function BusinessForm({props}) {
   })
   console.log("default values:" + JSON.stringify(defaultValues))
 
-  // if(props.business){
-  //   setFlagDisabled(true)
-  // }
-
   // Define Yup schema for form validation
   const schema = yup.object().shape({
     nombreEmpresa: yup
@@ -423,10 +419,6 @@ function BusinessProveedorForm({props}) {
     RNC: props.business !== null ? props.business.RNC : "",
   })
   console.log("default values:" + JSON.stringify(defaultValues))
-
-  // if(props.business){
-  //   setFlagDisabled(true)
-  // }
 
   // Define Yup schema for form validation
   const schema = yup.object().shape({
@@ -721,10 +713,6 @@ function BusinessUnidadMedidaForm({props}) {
   })
   console.log("default values:" + JSON.stringify(defaultValues))
 
-  // if(props.business){
-  //   setFlagDisabled(true)
-  // }
-
   // Define Yup schema for form validation
   const schema = yup.object().shape({
     nombreEmpresa: yup
@@ -840,6 +828,7 @@ function BusinessUnidadMedidaForm({props}) {
             control={control}
             invalid={Boolean(errors.nombreEmpresa)}
             placeholder="Por favor inserte el nombre de su empresa"
+            hidden
           />
           <Label for="nombreEmpresa">Nombre de la empresa</Label>
           {errors.nombreEmpresa && <Form.Feedback children={errors.nombreEmpresa.message} />}
@@ -1002,7 +991,6 @@ function BusinessUnidadMedidaForm({props}) {
     </Form>
   )
 }  
-
 
 function mapDispathToProps(dispatch) {
   return bindActionCreators({ pageChangeHeaderTitle, breadcrumbChange, currentBusinessChange }, dispatch)
